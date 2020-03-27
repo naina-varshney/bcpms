@@ -9,8 +9,8 @@
     </head>
     <body>
         <%
-            String user_name=request.getParameter("user_id");
-            session.setAttribute("session_name", user_name);
+            String user_names=request.getParameter("user_id");
+            session.setAttribute("session_name", user_names);
            %>
     </body>
 </html>

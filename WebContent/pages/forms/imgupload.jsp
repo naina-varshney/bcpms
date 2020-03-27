@@ -1,6 +1,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="bcpms.Conn"%>
-<%@ page import = "java.io.*,java.util.*, javax.servlet.*" %>
+<%@ page import = "java.io.*,java.util.*" %>
+<%@ page import="javax.servlet.*" %> 
 <%@ page import = "javax.servlet.http.*" %>
 <%@ page import = "org.apache.commons.fileupload.*" %>
 <%@ page import = "org.apache.commons.fileupload.disk.*" %>

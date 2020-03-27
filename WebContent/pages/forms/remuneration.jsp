@@ -89,6 +89,29 @@ if(id!=null){
 		ps1.close();
 		rs.close();
 	}
+	else if(execute.equals("addDesignation"))
+	{
+		String teacher=request.getParameter("teacher_name");
+		//System.out.println("teacher name"+" "+teacher);
+		String[] name=teacher.split(" ");
+		//System.out.println("name[0]"+" "+name[0]);
+		//System.out.println("name[1]"+" "+name[1]);
+		PreparedStatement ps=new Conn().con.prepareStatement("select designation.designation_name,designation.designation_id from designation inner join teacher where designation.designation_id=teacher.Designation_id and teacher.first_name=? and teacher.Last_name=?");
+		ps.setString(1,name[0]);
+		ps.setString(2,name[1]);
+		ResultSet rs=ps.executeQuery();
+		if(rs.next())
+		{
+			response.getWriter().write(rs.getString(1));
+		}
+		else
+		{
+			response.getWriter().write("invalid");
+		}
+		response.getWriter().close();
+		ps.close();
+		rs.close();
+	}
 }
 else
 {

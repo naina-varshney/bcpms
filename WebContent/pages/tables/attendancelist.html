@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>BCPMS | .NetAttendance</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="../../plugins/fontawesome-free/css/all.min.css">
+
+<!-- DataTables -->
+<link rel="stylesheet" href="../../dist/css/dataTables.bootstrap4.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+
+<style>
+.dataTables_filter {
+	text-align: right;
+}
+</style>
+</head>
+<body class="hold-transition sidebar-mini">
+	<div class="wrapper">
+		<!-- content header -->
+		<section class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1>Attendance List</h1>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+		</section>
+		<!-- Main content -->
+		<section class="content">
+			<div class="row">
+				<div class="col-12">
+					<!-- /.card -->
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title" id="subject_heading"></h3>
+						</div>
+						<!-- /.card-header -->
+						<div class="card-body">
+							<div class="table-responsive">
+								<div class="row">
+									<div class="col-md-3">
+
+										<div class="form-group">
+
+											<label>From</label>
+
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text"> <i
+														class="far fa-calendar-alt"></i>
+													</span>
+												</div>
+												<input type="text" placeholder="month" class="form-control"
+													id="date1">
+											</div>
+											<!-- /.input group -->
+										</div>
+
+
+									</div>
+								</div>
+								<table id="example1" class="table table-bordered table-striped"></table>
+							</div>
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<!-- /.card -->
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+		</section>
+		<!-- /.content -->
+	</div>
+	<!-- /.content-wrapper -->
+
+
+	<!-- jQuery -->
+	<script src="../../plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 4 -->
+	<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- DataTables -->
+	<script src="../../plugins/jquery/jquery.dataTables.js"></script>
+	<script src="../../plugins/bootstrap/js/dataTables.bootstrap4.js"></script>
+	<script src="../../plugins/lodash.js"></script>
+	<!-- AdminLTE -->
+	<script src="../../dist/js/adminlte.min.js"></script>
+	<!--demo purposes -->
+	<script src="../../dist/js/demo.js"></script>
+	<!-- page script -->
+	<script>
+var date=null;
+var month=null;
+var year=null;
+$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=attendance_course",function(data,status){
+	if(data!=="invalid session key"){
+	//console.log(data);
+		$('#subject_heading').text(data);
+		
+		$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=radio_selected",function(data,status){
+			if(data==="Date")
+				{
+					$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=selected_date",function(data,status){
+						if(data!=="invalid session key")
+							{
+								$.post("http://localhost:9090/BCPMS/pages/tables/attendancelist.jsp",{radio:"Date",date:data},function(data,status){
+									if(data!=="invalid")
+										{
+										
+										}
+								})	
+							}
+					})
+				}
+			else if(data==="Month")
+			{
+				
+				$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=selected_month",function(data,status){
+					if(data!=="invalid session key")
+						{
+							$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=selected_year",function(data1,status){
+								if(data1!=="invalid session key"){
+									$.post("http://localhost:9090/BCPMS/pages/tables/attendancelist.jsp",{radio:"Month",month:data,year:data1},function(data2,status){
+										if(data2!=="invalid")
+											{
+											 	console.log(JSON.parse(data2));
+											 	
+											 	var lo = require('lodash');
+											 	
+											 	var table= $('#example1').DataTable({
+													  "select": true,
+													  "data": finallist,
+													  "columns":[
+													             {title : "Sno"},
+													             {title : "Smart Card Id"},
+													             {title : "Roll No"},
+													             {title : "Student Name"},
+													             {title : "1" },
+													             {title : "2" },
+													             {title : "3" },
+													             {title : "4" },
+													             {title : "5" },
+													             {title : "6" },
+													             {title : "7" },
+													             {title : "8" },
+													             {title : "9" },
+													             {title : "10" },
+													             {title : "11" },
+													             {title : "12" },
+													             {title : "13" },
+													             {title : "14" },
+													             {title : "15" },
+													             {title : "16" },
+													             {title : "17" },
+													             {title : "18" },
+													             {title : "19" },
+													             {title : "20" },
+													             {title : "21" },
+													             {title : "22" },
+													             {title : "23" },
+													             {title : "24" },
+													             {title : "25" },
+													             {title : "26" },
+													             {title : "27" },
+													             {title : "28" },
+													             {title : "29" },
+													             {title : "30" },
+													             {title : "31" }
+													             ],
+													  
+												      "paging": true,
+												      "lengthChange": false,
+												      "searching": true,
+												      "ordering": true,
+												      "info": true,
+												      "autoWidth": true,
+												    });
+											}
+									})
+								}
+								
+							})
+						}
+				})
+				
+			}
+		})
+	}	
+})
+
+
+
+
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  });
+</script>
+</body>
+</html>

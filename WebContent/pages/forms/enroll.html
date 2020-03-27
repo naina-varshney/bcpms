@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BCPMS | Enrollment Form</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+     <style>
+      body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+    transition: margin-left .3s ease-in-out;
+    margin-left: 0px;
+}
+  </style>
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="min-height: 1246.8px;">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1><b>Enrollment Form</b></h1>
+                        </div>
+                       
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <!-- Default box -->
+                <div class="card">
+          <!-- /.card-header -->
+		  <div class="card-body">
+                      
+            <div class="row">
+                <div class="col-md-6">
+                <div class="form-group">
+                        <label>Student ID</label>
+                        <input type="text" class="form-control" id="smartid" disabled>
+               </div>
+                
+			   <div class="form-group">
+                        <label>Student Name</label>
+                        <input type="text" class="form-control" id="studentname" disabled>
+               </div>
+			     <div class="form-group">
+                        <label>Father's Name</label>
+                        <input type="text" class="form-control" id="fathername"  placeholder="Enter your father's name*" required>
+               </div>
+			     <div class="form-group">
+                        <label>Mother's Name</label>
+                        <input type="text" class="form-control" id="mothername" placeholder="Enter your mother's name*" required>
+               </div>
+			<div class="form-group">
+                        <label>Guardian's Name</label>
+                        <input type="text" class="form-control" id="guardianname" placeholder="Enter your guardian's name*" required>
+               </div>
+			  
+			   
+                  <div class="form-group">
+                    <label>Date Of Birth</label>
+                    <input type="date" class="form-control"  id="dob" placeholder="Enter your Date of birth*">
+                  </div>
+                    	 <div class="form-group">
+                        <label>Aadhar Number</label>
+                        <input type="number" class="form-control" id="aadhar" disabled>
+                </div>
+                     <div class="form-group">
+                <label>Choose Language</label>
+                  <select class="form-control select2bs4" id="language" style="width: 100%;" required>
+                    <option selected="selected" required>Select*</option>
+                    <option>Hindi</option>
+                    <option>English</option>
+                  </select>
+                </div>
+                 <div class="form-group">
+                        <label>Pincode</label>
+                       <input type="text" class="form-control" id="pincode" placeholder="Enter your pincode*" required> 
+                  
+               </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+			  
+                <!-- /.form-group -->
+               
+		<div class="form-group">
+                <label>Hostel Name</label>
+                  <select class="form-control select2bs4" id="hostel" style="width: 100%;" required>
+                    
+                  </select>
+                </div>	
+                <div class="form-group">
+                        <label>Course Name</label>
+                        <select class="form-control select2bs4" id="coursename" style="width: 100%;" required>
+                    <option selected="selected" required>Select*</option>
+                    <option>MCA</option>
+                    <option>B.Tech</option>
+                  </select>
+               </div>
+                <div class="form-group">
+                        <label>Enrollment Number</label>
+                        <input type="text" name="enrollmentno" class="form-control" id="enrolmentNo" placeholder="Enter your enrollment no*" required>
+                        </div>
+		<div class="form-group">
+                    <label for="email">Email_Id</label>
+                    <input type="email" class="form-control"  id="email_id" disabled>
+                </div>
+		<div class="form-group">
+                    <label>Mobile Number</label>
+                    <input type="number" class="form-control"  id="mobile" disabled>
+                  </div>
+                    <div class="form-group">
+                        <label>State</label>
+                  <select class="form-control select2bs4" id="state_dropdown" style="width: 100%;" required>
+                   
+                  </select>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <textarea class="form-control" id="address" placeholder="Permanent Address"></textarea>
+                </div>	
+                <div class="form-group">
+                    <label>Select course in which you want to enroll</label>
+                  <select class="form-control select2bs4" id="course" style="width: 100%;" required>
+                    
+                  </select>
+                </div>
+               </div>
+               </div>
+                
+               
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->        
+          </div>
+          <!-- /.card-body -->
+			<!--card footer-->
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary float-right" onclick="NextButton()">Next</button>		
+          </div>                                  
+                </div>
+                <!-- /.card -->
+            </section>
+            <!-- /.content -->
+               </div>
+        <!-- /.content-wrapper -->
+        </div>
+      
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="../../dist/js/adminlte.min.js"></script>
+        <script src="../../dist/js/demo.js"></script>
+</body>
+<script type="module">
+import states from '../../js/pages/state.js';
+$(document).ready(function(){
+	$.post("http://localhost:9090/BCPMS/pages/forms/enroll.jsp",{run:"load"},function(data,status){
+		if(data!=="invalid")
+			{
+		        $('#smartid').val(data.s_id);
+		        $('#studentname').val(data.s_name);
+		        $('#aadhar').val(data.s_adhaar);
+		        $('#email_id').val(data.s_email);
+		        $('#mobile').val(data.s_contact);
+			}
+		else
+			{
+			alert("Invalid User!!!");
+			}
+	})
+		$.post("http://localhost:9090/BCPMS/pages/common/ListPopulate.jsp",{tableName:"course_details"},function(data,status){
+    		if(data!=="invalid"){
+    			//console.log(data);
+    			let data1=JSON.parse(data);
+      		  // console.log(data1);
+      		   if(data1.length>0)
+      			{
+      			   let sel = $('#course')[0];
+      			   let selectHtml=`<option selected="selected" required>Select*</option>`
+    			       $(selectHtml).appendTo(sel);
+      			   data1.forEach(function(object){
+      				   let course_list=`<option>${object.course_name}</option>`
+                            $(course_list).appendTo(sel);  
+      			   })  
+      			} 
+    		}
+    	})
+    	$.post("http://localhost:9090/BCPMS/pages/common/ListPopulate.jsp",{tableName:"hostel_name"},function(data,status){
+    		if(data!=="invalid"){
+    			console.log(data);
+    			let data1=JSON.parse(data);
+      		  // console.log(data1);
+      		   if(data1.length>0)
+      			{
+      			   let sel = $('#hostel')[0];
+      			   let selectHtml=`<option selected="selected" required>Select*</option>`
+    			       $(selectHtml).appendTo(sel);
+      			   data1.forEach(function(object){
+      				   let hostel_list=`<option>${object.hostelName}</option>`
+                            $(hostel_list).appendTo(sel);  
+      			   })  
+      			} 
+    		}
+    	})
+    	
+    	let sel = $('#state_dropdown')[0];
+    	let selectHtml=`<option selected="selected" required>Select*</option>`
+    			       $(selectHtml).appendTo(sel);
+    	let statearray = Object.values(states);
+		statearray.forEach(val=>{
+			let state_list=`<option>${val}</option>`
+            $(state_list).appendTo(sel);
+		})
+
+})
+</script>
+<script>
+function NextButton(){
+$.post("http://localhost:9090/BCPMS/pages/forms/enroll.jsp",{run:"button",father_name:$('#fathername').val(),mother_name:$('#mothername').val(),guardian_name:$('#guardianname').val(),
+dob:$('#dob').val(),language:$('#language').children("option:selected").val(),hostel:$('#hostel').children("option:selected").val(),current_course:$('#coursename').children("option:selected").val(),
+enrolment_no:$('#enrolmentNo').val(),state:$('#state_dropdown').children("option:selected").val(),address:$('#address').val(),
+short_term_course:$('#course').children("option:selected").val(),pincode:$('#pincode').val()},function(data,status){
+
+		if(data!=="invalid")
+		{
+			console.log(data);
+			alert("You have successfully enrolled in the short term course.Best of luck!!");
+			window.location.href=data;
+			
+		}
+		else{
+				alert("Registeration failed.Try again");
+			}
+})
+}
+</script>
+
+</html>

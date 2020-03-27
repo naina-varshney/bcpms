@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>BCPMS| StudentDashboard </title>
+	
+   
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- style -->
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    <style>
+    img {
+        width: 100%;
+        height: auto;
+        }
+    .blinking{
+    animation:blinkingText 2.0s infinite;
+}
+@keyframes blinkingText{
+    0%{     color: #000;    }
+    49%{    color: blue; }
+    60%{    color: transparent; }
+    99%{    color:transparent;  }
+    100%{   color: #000;    }
+}
+ body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header 
+         {
+            margin-left: 0px;
+         }
+    </style>
+	  
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    
+       
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+
+                <!-- Content Header (Page header) -->
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Dashboard</h1>
+                        </div>
+                        <!-- /.col -->
+                        
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                  
+                    <!-- Main row -->
+                    <div class="row">
+                        <!-- Left col -->
+                        <div class="col-md-12">
+                            <div class="card">
+                            <!--Carousel Wrapper-->
+				<div id="carousel-example-2" class="carousel slide carousel-fade z-depth-1-half" data-ride="carousel">
+				<!--Indicators-->
+                                    <ol class="carousel-indicators">
+					<li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+					<li data-target="#carousel-example-2" data-slide-to="1"></li>
+					<li data-target="#carousel-example-2" data-slide-to="2"></li>
+                                    </ol>
+                                    <!--/.Indicators-->
+                                    <!--Slides-->
+                                    <div class="carousel-inner" role="listbox">
+					<div class="carousel-item active">
+                                            <div class="view">
+						<img class="d-block w-100" src="../../dist/img/14.jfif" alt="First slide">
+                                                <div class="mask rgba-black-light"></div>
+                                            </div>
+                                            <div class="carousel-caption">
+						<h3 class="h3-responsive">House riding</h3>
+						<p>Empower women</p>
+                                            </div>
+					</div>
+					<div class="carousel-item">
+                                            <!--Mask color-->
+                                            <div class="view">
+                                                <img class="d-block w-100" src="../../dist/img/13.jfif" alt="Second slide">
+                                                <div class="mask rgba-black-strong"></div>
+                                            </div>
+                                            <div class="carousel-caption">
+                                                <h3 class="h3-responsive">Strong mask</h3>
+                                                    <p>Secondary text</p>
+                                            </div>
+					</div>
+					<div class="carousel-item">
+                                        <!--Mask color-->
+                                            <div class="view">
+                                                <img class="d-block w-100" src="../../dist/img/17.jfif" alt="Third slide">
+                                                <div class="mask rgba-black-slight"></div>
+                                            </div>
+                                            <div class="carousel-caption">
+                                                <h3 class="h3-responsive">Slight mask</h3>
+                                                <p>Third text</p>
+                                            </div>
+					</div>
+                                    </div>
+                                    <!--/.Slides-->
+                                    <!--Controls-->
+                                    <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+                                    </a>
+                                    <!--/.Controls-->
+				</div>
+				<!--/.Carousel Wrapper-->
+				<!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                </div>
+                <!--/. container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+  
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+   
+    <script src="../../dist/js/adminlte.js"></script>
+
+  
+    
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html style="height: auto;"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>BCPMS| TeacherRegistration</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+     <style>
+      body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+    transition: margin-left .3s ease-in-out;
+    margin-left: 0px;
+}
+
+	
+	.content-wrapper
+	{
+	
+		background-image: url("../../dist/img/123.jpg");
+		
+		background-repeat: no-repeat;
+		background-size: cover;
+		
+	}
+	img{
+			
+		border-style: none;
+		width: 100px;
+		
+			
+	}
+	.card
+	{
+			box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 20px 20px rgba(0,0,0,.2);
+			background-color: transparent;
+		
+	}
+	
+  </style>
+</head>
+<body class="hold-transition sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="min-height: 1246.8px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Registration Form</h1>
+          </div>
+          
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+    <div class="col-md-3">
+    </div>
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
+            
+              <!-- /.card-header -->
+              <!-- form start -->
+                        
+                        <!--card header-->
+                            <div class="card-header">
+                                <h3 class="card-title"><b>Teacher Registration</b></h3>
+
+            
+          </div>
+          <!-- /.card-header -->
+        <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+			   <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" id="name"  disabled>
+               </div>
+			   <div class="form-group">
+                        <label>Phone</label>
+                        <input type="number" class="form-control" id="phone"  disabled>
+                           </div>
+               		 <div class="form-group">
+                  <label>Gender</label>
+                  <select class="form-control select2" id="gender" style="width: 100%;" required>
+                    <option selected="selected">Select*</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Transgender</option>
+                    
+                  </select>
+                </div>
+			    <div class="form-group">
+                        <label>Aadhar Number</label>
+                        <input type="number" class="form-control" id="aadhar"  disabled>
+               </div>
+			   
+                <!-- <div class="form-group">
+                  <label>Department</label>
+                  <select class="form-control select2" id="department" style="width: 100%;" required>
+                    <option selected="selected">Select*</option>
+                    <option>Computer Science</option>
+                    <option>California</option>
+                    <option>Delaware</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Washington</option>
+                  </select>
+                </div> -->
+            	<div class="form-group">
+                  <label>Designation</label>
+				  
+                  <select class="form-control select2" id="designation" style="width: 100%;" required>
+                    <option selected="selected">Select*</option>
+                    <option>Professor</option>
+                    <option>Assistant Professor</option>
+                    <option>Associate Professor</option>
+                  </select>
+                </div>
+				
+				<div class="form-group">
+                        <label>Joining Date</label>
+						
+                        <input type="date" class="form-control" id="joining_date" placeholder="Enter your joining date*" required>
+               </div>
+				
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+			   <div class="form-group">
+                        <label>ID</label>
+                        <input type="text" class="form-control" id="id1" disabled>
+               </div>
+                   <div class="form-group">
+                        <label>DOB</label>
+                        <input type="date" id="dob" class="form-control" placeholder="Enter your date of birth*" required>
+                   </div>
+                 
+                <!-- /.form-group -->
+                 <div class="form-group">
+                    <label for="Email1">Email address</label>
+                    <input type="email" class="form-control" id="Email1" disabled>
+                  </div>
+                
+                  <!-- <div class="form-group">
+                    <label for="Password1">Password</label>
+                    <input type="password" class="form-control" id="Password1"  disabled>
+                  </div>
+				  <div class="form-group">
+                    <label for="Password2">Confirm Password</label>
+                    <input type="password" class="form-control" id="Password2" disabled>
+                  </div>
+				   -->
+				   
+				   <div class="form-group">
+                  <label>Select your security question</label>
+                  <select class="form-control select2bs4" id="security" style="width: 100%;" disabled>
+                    <option selected="selected">Selected*</option>
+                    <option>what is your pet name?</option>
+                    <option>your hobby?</option>
+                    <option>your grandfather's occupation?</option>
+                    
+                  </select>
+                </div>
+				 <div class="form-group">
+                        <label>Security Answer</label>
+                        <input type="text" class="form-control" id="answer" placeholder="Enter your answer*" disabled>
+               </div>
+                <div class="form-group">
+                        <label>Subject</label>
+                        <select class="form-control select2bs4" id="subject" style="width: 100%;" required>
+                    <option selected="selected">Selected*</option>
+                    <option>Diploma in acurial science</option>
+                    <option>Certification in Web Developmnet</option>
+                   
+                    
+                  </select>
+                        
+               </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+            <!-- /.card-body -->
+            <!--card footer-->
+            <div class="card-footer">
+          
+                <button type="submit" class="btn btn-primary" onclick="OnTeacherRegisterBtnClicked()">Submit</button>
+		<button type="submit" class="btn btn-default float-right">Cancel</button>
+            </div>   
+                    
+            </div>
+            <!-- /.card -->
+
+                     
+
+          </div>
+     
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+       </div>
+        <!-- /.content-wrapper -->
+        </div>
+   
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../../dist/js/adminlte.min.js"></script>
+
+    <script src="../../dist/js/demo.js"></script>
+    <script>
+    var RegistrationFormSessionKey = null;
+    $(document).ready(function(){
+    	$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=registration_form_session_key",function(data,status){
+    		if(data!="invalid session key"){
+    			RegistrationFormSessionKey  = data;
+    			 $.post("http://localhost:9090/BCPMS/pages/forms/teacherreg.jsp?getValues=true",{session_link:RegistrationFormSessionKey},function(data,status){
+        		if(data==="invalid user"){
+        			alert("Wrong ID!Please try again");
+        		}
+        		else
+        			{
+        				$('#id1').val(data.user_id);
+        				$('#name').val(data.user_name);
+        				$('#phone').val(data.user_phone);
+        				$('#aadhar').val(data.user_aadhar);
+        				$('#Email1').val(data.user_email);
+        				$('#security').val(data.user_ques);
+        				$('#answer').val(data.user_ans);
+        				
+        			}
+        	})
+    			console.log('register session key',RegistrationFormSessionKey);
+    		}else{}
+    	})
+    	
+    })
+    function OnTeacherRegisterBtnClicked(){
+    	
+    	 $.post("http://localhost:9090/BCPMS/pages/forms/teacherreg.jsp?getValues=false",
+     			{session_link:RegistrationFormSessionKey,designation:$('#designation').val(),joining_date:$('#joining_date').val(),DOB:$('#dob').val(),gender:$('#gender').val(),
+     					subject:$('#subject').val()},
+     			function(data,status){
+     				//console.log(status);
+     				 if(data==="invalid user"){
+     					 alert("You are not allowed to enter in this category!!");	
+      				}	
+     				 else
+     					 {
+     					    alert("Registered successfully");
+     					    window.location.href=data;
+     					 }
+     	})
+     }
+    
+    </script>
+</body>
+
+</html>

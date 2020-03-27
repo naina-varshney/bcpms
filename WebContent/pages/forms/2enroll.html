@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BCPMS | Enrollment Form</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+     <style>
+      body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+    transition: margin-left .3s ease-in-out;
+    margin-left: 0px;
+}
+  </style>
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="min-height: 1246.8px;">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1><b>Qualification Details</b></h1>
+                        </div>
+                       
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+
+                <!-- Default box -->
+                <div class="card">
+                
+          <!-- /.card-header -->
+		  <div class="card-body">
+		  
+							
+         
+          <!-- /.card-header -->
+		  <div class="card-body">
+                      
+            <div class="row">
+			   <div class="col-md-3">
+                <div class="form-group">
+  
+                       <b>10th</b> <input type="text" class="form-control" id="10board" placeholder="Enter your Board*" required>
+               </div>
+                
+			   <div class="form-group">
+                        
+                        <b>12th</b><input type="text" class="form-control" id="12board" placeholder="Enter Board*" required>
+               </div>
+			     <div class="form-group">
+                       
+                        <b>Under Graduate</b><input type="text" class="form-control" id="UGuniversity"  placeholder="Enter University*" required>
+               </div>
+			     <div class="form-group">
+                      
+                        <b>Post Graduate</b><input type="text" class="form-control" id="PGuniversity" placeholder="Enter University*" required>
+               </div>
+			    <div class="form-group">
+                      
+                        <b>Diploma Course</b><input type="text" class="form-control" id="diploma" placeholder="Enter Board/University*" required>
+               </div>
+			
+                <!-- /.form-group -->
+              </div>
+			   <div class="col-md-3">
+                <div class="form-group">
+                        <label></label>
+                        <input type="text" class="form-control" id="10year" placeholder="Enter year of passing*" required>
+               </div>
+                
+			   <div class="form-group">
+                        <label></label>
+                        <input type="text" class="form-control" id="12year" placeholder="Enter year of passing*" required>
+               </div>
+			     <div class="form-group">
+                        <label></label>
+                        <input type="text" class="form-control" id="UGyear"  placeholder="Enter year of passing*" required>
+               </div>
+			     <div class="form-group">
+                        <label></label>
+                        <input type="text" class="form-control" id="PGyear" placeholder="Enter year of passing*" required>
+               </div>
+			<div class="form-group">
+                        <label></label>
+                        <input type="text" class="form-control" id="Diplomayear" placeholder="Enter year of passing*" required>
+               </div> 
+                <!-- /.form-group -->
+              </div>
+                <div class="col-md-3">
+                <div class="form-group">
+                        <label></label>
+                        <input type="text" class="form-control" id="10_obtained" placeholder="Enter obtained marks*" required>
+               </div>
+                
+			   <div class="form-group">
+                        <label></label>
+                        <input type="text" class="form-control" id="12_obtained" placeholder="Enter obtained marks*" required>
+               </div>
+			     <div class="form-group">
+                        <label></label>
+                        <input type="text" class="form-control" id="UG_obtained"  placeholder="Enter obtained marks*" required>
+               </div>
+			     <div class="form-group">
+                        <label></label>
+                        <input type="text" class="form-control" id="PG_obtained" placeholder="Enter obtained marks*" required>
+               </div>
+			   <div class="form-group">
+                        <label></label>
+                        <input type="text" class="form-control" id="Diploma_obtained" placeholder="Enter obtained marks*" required>
+               </div>
+			
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-2">
+			  
+                <!-- /.form-group -->
+                <div class="form-group">
+                        <label></label>
+                        <input type="text" class="form-control" id="10_total" placeholder="Enter total marks*" required>
+               </div>
+                
+			   <div class="form-group">
+                        <label></label>
+                        <input type="text" class="form-control" id="12_total" placeholder="Enter total marks*" required>
+               </div>
+			     <div class="form-group">
+                        <label></label>
+                        <input type="text" class="form-control" id="UG_total"  placeholder="Enter total marks*" required>
+               </div>
+			     <div class="form-group">
+                        <label></label>
+                        <input type="text" class="form-control" id="PG_total" placeholder="Enter total marks*" required>
+               </div>
+			      <div class="form-group">
+                        <label></label>
+                        <input type="text" class="form-control" id="Diploma_total" placeholder="Enter total marks*" required>
+               </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+			  
+            </div>
+            <!-- /.row -->
+                      
+          </div>
+          <!-- /.card-body -->
+          </div>
+          <!-- /.card-body -->
+			<!--card footer-->
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary" onclick="qualificationBtn()">Submit</button>
+		<button type="submit" class="btn btn-default float-right">Cancel</button>
+             </div>      
+                   
+                </div>
+                <!-- /.card -->
+             </section>
+            <!-- /.content -->
+               </div>
+        <!-- /.content-wrapper -->
+        </div>
+      
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../dist/js/adminlte.min.js"></script>
+   <script src="../../dist/js/demo.js"></script>
+   <script>
+   
+	function qualificationBtn()
+	{
+		
+		var text={};
+				 text.tenth={course: "10", board: $('#10board').val(), year: $('#10year').val(), obtained : $('#10_obtained').val(), total: $('#10_total').val()}
+				 text.twelve={course: "12", board: $('#12board').val(), year: $('#12year').val(), obtained : $('#12_obtained').val(), total: $('#12_total').val()};
+				 text.graduation={ board: $('#UGuniversity').val(), year: $('#UGyear').val(), obtained : $('#UG_obtained').val(), total: $('#12_total').val()};
+				 text.postgraduation={ board:$('#PGuniversity').val(), year: $('#PGyear').val(), obtained : $('#PG_obtained').val(), total: $('#12_total').val()};
+				 text.diploma={ board: $('#diploma').val(), year: $('#Diplomayear').val(), obtained : $('#diploma_obtained').val(), total: $('#12_total').val()};
+		console.log(text);	
+		var details=JSON.stringify(text);
+		console.log(details);
+		 $.post("http://localhost:9090/BCPMS/pages/forms/2enroll.jsp",{id:"ABMCA18039",student_details:details},function(data,status){
+				
+				if(data!=="invalid"){
+					alert("Registration process completed");
+					window.location.href="../../pages/dashboard/studentdashboard.html";
+				}
+				else
+					{
+						alert("Unauthorized user");
+					}
+			
+		}) 
+	}
+   </script>
+</body>
+</html>

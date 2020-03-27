@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>BCPMS | CoordinatorList</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../../dist/css/dataTables.bootstrap4.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  
+  <style>
+	.dataTables_filter {
+    text-align: right;
+	}
+  </style>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+  
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+         
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Enrolled Students</h1>
+          </div>
+          
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-12">
+          <!-- /.card -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Enrolled Student List</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+            <div class="table-responsive">
+              <table id="example1" class="table table-bordered table-striped"> </table>
+            </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  
+  <!-- /.content-wrapper -->
+  
+  <!-- Control Sidebar -->
+ 
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="../../plugins/jquery/jquery.dataTables.js"></script>
+<script src="../../plugins/bootstrap/js/dataTables.bootstrap4.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+<!-- page script -->
+<script>
+$(document).ready(()=>{
+	 $.post("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp",{getSessionKey:"user_session_key"},(data,status)=>{
+		 if(data!=="invalid session key"){
+			 //console.log("key:",data);
+			 // $("#heading").text(data);
+			  $.get("http://localhost:9090/BCPMS/pages/tables/EnrolledStudents.jsp",(data,status)=>{
+				//  console.log(data);
+				  if(data!=="null"){
+					  let list=JSON.parse(data);
+						// console.log("enrolled student list:", JSON.parse(data));
+
+						let finallist = [];
+						if(list.length>0){
+							list.forEach((val,index)=>{
+								let temparr = [];
+								temparr.push(index+1);
+								temparr.push(val.student_id);
+								temparr.push(val.student_roll);
+								temparr.push(val.student_name);
+								temparr.push(val.course_name);
+								temparr.push(val.date);
+								//temparr.push(val.course_isEnabled?"Running":"Not Running");
+								finallist.push(temparr);
+							})
+						}
+						
+						
+						var table= $('#example1').DataTable({
+							  "select": true,
+							  "data": finallist,
+							  "columns":[
+							             {title : "Sno"},
+							             {title : "Student Id"},
+							             {title : "Student Roll No"},
+							             {title : "Student Name"},
+							             {title : "Course Name"},
+							             {title : "Registration Date"}
+							             ],
+							  
+						      "paging": true,
+						      "lengthChange": false,
+						      "searching": true,
+						      "ordering": true,
+						      "info": true,
+						      "autoWidth": true,
+						    });
+						  
+						$('#example1 tbody').on( 'click', 'tr', function () {
+					        if ( $(this).hasClass('selected') ) {
+					            $(this).removeClass('selected').removeClass('bg-info');
+					        }
+					        else {
+					            table.$('tr.selected').removeClass('selected').removeClass('bg-info');
+					            $(this).addClass('selected bg-info');
+					        }
+					    } );
+				  }
+			  })
+		 }
+	 })
+})
+</script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>BCPMS| Log in</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+        <!-- icheck bootstrap -->
+        <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+        <!--  style -->
+        <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+
+        <style>
+
+            .login-page
+            {
+
+                background-image: url("../../dist/img/123.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+
+            }
+            .card
+            {
+                box-shadow: 0 0 1px rgba(0,0,0,.125), 1px 0px 100px 100px rgba(0,0,0,.2);
+                background-color: transparent;
+
+            }
+            .form-control
+            {
+                background-color: transparent;
+                color:black;
+            }
+
+            .login-card-body
+            {
+                background: transparent;
+                color: #212529;
+            }
+            .input-group
+       		 {
+                background-color: #fff;
+        	}
+          
+        </style>
+    </head>
+    <body class="hold-transition login-page">
+        <div class="login-box">
+            <!--<img src="dist/img/personal.gif" alt="logo" class="brand-image img-circle elevation-3" style="opacity: .8" align="middle">-->
+            <div class="login-logo">
+                <b>BCPMS</b>
+            </div>
+            <!-- /.login-logo -->
+            <div class="card">
+                <div class="card-body login-card-body">
+                    <p class="login-box-msg"><b>LOGIN</b></p>
+
+                  
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="id1" placeholder="Enter SmartCard ID*" name="user_id" required>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="password" class="form-control" id="password" placeholder="Password*" name="user_password" required>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="icheck-primary">
+                                    <input type="checkbox" id="remember">
+                                    <label for="remember">
+                                        Remember Me
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-4">
+                                <button type="submit" class="btn btn-primary btn-block" onclick="OnLoginBtnClicked()">LOGIN</button>
+
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                   
+                    <p class="mb-1">
+                        Forgot Password? <a href="../../pages/forms/security.html">Click Here</a>
+                    </p>
+                    <p class="mb-0">
+                        <a href="../../pages/forms/registration_form.html" class="text-center">Register as a new member</a>
+                    </p>
+                </div>
+                <!-- /.login-card-body -->
+            </div>
+        </div>
+        <!-- /.login-box -->
+
+        <!-- jQuery -->
+
+        <script src="../../plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- jquery-validation -->
+        <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+        <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+        <script src="../../dist/js/adminlte.min.js"></script>
+        <!--  for demo purposes -->
+        <script src="../../dist/js/demo.js"></script>
+        
+        <script type="text/javascript">
+        
+        function OnLoginBtnClicked(){ 
+        	console.log("Btn clicked");
+        	console.log($('#id1').val())
+        	$.post("http://localhost:9090/BCPMS/pages/forms/login.jsp",
+        			{user_id:$('#id1').val(),user_password:$('#password').val()},
+        			function(data,status){
+        				//console.log(status);
+        				 if(data==="unauthorized"){
+        					 alert("wrong user name and password try again!");
+        					$(':text').val("");
+        					$(':password').val("");	
+         				}	
+        				 else
+        					 {
+        					    //console.log(data);
+        					    window.location.href=data;
+        					 }
+        	})
+        }
+                                   /*  $(document).ready(function () {
+                                        $.validator.setDefaults({
+                                            submitHandler: function () {
+                                                alert("Form successful submitted!");
+                                            }
+                                        });
+                                        $('#quickForm').validate({
+                                            rules: {
+
+                                                password: {
+                                                    required: true,
+                                                    minlength: 5
+                                                },
+                                                terms: {
+                                                    required: true
+                                                },
+                                            },
+                                            messages: {
+
+                                                password: {
+                                                    required: "Please provide a password",
+                                                    minlength: "Your password must be at least 5 characters long"
+                                                },
+                                                terms: "Please accept our terms"
+                                            },
+                                            errorElement: 'span',
+                                            errorPlacement: function (error, element) {
+                                                error.addClass('invalid-feedback');
+                                                element.closest('.form-group').append(error);
+                                            },
+                                            highlight: function (element, errorClass, validClass) {
+                                                $(element).addClass('is-invalid');
+                                            },
+                                            unhighlight: function (element, errorClass, validClass) {
+                                                $(element).removeClass('is-invalid');
+                                            }
+                                        });
+                                    }); */
+        </script>
+    </body>
+
+</html>

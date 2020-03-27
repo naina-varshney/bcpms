@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html style="height: auto;"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>BCPMS| StudentRegistration</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+     <style>
+      body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+    transition: margin-left .3s ease-in-out;
+    margin-left: 0px;
+}
+
+	
+	.content-wrapper
+	{
+	
+		background-image: url("../../dist/img/123.jpg");
+		
+		background-repeat: no-repeat;
+		background-size: cover;
+		
+	}
+	img{
+			
+		border-style: none;
+		width: 100px;
+		
+			
+	}
+	.card
+	{
+			box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 20px 20px rgba(0,0,0,.2);
+			background-color: transparent;
+		
+	}
+	
+  </style>
+</head>
+<body class="hold-transition sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="min-height: 1246.8px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Registration Form</h1>
+          </div>
+          
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+    <div class="col-md-3">
+    </div>
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
+            
+              <!-- /.card-header -->
+              <!-- form start -->
+                        <form action="../../pages/tables/teacherlist.html" method="post">
+                        <!--card header-->
+                            <div class="card-header">
+                                <h3 class="card-title"><b>Register Yourself</b></h3>
+
+            
+          </div>
+          <!-- /.card-header -->
+        <div class="card-body">
+          <div class="row">
+              <div class="col-md-6">
+			   <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" class="form-control" id="name1" placeholder="Enter your name*" required>
+               </div>
+                        <div class="form-group">
+                        <label>ID</label>
+                        <input type="text" name="id" class="form-control" id="id1" placeholder="Enter your smart card ID*"required>
+               </div>
+			   <div class="form-group">
+                        <label>Phone</label>
+                        <input type="number" name="phone" class="form-control" id="phonenumber" placeholder="Enter contact number*" required>
+               </div>
+			<div class="form-group">
+                        <label>Aadhar Number</label>
+                        <input type="number" name="aadharno" class="form-control" id="addhar" placeholder="Enter aadhar card number*" required>
+                        </div>
+			 
+                  <div class="form-group">
+                    <label for="Email1">Email address</label>
+                    <input type="email" name="emailid" class="form-control" id="email1" placeholder="Enter email*" required>
+                  </div>
+                  
+               
+               
+                <!-- /.form-group -->
+                 </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+		
+                <!-- /.form-group -->
+                 
+                  <div class="form-group">
+                    <label for="Password1">Password</label>
+                    <input type="password" name="pass" class="form-control" id="Password1" placeholder="Password*" required>
+                  </div>
+		<div class="form-group">
+                    <label for="Password2">Confirm Password</label>
+                    <input type="password" name="pass" class="form-control" id="Password2" placeholder="Confirm Password*" required>
+                  </div>
+				  
+                <div class="form-group">
+                  <label>Select your security question</label>
+                  <select class="form-control select2bs4" name="securityques" id="security" style="width: 100%;" required>
+                    <option selected="selected">Selected*</option>
+                    <option>what is your pet name?</option>
+                    <option>your hobby?</option>
+                    <option>your grandfather's occupation?</option>
+                    
+                  </select>
+                </div>
+                <div class="form-group">
+                        <label>Security Answer</label>
+                        <input type="text" name="securityans" class="form-control" id="answer" placeholder="Enter your answer*" required>
+               </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+            <!-- /.card-body -->
+            <!--card footer-->
+            <div class="card-footer">
+          
+                <button type="submit" class="btn btn-primary">Submit</button>
+		<button type="submit" class="btn btn-default float-right">Cancel</button>
+            </div>   
+                    </form>
+            </div>
+            <!-- /.card -->
+
+                     
+
+          </div>
+     
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+       </div>
+        <!-- /.content-wrapper -->
+        </div>
+   
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../../dist/js/adminlte.min.js"></script>
+
+    <script src="../../dist/js/demo.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BCPMS | Reset Password</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    
+    <style>
+              	
+	.login-page
+	{
+	
+		background-image: url("../../dist/img/123.jpg");
+		
+		background-repeat: no-repeat;
+		background-size: cover;
+		
+	}
+	.card
+	{
+			box-shadow: 0 0 1px rgba(0,0,0,.125), 1px 0px 100px 100px rgba(0,0,0,.2);
+			
+			    background-color: transparent;
+		
+	}
+	.form-control
+	{
+		background-color: transparent;
+                color:black;
+	}
+
+	.login-card-body
+	{
+		background: transparent;
+		color: #212529;
+	}
+        .input-group
+        {
+                background-color: #fff;
+        }
+    </style>
+</head>
+
+<body class="hold-transition login-page">
+    <div class="login-box">
+      
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">You are only one step a way from your new password, recover your password now.</p>         
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" id="newpassword" name="new_pass" placeholder="New Password" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" id="confirmpassword" name="confirm_pass" placeholder="Confirm Password" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary btn-block" id="button1" onclick="OnForgotBtnClicked()">Change password</button>
+                                                   </div>
+                        <!-- /.col -->
+                    </div>
+                <p class="mt-3 mb-1">
+                    <a href="login.html">Login</a>
+                </p>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <!-- /.login-box -->
+
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE -->
+    <script src="../../dist/js/adminlte.min.js"></script>
+    <script>
+    var forgotPasswordSessionKey = null;
+    $(document).ready(function(){
+    	$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=forgot_password_session_id",function(data,status){
+    		if(data!="invalid session key"){
+    			forgotPasswordSessionKey = data;
+    			console.log('forgot session key',forgotPasswordSessionKey);
+    		}else{}
+    	})
+    })
+    function OnForgotBtnClicked(){
+    	console.log($('#newpassword').val(),$('#confirmpassword').val());
+    	$.post("http://localhost:9090/BCPMS/pages/forms/forgot.jsp",
+    			{new_pass:$('#newpassword').val(),confirm_pass:$('#confirmpassword').val(),session_id:forgotPasswordSessionKey},
+    			function(data,status){
+    				console.log(status);
+    				 if(data==="unauthorized"){
+    					 alert("wrong user name and password try again!");
+    					
+    					$(':password').val("");	
+     				}	
+    				 else
+    					 {
+    					    alert("Password changed successfully");
+    					    window.location.href=data;
+    					 }
+    	})
+    }
+    
+    
+    </script>
+
+</body>
+
+</html>

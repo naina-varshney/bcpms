@@ -118,11 +118,12 @@
     <script>
     var courseType=null;
     $(document).ready(()=>{
-    	$.post("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp",{getSessionKey:"add_course_key"},(data,status)=>{
+    	$.post("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp",{getSessionKey:"course_type_list"},(data,status)=>{
+    		console.log(data);
     		if(data!=="invalid session key")
     			{
     			   courseType=data;
-    			   console.log(courseType);
+    			  // console.log(courseType);
     				$('#coursetype').val(data);
     			}
     	})
@@ -131,7 +132,7 @@
     {
     	$.post("http://localhost:9090/BCPMS/pages/forms/courseadd.jsp",{type:courseType,name:$('#coursename').val(),id:$('#courseid').val(),
     		fees:$('#fees').val(),duration:$('#duration').val()},(data,status)=>{
-    			console.log(data);
+    			//console.log(data);
     			if(data==="inserted")
     				{
     						alert("Course added successfully");

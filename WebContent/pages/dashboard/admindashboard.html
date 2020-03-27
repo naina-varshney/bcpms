@@ -418,6 +418,7 @@ color
 								{
 								 let data = JSON.parse(data1);
 								//console.log(data)
+								//console.log(data.course_type);
 									if(data.length>0)
 										{
 										data.forEach(function(object){
@@ -426,6 +427,7 @@ color
 												class="nav-link"> <i class="far fa-circle nav-icon"></i>
 													<p id="course_list">
 													${object.course_type}
+													
 														<i class="right fas fa-angle-left"></i>
 													</p>
 											</a>
@@ -438,6 +440,12 @@ color
 															<p>Course List</p>
 														</div>
 													</li>
+													<li class="nav-item"> 
+														<div id="addCourse" onClick="changeContent('../../pages/forms/courseadd.html','course_type_list','${object.course_type}')" style="cursor: pointer;" class="nav-link"> 
+																		<i class="far fa-dot-circle nav-icon"></i> 
+							 												<p>Add Course</p> 
+		 											</div> 
+												</li>
 													
 												</ul>
 												</li>`
@@ -467,14 +475,23 @@ color
     			}
     	})
     })
-       
-        function changeContent(url)
-        {
-            //console.log('change content url called');
-            document.getElementById('mainIframe').setAttribute("src",url);
+     function changeContent(url,keyname="",value="")
+        {	if(keyname!==""&&value!==""){
+        	$.post("http://localhost:9090/BCPMS/pages/common/getSession.jsp",{key:keyname,value:value},(data,status)=>{
+           		if(data==="done"){
+           			document.getElementById('mainIframe').setAttribute("src",url);
+                    let url_array=url.split('/');
+                    window.location.hash=url_array[url_array.length-1]; 
+           		}
+           	})
+        }else{
+        	document.getElementById('mainIframe').setAttribute("src",url);
             let url_array=url.split('/');
-            window.location.hash=url_array[url_array.length-1];  
-        }
+            window.location.hash=url_array[url_array.length-1]; 
+        }     
+       };
+       
+       
         
     </script>
 

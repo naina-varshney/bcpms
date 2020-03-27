@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html" pageEncoding="ISO-8859-1"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="bcpms.Conn"%>
 <%@ page import="org.json.JSONObject" %>
@@ -7,9 +6,11 @@
 <%
 String id=(String)session.getAttribute("user_session_key");
 String execute=request.getParameter("run");
+
 if(id!=null){
 	if(execute.equals("load")){
-		PreparedStatement ps=new Conn().con.prepareStatement("select first_name,last_name from teacher");
+		PreparedStatement ps=new Conn().con.prepareStatement("select teacher.first_name,teacher.last_name from teacher ");
+	//	ps.setString(1,designation);
 		ResultSet rs=ps.executeQuery();
 		JSONArray responseArray=new JSONArray();
 		while(rs.next())
@@ -26,13 +27,14 @@ if(id!=null){
 	}
 	else if(execute.equals("calculate")){
 		float theory_salary=0.0F,practical_salary=0.0F;
-		//System.out.println("execute:"+execute);
+		
 		String fromDate=request.getParameter("from_date");
-		String toDate=request.getParameter("+to_date");
+		String toDate=request.getParameter("to_date");
 		String designation=request.getParameter("designation");
-		//System.out.println("designation"+designation);
+		
 		int No_of_theoryClass=Integer.parseInt(request.getParameter("theory"));
 		int No_of_practicalClass=Integer.parseInt(request.getParameter("practical"));
+		
 		PreparedStatement ps=new Conn().con.prepareStatement("select amount from remuneration_calculation where course_nature='Theory' and designation_name=?");
 		ps.setString(1,designation);
 		ResultSet rs=ps.executeQuery();

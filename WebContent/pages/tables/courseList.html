@@ -138,7 +138,7 @@
  $(document).ready(()=>{
 	 $.post("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp",{getSessionKey:"course_type_list"},(data,status)=>{
 		 if(data!=="invalid session key"){
-			 console.log("key:",data);
+			// console.log("key:",data);
 			  $("#heading").text(data);
 			  $.post("http://localhost:9090/BCPMS/pages/tables/courseList.jsp",{course_type:data,modify:false,payload:{}},(data,status)=>{
 				  console.log(data);

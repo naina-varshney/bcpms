@@ -66,4 +66,10 @@ if ((contentType.indexOf("multipart/form-data") >= 0)) {
              fileName + "<br>");
           }
        }
+   }
+   catch(Exception e)
+   {
+   }
+   }
+
 %>

@@ -14,13 +14,9 @@
     if(session_id!=null){
     	Statement stmt=new Conn().con.createStatement();
     	ResultSet rs;
-    	
     	JSONArray responseArray=new JSONArray();
-		
     	String query="select * from ";
     	String table_name=request.getParameter("tableName");
-       // System.out.println("table name:"+table_name);
-       
         if(table_name.equals("course_type")){  	
         	rs=stmt.executeQuery(query+table_name);
         	String course_type,course_id;

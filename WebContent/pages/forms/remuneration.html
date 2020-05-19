@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html style="height: auto;"><head>
+<html style="height: auto;">
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>BCPMS| Remuneration</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">  
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <style>
@@ -30,12 +29,10 @@
           <div class="col-sm-6">
             <h1>Remuneration Form</h1>
           </div>
-        
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
-    <!-- Main content -->
+   <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -44,201 +41,180 @@
         </div>
         <div class="col-md-6">
             <!-- general form elements -->
-            <div class="card card-primary">
-            
+            <div class="card card-primary">          
               <!-- /.card-header -->
               <!-- form start -->
-                        
-                        <!--card header-->
-                            <div class="card-header">
-                                <h3 class="card-title"><b>Remuneration</b></h3>
-                      </div>
+             <!--card header-->
+             <div class="card-header">
+                 <h3 class="card-title"><b>Remuneration</b></h3>
+             </div>
           <!-- /.card-header -->
         <div class="card-body">
             <div class="row">
               <div class="col-md-12">
-		<div class="col-md-6"  style="float:left">
-                    <div class="form-group">
-                        
-                  <label>From</label>
-
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="far fa-calendar-alt"></i>
-                      </span>
-                    </div>
-                    <input type="date" class="form-control float-right" id="date1">
-                  </div>
+				<div class="col-md-6"  style="float:left">
+                    <div class="form-group">        
+                  		<label>From</label>
+                  		<div class="input-group">
+                    		<div class="input-group-prepend">
+                      			<span class="input-group-text">
+                        			<i class="far fa-calendar-alt"></i>
+                      			</span>
+                    		</div>
+                    		<input type="date" class="form-control float-right" id="date1">
+                  		</div>
                   <!-- /.input group -->
+                	</div>
                 </div>
-                </div>
-                 <div class="col-md-6"  style="float:right">
-                    <div class="form-group">
-                        
-                  <label>To</label>
-
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="far fa-calendar-alt"></i>
-                      </span>
-                    </div>
-                    <input type="date" class="form-control float-right" id="date2">
-                  </div>
+                <div class="col-md-6"  style="float:right">
+                    <div class="form-group">        
+                  		<label>To</label>
+                  		<div class="input-group">
+                    		<div class="input-group-prepend">
+                      			<span class="input-group-text">
+                        			<i class="far fa-calendar-alt"></i>
+                     			</span>
+                    		</div>
+                    		<input type="date" class="form-control float-right" id="date2">
+                  		</div>
                   <!-- /.input group -->
-                </div>
-                </div>
-                
-                   <div class="form-group">
+                	</div>
+                </div>             
+                <div class="form-group">
                   <label>Select Teacher</label>
-                  <select class="form-control select2bs4" id="teacher" style="width: 100%;" reqired>
-                    
-                  </select>
+                  <select class="form-control select2bs4" id="teacher" style="width: 100%;" reqired></select>
                 </div>
-                    <div class="form-group">
-                  <label>Select Designation</label>
-                 
+                <div class="form-group">
+                  <label>Select Designation</label> 
                   <input type="text" id="designation" class="form-control" disabled>
                 </div>
-                     <div class="form-group">
-                   
-                    <div class="col-md-6" style="float:left">
-                    <div class="form-group">
-                        <label>Number of Theory Classes</label>
-                        <input type="number" class="form-control" id="class1" placeholder="Enter no of classes*" required>
-                    </div>
+                <div class="form-group">   
+                   <div class="col-md-6" style="float:left">
+                    	<div class="form-group">
+                        	<label>Number of Theory Classes</label>
+                        	<input type="number" class="form-control" id="class1" placeholder="Enter no of classes*" required>
+                    	</div>
                    </div> 
                    <div class="col-md-6" style="float:right">
-                    <div class="form-group">
+                   	 <div class="form-group">
                         <label>Number of Practical Classes</label>
                         <input type="number" class="form-control" id="class2" placeholder="Enter no of classes*" required>
                     </div>
-                   </div> 
-               
-                     </div>
-                  <div class="form-group">
-                           <div class="col-md-6" style="float:left">
-                    <div class="form-group">
-                        <label>Calculate Remuneration</label>
-                        <input type="text" class="form-control" id="remuneration" placeholder="Calculated Remuneration is" disabled>
-                    </div>
+                   </div>
+                </div>
+                <div class="form-group">
+                	<div class="col-md-6" style="float:left">
+                    	<div class="form-group">
+                        	<label>Calculate Remuneration</label>
+                        	<input type="text" class="form-control" id="remuneration" placeholder="Calculated Remuneration is" disabled>
+                    	</div>
                    </div> 
                    <div class="col-md-6" style="float:right">
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary" id="calrem" onclick="calculateBtn()"  style="float:right"><i class="fas fa-calculator"></i></button></label>
-                    </div>
-                   </div>
-                        
-                        
-                    </div>
+                    	<div class="form-group">
+                        	<button type="submit" class="btn btn-primary" id="calrem" onclick="calculateBtn()"  style="float:right"><i class="fas fa-calculator"></i></button></label>
+                    	</div>
+                   </div> 
+               </div>
                 <!-- /.form-group -->
-              </div>
+       		</div>
               <!-- /.col -->
-            </div>
+         </div>
             <!-- /.row -->
-        </div>
+      </div>
             <!-- /.card-body -->
             <!--card footer-->
-            <div class="card-footer">
-          
-                <button type="submit" class="btn btn-primary" onclick="storeRemuneration()">Submit</button>
+   	 <div class="card-footer">     
+        <button type="submit" class="btn btn-primary" onclick="storeRemuneration()">Submit</button>
 		<button type="submit" class="btn btn-default float-right">Cancel</button>
-            </div>   
-                  
-            </div>
+    </div>   
+	</div>
             <!-- /.card -->
-
-          </div>
-     
-        </div>
+ </div> 
+</div>
         <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </section>
-      </div>
+</div>
+<!-- /.container-fluid -->
+</section>
+  </div>
         <!-- /.content-wrapper -->
     </div>
     <!-- ./wrapper -->
-
     <!-- jQuery -->
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <script src="../../dist/js/adminlte.min.js"></script>
-
     <script src="../../dist/js/demo.js"></script>
     <script>
-    	$(document).ready(function(){
-    	$.post("http://localhost:9090/BCPMS/pages/forms/remuneration.jsp",{run:"load"},function(data,status){
-    		if(data!=="invalid")
+    	$(document).ready(function()
+    	{
+    		$.post("http://localhost:9090/BCPMS/pages/forms/remuneration.jsp",{run:"load"},function(data,status)
+    		{
+    			if(data!=="invalid")
     			{
-    			 let data1=JSON.parse(data);
-    			// console.log(data1);
-    			 if(data1.length>0)
+    				 let data1=JSON.parse(data);
+    			 	 if(data1.length>0)
     				 {
     				    let sel = $('#teacher')[0]; 
     				    let selectHtml=`<option selected="selected" required>Select*</option>`
-       			         $(selectHtml).appendTo(sel);
-	        			   data1.forEach(function(object){
-	        				   let teacher_list=`<option>${object.teacher_name}</option>`
-	                            $(teacher_list).appendTo(sel); 
-    				 })
-    			}
-    	}
-    	})
+       			         				$(selectHtml).appendTo(sel);
+	        			data1.forEach(function(object)
+	        			{
+	        				let teacher_list=`<option>${object.teacher_name}</option>`
+	                         					$(teacher_list).appendTo(sel); 
+    				 	})
+    				}
+    			}	
+    		})
     	})
     	
-    	$('#teacher').keypress(function(event){
-    		if(event.keyCode==13){
-    			//console.log("designation event clicked");
-    			$.post("http://localhost:9090/BCPMS/pages/forms/remuneration.jsp",{run:"addDesignation",teacher_name:$('#teacher').children("option:selected").val()},function(data,status){
-        		//console.log("designation load");
-        		if(data!=="invalid")
-        			{
-        			//	console.log("designation text",data);
-        				$('#designation').val(data);
-        		 	}
-        		else
-        			{
-        				alert("There is something wrong");
-        			}
-        	})
+    	$('#teacher').keypress(function(event)
+    	{
+    		if(event.keyCode==13)
+    		{
+    			$.post("http://localhost:9090/BCPMS/pages/forms/remuneration.jsp",{run:"addDesignation",teacher_name:$('#teacher').children("option:selected").val()},
+    					function(data,status)
+    					{
+        					if(data!=="invalid")
+        					{
+        						$('#designation').val(data);
+        		 			}
+        					else
+        					{
+        						alert("There is something wrong");
+        					}
+        				})
     		}
     		
-    	})
-    	
-    	function calculateBtn(){
-    		$.post("http://localhost:9090/BCPMS/pages/forms/remuneration.jsp",{run:"calculate",from_date:$('#date1').val(),to_date:$('#date2').val(),designation:$('#designation').children("option:selected").val(),
-    			theory:$('#class1').val(),practical:$('#class2').val()},function(data,status){
+    	})  	
+    	function calculateBtn()
+    	{
+    		$.post("http://localhost:9090/BCPMS/pages/forms/remuneration.jsp",{run:"calculate",from_date:$('#date1').val(),to_date:$('#date2').val(),
+    			designation:$('#designation').children("option:selected").val(),theory:$('#class1').val(),practical:$('#class2').val()},
+    			function(data,status)
+    			{
     				if(data!=="invalid")
-    					{
-    						//console.log(data);
-    						$("#remuneration").val(data);
-    					}
+    				{
+    					$("#remuneration").val(data);
+    				}
     			})
     	}
     	function storeRemuneration()
     	{
-    		$.post("http://localhost:9090/BCPMS/pages/forms/remuneration.jsp",{run:"store",start_date:$('#date1').val(),end_date:$('#date2').val(),teacher_name:$("#teacher").children("option:selected").val(),
-    			amount:$('#remuneration').val()},function(data,status){
+    		$.post("http://localhost:9090/BCPMS/pages/forms/remuneration.jsp",{run:"store",start_date:$('#date1').val(),end_date:$('#date2').val(),
+    			teacher_name:$("#teacher").children("option:selected").val(),amount:$('#remuneration').val()},
+    			function(data,status)
+    			{
     				if(data==="inserted")
-    					{
-    					   alert("Remuneration stored successfully");
-    					}
+    				{
+    					alert("Remuneration stored successfully");
+    				}
     				else
-    					{
+    				{
     					alert("There is something went wrong!!");
-    					}
+    				}
     			})
     	}
-    
-    
-    
-    
-    
-    
     </script>
 </body>
-
 </html>

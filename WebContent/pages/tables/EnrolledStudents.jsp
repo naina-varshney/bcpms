@@ -4,6 +4,7 @@
 <%@ page import="bcpms.Conn" %>
 <%@ page import="org.json.JSONArray" %>
 <%@ page import="org.json.JSONObject" %>
+<%@page errorPage="../../pages/commom/ErrorHandler.jsp" %>
 <%
 String id=(String)session.getAttribute("user_session_key");
 //System.out.println("id="+id);

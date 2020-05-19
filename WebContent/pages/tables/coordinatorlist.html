@@ -6,7 +6,6 @@
   <title>BCPMS | CoordinatorList</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -24,21 +23,17 @@
   </style>
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
-  <!-- Navbar -->
-  
+	<div class="wrapper">
+  		<!-- Navbar -->
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
-         
-
-    <!-- Content Header (Page header) -->
+    	<!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Coordinator List</h1>
-          </div>
-          
+          </div>          
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -53,11 +48,9 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-            <div class="table-responsive">
-              <table id="example1" class="table table-bordered table-striped">
-                
-              </table>
-            </div>
+            	<div class="table-responsive">
+              		<table id="example1" class="table table-bordered table-striped"></table>
+            	</div>
             </div>
             <!-- /.card-body -->
           </div>
@@ -68,15 +61,11 @@
       <!-- /.row -->
     </section>
     <!-- /.content -->
-  
   <!-- /.content-wrapper -->
-  
   <!-- Control Sidebar -->
- 
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -90,67 +79,64 @@
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
 <script>
-$(document).ready(()=>{
-	 $.post("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp",{getSessionKey:"user_session_key"},(data,status)=>{
-		 if(data!=="invalid session key"){
-			 //console.log("key:",data);
-			 // $("#heading").text(data);
-			  $.post("http://localhost:9090/BCPMS/pages/tables/teacherlist.jsp",{user_type:"Coordinator"},(data,status)=>{
-				 console.log(data);
-				  if(data!=="null"){
+	$(document).ready(()=>
+	{
+		 $.post("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp",{getSessionKey:"user_session_key"},(data,status)=>
+		 {
+		 	if(data!=="invalid session key")
+		 	{
+			  $.post("http://localhost:9090/BCPMS/pages/tables/teacherlist.jsp",{user_type:"Coordinator"},(data,status)=>
+			  {
+				  if(data!=="null")
+				  {
 					  let list=JSON.parse(data);
-						// console.log("enrolled student list:", JSON.parse(data));
-
-						let finallist = [];
-						if(list.length>0){
-							list.forEach((val,index)=>{
+					  let finallist = [];
+					  if(list.length>0)
+					  {
+							list.forEach((val,index)=>
+							{
 								let temparr = [];
 								temparr.push(index+1);
 								temparr.push(val.teacher_id);
 								temparr.push(val.teacher_name);
 								temparr.push(val.subject);
-								//temparr.push(val.date);
-								//temparr.push(val.course_isEnabled?"Running":"Not Running");
 								finallist.push(temparr);
 							})
-						}
-						
-						
-						var table= $('#example1').DataTable({
-							  "select": true,
-							  "data": finallist,
-							  "columns":[
+					  }
+					  var table= $('#example1').DataTable(
+						{
+							"select": true,
+							"data": finallist,
+							"columns":[
 							             {title : "Sno"},
 							             {title : "Teacher Id"},
 							             {title : "Teacher Name"},
-							            // {title : "Student Name"},
 							             {title : "Course Name"},
-							           //  {title : "Registration Date"}
-							             ],
-							  
+							          ]
 						      "paging": true,
 						      "lengthChange": false,
 						      "searching": true,
 						      "ordering": true,
 						      "info": true,
 						      "autoWidth": true,
-						    });
-						  
-						$('#example1 tbody').on( 'click', 'tr', function () {
-					        if ( $(this).hasClass('selected') ) {
+						 }); 
+						$('#example1 tbody').on( 'click', 'tr', function () 
+						{
+					        if ( $(this).hasClass('selected') ) 
+					        {
 					            $(this).removeClass('selected').removeClass('bg-info');
 					        }
-					        else {
+					        else
+					        {
 					            table.$('tr.selected').removeClass('selected').removeClass('bg-info');
 					            $(this).addClass('selected bg-info');
 					        }
-					    } );
+					    });
 				  }
 			  })
 		 }
 	 })
 })
-
   </script>
 </body>
 </html>

@@ -1,153 +1,133 @@
 <!DOCTYPE html>
-<html style="height: auto;"><head>
+<html style="height: auto;">
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>BCPMS| WithdrawCourse</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">  
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <style>
       body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
     transition: margin-left .3s ease-in-out;
     margin-left: 0px;
-}
+	}
   </style>
 </head>
 <body class="hold-transition sidebar-mini">
     <!-- Site wrapper -->
-    <div class="wrapper">
-   
-         
+    <div class="wrapper">     
         <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" style="min-height: 1246.8px;">
+  		<div class="content-wrapper" style="min-height: 1246.8px;">
     <!-- Content Header (Page header) -->
-      
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Withdraw Course</h1>
-          </div>
-         
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
+    		<section class="content-header">
+      			<div class="container-fluid">
+        			<div class="row mb-2">
+          				<div class="col-sm-6">
+           	 				<h1>Withdraw Course</h1>
+          				</div>
+        			</div>
+      			</div>
+      <!-- /.container-fluid -->
+    		</section>
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
-    <div class="col-md-3">
-    </div>
-          <div class="col-md-6">
+    		<div class="col-md-3"></div>
+          	<div class="col-md-6">
             <!-- general form elements -->
-            <div class="card card-primary">
-            
+            	<div class="card card-primary">
               <!-- /.card-header -->
               <!-- form start -->
-                        
                         <!--card header-->
-                            <div class="card-header">
-                                <h3 class="card-title"><b>Withdraw from Course</b></h3>
-            
-                      </div>
+                	<div class="card-header">
+                       <h3 class="card-title"><b>Withdraw from Course</b></h3>
+                   </div>
           <!-- /.card-header -->
-        <div class="card-body">
-            <div class="row">
-              <div class="col-md-12">
-		
-                    <div class="form-group">
-                        <label> ID</label>
-                        <input type="text" class="form-control" id="student_id" placeholder="Enter student id*" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Current Course</label>
-                        <input type="text" class="form-control" id="course" placeholder="Enter course*" disabled required>
-                    </div>
-                   	  
-              
-                  
+        		   <div class="card-body">
+            			<div class="row">
+              				<div class="col-md-12">
+                    			<div class="form-group">
+                        			<label> ID</label>
+                        			<input type="text" class="form-control" id="student_id" placeholder="Enter student id*" required>
+                    			</div>
+                    			<div class="form-group">
+                        			<label>Current Course</label>
+                        			<input type="text" class="form-control" id="course" placeholder="Enter course*" disabled required>
+                    			</div>
                 <!-- /.form-group -->
-              </div>
+              				</div>
               <!-- /.col -->
-            </div>
+            			</div>
             <!-- /.row -->
-        </div>
+        		</div>
             <!-- /.card-body -->
             <!--card footer-->
-            <div class="card-footer">
-          
-                <button type="submit" class="btn btn-primary" onclick="withdrawButton()">Submit</button>
-		<button type="submit" class="btn btn-default float-right">Cancel</button>
-            </div>   
-                    
+            	<div class="card-footer">
+                	<button type="submit" class="btn btn-primary" onclick="withdrawButton()">Submit</button>
+					<button type="submit" class="btn btn-default float-right">Cancel</button>
+            	</div>       
             </div>
             <!-- /.card -->
-
-                     
-
           </div>
-     
         </div>
         <!-- /.row -->
-      </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.container-fluid -->
     </section>
-        </div>
+  </div>
         <!-- /.content-wrapper -->
-	
-    </div>
+ </div>
     <!-- ./wrapper -->
-
     <!-- jQuery -->
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <script src="../../dist/js/adminlte.min.js"></script>
-
     <script src="../../dist/js/demo.js"></script>
     <script>
-     $(document).ready(function(){
-    	 $("#student_id").keypress(function(event){	
-    		if(event.keyCode==13){
-    			//console.log("enter pressed");
-    			$.post("http://localhost:9090/BCPMS/pages/forms/switchcourse.jsp",{run:"keypress",s_id:$("#student_id").val()},function(data,status){
-    				if(data!=="invalid")
+     $(document).ready(function()
+    {
+    	 $("#student_id").keypress(function(event)
+    	{	
+    		if(event.keyCode==13)
+    		{
+    			$.post("http://localhost:9090/BCPMS/pages/forms/switchcourse.jsp",{run:"keypress",s_id:$("#student_id").val()},
+    				function(data,status)
+    				{
+    					if(data!=="invalid")
     					{
-    						//console.log(data);
     						$("#course").val(data);
     					}
-    				else
+    					else
     					{
     					  alert("Invalid user");
     					}
-    			})
+    				})
     		}
     	})
      })
     function withdrawButton()
      {
-    	 $.post("http://localhost:9090/BCPMS/pages/forms/withdrawcourse.jsp",{run:"Button",s_id:$("#student_id").val()},function(data,status){
-    		 if(data==="done")
+    	 $.post("http://localhost:9090/BCPMS/pages/forms/withdrawcourse.jsp",{run:"Button",s_id:$("#student_id").val()},
+    		function(data,status)
+    		{
+    			 if(data==="done")
     			 {
-    			 alert("Student withdraw from course successfully");
-				 $(':text').val("");
+    			 	alert("Student withdraw from course successfully");
+				 	$(':text').val("");
     			 }
-    		 else
-    			 {
+    		 	else
+    			{
     			 	alert("There is something wrong!!!");
-    			 }
-    	 })
+    			}
+    	 	})
      }
-    
-    
     </script>
 </body>
-
 </html>

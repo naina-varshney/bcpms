@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html style="height: auto;"><head>
+<html style="height: auto;">
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>BCPMS| viewattendance</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <style>
       body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
     transition: margin-left .3s ease-in-out;
     margin-left: 0px;
-}
+	}
 .element_inline{
-	width:40%;
-	display:inline;
-}
+		width:40%;
+		display:inline;
+	}
   </style>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -34,131 +33,110 @@
           <div class="col-sm-6">
             <h1>View Attendance</h1>
           </div>
-         
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
-    <div class="col-md-3">
-    </div>
-          <div class="col-md-6">
+    		<div class="col-md-3"></div>
+            <div class="col-md-6">
             <!-- general form elements -->
-            <div class="card card-primary">
-            
-              <!-- /.card-header -->
-              <!-- form start -->
-                        
-                        <!--card header-->
-                            <div class="card-header">
-                                <h3 class="card-title"><b>View Attendance</b></h3>
-
-            
-          </div>
+            	<div class="card card-primary">
+              		<!-- /.card-header -->
+              		<!-- form start -->
+                    <!--card header-->
+                    <div class="card-header">
+                      <h3 class="card-title"><b>View Attendance</b></h3> 
+          			</div>
           <!-- /.card-header -->
-        <div class="card-body">
-            <div class="row">
-              <div class="col-md-12">
-		
-                     <div class="form-group">
-                  <label>Select course</label>
-                  <select class="form-control" id="course" required>
-                    
-                  </select>
-                </div>
+        			<div class="card-body">
+            			<div class="row">
+              				<div class="col-md-12">
+                     			<div class="form-group">
+                  					<label>Select course</label>
+                  					<select class="form-control" id="course" required></select>
+                				</div>
                 <!-- Date range -->
-                <div>
-                 <label>Choose an option</label></div>
-                 <div style="padding:10px;">
-                 <input type="radio" id="select1" name="attendance" value="Date"><span style="margin-right:10px;"  >Date</span></input>
-                 
-                 <input type="radio" id="select2" name="attendance" value="Month" >Month</input>
-                 
-                </div>
-                	<div class="col-md-12"  >
-                    <div class="form-group" id="date_month">
-                        
-                  
+               					 <div>
+                 					<label>Choose an option</label>
+                 				</div>
+                 				<div style="padding:10px;">
+                 					<input type="radio" id="select1" name="attendance" value="Date">
+                 						<span style="margin-right:10px;"  >Date</span>
+                 					</input>   
+                 					<input type="radio" id="select2" name="attendance" value="Month" >Month</input>
+                 				</div>
+                				<div class="col-md-12"  >
+                    				<div class="form-group" id="date_month">
                   <!-- /.input group -->
-                </div>
-                </div>
+                					</div>
+                				</div>
                 <!-- /.form-group -->
-              </div>
+              				</div>
               <!-- /.col -->
-            </div>
+            			</div>
             <!-- /.row -->
-        </div>
+        			</div>
             <!-- /.card-body -->
             <!--card footer-->
-            <div class="card-footer">
-          
-                <button type="submit" class="btn btn-primary" onclick="viewAttendance()">Submit</button>
-                
-		<button type="submit" class="btn btn-default float-right">Cancel</button>
-            </div>   
-                  
-            </div>
+            		<div class="card-footer">
+                		<button type="submit" class="btn btn-primary" onclick="viewAttendance()">Submit</button>
+						<button type="submit" class="btn btn-default float-right">Cancel</button>
+            		</div>   
+            	</div>
             <!-- /.card -->
-
-                     
-
-          </div>
-     
+          	</div>
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-        </div>
- 
-    <!-- ./wrapper -->
-
+   </div>
+   <!-- ./wrapper -->
     <!-- jQuery -->
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <script src="../../dist/js/adminlte.min.js"></script>
-
     <script src="../../dist/js/demo.js"></script>
    <script type="module">
    import months from '../../js/pages/month.js';
-   $(document).ready(function(){
+   $(document).ready(function()
+	{
 		document.getElementById("select1").checked=false;
         document.getElementById("select2").checked=false;
-		$.post("http://localhost:9090/BCPMS/pages/common/ListPopulate.jsp",{tableName:"course_details"},function(data,status){
+		$.post("http://localhost:9090/BCPMS/pages/common/ListPopulate.jsp",{tableName:"course_details"},function(data,status)
+		{
 			if(data==="Not Authorized")
 			{
     		   alert("Invalid user!!");
+    		}
+    	   else
+			{
+	        	let data1=JSON.parse(data);
+    		    if(data1.length>0)
+    		    {
+    		    	let sel = $('#course')[0];
+    		        let selectHtml=`<option selected="selected" required>Select*</option>`
+  		            	       		$(selectHtml).appendTo(sel);
+    		       	data1.forEach(function(object)
+					{
+    		   			let course_list=`<option>${object.course_name}</option>`
+                                		$(course_list).appendTo(sel);  
+    		       	})  
+    		     } 
     		 }
-    	   else{
-	        		   let data1=JSON.parse(data);
-    		           console.log(data1);
-    		            if(data1.length>0)
-    		       		{
-    		    			 let sel = $('#course')[0];
-    		            	   let selectHtml=`<option selected="selected" required>Select*</option>`
-  		            	       $(selectHtml).appendTo(sel);
-    		       			   data1.forEach(function(object){
-    		   				   let course_list=`<option>${object.course_name}</option>`
-                                $(course_list).appendTo(sel);  
-    		        			   })  
-    		        	} 
-    		      }
     		              		
-    			 })
+    	})
+	})
 
-})
-
-
-
-$('input[type=radio][name=attendance]').change(function() {
-var html=``;
-    if (this.value == 'Date') {
-        
+	$('input[type=radio][name=attendance]').change(function() {
+	var html=``;
+    if (this.value == 'Date') 
+	{    
 		$(date_month).html('');
 		 html=`<label>Select Date</label>
                   <div class="input-group">
@@ -171,57 +149,51 @@ var html=``;
                   </div>`
 		$(html).appendTo(date_month);
     }
-    else if (this.value == 'Month') {
+    else if (this.value == 'Month') 
+	{
 		$(date_month).html('');
 			html=`<label>Select Month</label><br>
 				 <select class="form-control element_inline" id="month"></select>	
-				 <select class="form-control element_inline" id="year"></select>	
-				`
+				 <select class="form-control element_inline" id="year"></select>`
 		$(html).appendTo(date_month);
-	  let sel = $('#month')[0];
+	  	let sel = $('#month')[0];
     	let selectHtml=`<option selected="selected" required>Select Month</option>`
     			       $(selectHtml).appendTo(sel);
     	let month_array = Object.values(months);
-		month_array.forEach(val=>{
+		month_array.forEach(val=>
+		{
 			let month_list=`<option>${val}</option>`
             $(month_list).appendTo(sel);
-		
 		})
 		let sel1 = $('#year')[0];
     	let selectHtml1=`<option selected="selected" required>Select Year</option>`
     			       $(selectHtml1).appendTo(sel1);
-	 
 		var current_year=(new Date()).getFullYear();
-		
     	for(var i=1990;i<=current_year;i++)
 		{
             let year_list=`<option>${i}</option>`
             $(year_list).appendTo(sel1);
 		}
-		
     }
-
 });
 	</script>
 <script>
 function viewAttendance()
 {
-	console.log($('#month').children("option:selected").index());
-	$.post("http://localhost:9090/BCPMS/pages/forms/viewattendanceform.jsp",{selected_radio:$('input[type=radio][name=attendance]:checked').val(),course_name:$('#course').children("option:selected").val(),date:$('#date1').val(),month:$('#month').children("option:selected").index(),
-		year:$('#year').children("option:selected").val()},function(data,status){
-			console.log(data);
+	$.post("http://localhost:9090/BCPMS/pages/forms/viewattendanceform.jsp",{selected_radio:$('input[type=radio][name=attendance]:checked').val(),
+		course_name:$('#course').children("option:selected").val(),date:$('#date1').val(),month:$('#month').children("option:selected").index(),
+		year:$('#year').children("option:selected").val()},function(data,status)
+		{
 			if(data==="invalid")
-				{
-					alert("You are not allowed to view attendance of the selected subject!!");
-				}
+			{
+				alert("You are not allowed to view attendance of the selected subject!!");
+			}
 			else
-				{
-					window.location.href=data;
-				}
-		
-	})
+			{
+				window.location.href=data;
+			}
+		})
 }
 </script>
 </body>
-
 </html>

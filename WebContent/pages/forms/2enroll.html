@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,8 +14,8 @@
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
      <style>
       body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
-    transition: margin-left .3s ease-in-out;
-    margin-left: 0px;
+   	  transition: margin-left .3s ease-in-out;
+      margin-left: 0px;
 }
   </style>
 </head>
@@ -32,8 +31,7 @@
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1><b>Qualification Details</b></h1>
-                        </div>
-                       
+                        </div>            
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -41,42 +39,29 @@
 
             <!-- Main content -->
             <section class="content">
-
                 <!-- Default box -->
-                <div class="card">
-                
+                <div class="card">               
           <!-- /.card-header -->
-		  <div class="card-body">
-		  
-							
-         
+		  <div class="card-body">        
           <!-- /.card-header -->
-		  <div class="card-body">
-                      
+		  <div class="card-body">                     
             <div class="row">
 			   <div class="col-md-3">
-                <div class="form-group">
-  
+                <div class="form-group"> 
                        <b>10th</b> <input type="text" class="form-control" id="10board" placeholder="Enter your Board*" required>
-               </div>
-                
-			   <div class="form-group">
-                        
+               </div>   
+			   <div class="form-group">              
                         <b>12th</b><input type="text" class="form-control" id="12board" placeholder="Enter Board*" required>
                </div>
-			     <div class="form-group">
-                       
+			   <div class="form-group">        
                         <b>Under Graduate</b><input type="text" class="form-control" id="UGuniversity"  placeholder="Enter University*" required>
                </div>
-			     <div class="form-group">
-                      
+			   <div class="form-group">       
                         <b>Post Graduate</b><input type="text" class="form-control" id="PGuniversity" placeholder="Enter University*" required>
                </div>
 			    <div class="form-group">
-                      
                         <b>Diploma Course</b><input type="text" class="form-control" id="diploma" placeholder="Enter Board/University*" required>
                </div>
-			
                 <!-- /.form-group -->
               </div>
 			   <div class="col-md-3">
@@ -84,7 +69,6 @@
                         <label></label>
                         <input type="text" class="form-control" id="10year" placeholder="Enter year of passing*" required>
                </div>
-                
 			   <div class="form-group">
                         <label></label>
                         <input type="text" class="form-control" id="12year" placeholder="Enter year of passing*" required>
@@ -108,7 +92,6 @@
                         <label></label>
                         <input type="text" class="form-control" id="10_obtained" placeholder="Enter obtained marks*" required>
                </div>
-                
 			   <div class="form-group">
                         <label></label>
                         <input type="text" class="form-control" id="12_obtained" placeholder="Enter obtained marks*" required>
@@ -130,13 +113,11 @@
               </div>
               <!-- /.col -->
               <div class="col-md-2">
-			  
                 <!-- /.form-group -->
                 <div class="form-group">
                         <label></label>
                         <input type="text" class="form-control" id="10_total" placeholder="Enter total marks*" required>
                </div>
-                
 			   <div class="form-group">
                         <label></label>
                         <input type="text" class="form-control" id="12_total" placeholder="Enter total marks*" required>
@@ -156,10 +137,8 @@
                 <!-- /.form-group -->
               </div>
               <!-- /.col -->
-			  
             </div>
             <!-- /.row -->
-                      
           </div>
           <!-- /.card-body -->
           </div>
@@ -167,17 +146,15 @@
 			<!--card footer-->
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary" onclick="qualificationBtn()">Submit</button>
-		<button type="submit" class="btn btn-default float-right">Cancel</button>
-             </div>      
-                   
+				<button type="submit" class="btn btn-default float-right">Cancel</button>
+             </div>                        
                 </div>
                 <!-- /.card -->
              </section>
             <!-- /.content -->
                </div>
         <!-- /.content-wrapper -->
-        </div>
-      
+        </div>      
     <!-- ./wrapper -->
 
     <!-- jQuery -->
@@ -196,21 +173,19 @@
 				 text.twelve={course: "12", board: $('#12board').val(), year: $('#12year').val(), obtained : $('#12_obtained').val(), total: $('#12_total').val()};
 				 text.graduation={ board: $('#UGuniversity').val(), year: $('#UGyear').val(), obtained : $('#UG_obtained').val(), total: $('#12_total').val()};
 				 text.postgraduation={ board:$('#PGuniversity').val(), year: $('#PGyear').val(), obtained : $('#PG_obtained').val(), total: $('#12_total').val()};
-				 text.diploma={ board: $('#diploma').val(), year: $('#Diplomayear').val(), obtained : $('#diploma_obtained').val(), total: $('#12_total').val()};
-		console.log(text);	
+				 text.diploma={ board: $('#diploma').val(), year: $('#Diplomayear').val(), obtained : $('#diploma_obtained').val(), total: $('#12_total').val()};	
 		var details=JSON.stringify(text);
-		console.log(details);
-		 $.post("http://localhost:9090/BCPMS/pages/forms/2enroll.jsp",{id:"ABMCA18039",student_details:details},function(data,status){
-				
-				if(data!=="invalid"){
+		 $.post("http://localhost:9090/BCPMS/pages/forms/2enroll.jsp",{student_details:details},function(data,status)
+		 	{		
+				if(data!=="invalid")
+				{
 					alert("Registration process completed");
-					window.location.href="../../pages/dashboard/studentdashboard.html";
+					window.location.href=data;
 				}
 				else
 					{
 						alert("Unauthorized user");
-					}
-			
+					}	
 		}) 
 	}
    </script>

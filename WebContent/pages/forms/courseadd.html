@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html style="height: auto;"><head>
   <meta charset="utf-8">
@@ -6,17 +5,14 @@
   <title>BCPMS| AddCourse</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
    <style>
-      body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
-    transition: margin-left .3s ease-in-out;
-    margin-left: 0px;
-}
+      body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {		
+	    transition: margin-left .3s ease-in-out;
+	    margin-left: 0px;}
   </style>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -30,12 +26,10 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Add Course</h1>
-          </div>
-          
+          </div>   
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -46,23 +40,20 @@
           <div class="col-md-6">
             <!-- general form elements -->
             <div class="card card-primary">
-            
               <!-- /.card-header -->
               <!-- form start -->
-                       
                         <!--card header-->
                             <div class="card-header">
                                 <h3 class="card-title"><b>Add New Course</b></h3>
-                      </div>
+                      		</div>
           <!-- /.card-header -->
-                <div class="card-body">
+         <div class="card-body">
             <div class="row">
               <div class="col-md-12">
                   <div class="form-group">
                         <label>Course Type</label>
                         <input type="text" class="form-control" id="coursetype" name="course_type" readonly>
                     </div>
-		
                     <div class="form-group">
                         <label>Course Id</label>
                         <input type="text" class="form-control" id="courseid" name="course_id" placeholder="Enter course id*" required>
@@ -88,12 +79,9 @@
             <!-- /.card-body -->
             <!--card footer-->
             <div class="card-footer">
-          
                 <button type="submit" class="btn btn-primary" onclick="courseAdd()">Submit</button>
-               
-		<button type="submit" class="btn btn-default float-right">Cancel</button>
-            </div>   
-                   
+				<button type="submit" class="btn btn-default float-right">Cancel</button>
+            </div>      
             </div>
             <!-- /.card -->
           </div>
@@ -104,47 +92,39 @@
        </div>
         <!-- /.content-wrapper -->
         </div>
-  
     <!-- ./wrapper -->
-
     <!-- jQuery -->
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <script src="../../dist/js/adminlte.min.js"></script>
-
     <script src="../../dist/js/demo.js"></script>
     <script>
     var courseType=null;
     $(document).ready(()=>{
     	$.post("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp",{getSessionKey:"course_type_list"},(data,status)=>{
-    		console.log(data);
     		if(data!=="invalid session key")
-    			{
-    			   courseType=data;
-    			  // console.log(courseType);
-    				$('#coursetype').val(data);
-    			}
+    		{
+    			courseType=data;
+    			$('#coursetype').val(data);
+    		}
     	})
     })
     function courseAdd()
     {
     	$.post("http://localhost:9090/BCPMS/pages/forms/courseadd.jsp",{type:courseType,name:$('#coursename').val(),id:$('#courseid').val(),
     		fees:$('#fees').val(),duration:$('#duration').val()},(data,status)=>{
-    			//console.log(data);
     			if(data==="inserted")
     				{
-    						alert("Course added successfully");
+    					alert("Course added successfully");
     				}
     			else
     				{
-    				alert("There is some error");
+    					alert("There is some error");
     				}
     		})
     }
-    </script>
+</script>
 </body>
-
 </html>
   

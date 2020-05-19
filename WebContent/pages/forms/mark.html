@@ -1,170 +1,144 @@
 <!DOCTYPE html>
-<html style="height: auto;"><head>
+<html style="height: auto;">
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>BCPMS| Attendance</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css"> 
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <style>
       body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
-    transition: margin-left .3s ease-in-out;
-    margin-left: 0px;
-}
+    	transition: margin-left .3s ease-in-out;
+    	margin-left: 0px;
+	}
   </style>
 </head>
 <body class="hold-transition sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" style="min-height: 1246.8px;">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Attendance</h1>
-          </div>
-         
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
+ 		 <div class="content-wrapper" style="min-height: 1246.8px;">
+   			 <!-- Content Header (Page header) -->
+   			 <section class="content-header">
+      			<div class="container-fluid">
+        			<div class="row mb-2">
+          				<div class="col-sm-6">
+            				<h1>Attendance</h1>
+          				</div>   
+        			</div>
+      			</div>
+      			<!-- /.container-fluid -->
+    		</section>
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
-    <div class="col-md-3">
-    </div>
+    	<div class="col-md-3"></div>
           <div class="col-md-6">
             <!-- general form elements -->
             <div class="card card-primary">
-            
-              <!-- /.card-header -->
-              <!-- form start -->
-                        
-                        <!--card header-->
-                            <div class="card-header">
-                                <h3 class="card-title"><b>Attendance</b></h3>
-
-            
-          </div>
+              	<!-- /.card-header -->
+              	<!-- form start -->        
+                <!--card header-->
+                <div class="card-header">
+                    <h3 class="card-title"><b>Attendance</b></h3>
+          		</div>
           <!-- /.card-header -->
         <div class="card-body">
             <div class="row">
-              <div class="col-md-12">
-		
+              	<div class="col-md-12">
                   <!-- Date-->
                   <div class="col-md-12"  style="float:left">
-                    <div class="form-group">
-                        
-                  <label>Date</label>
-
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="far fa-calendar-alt"></i>
-                      </span>
-                    </div>
-                    <input type="date" class="form-control" id="date1" required>
-                  </div>
+                    <div class="form-group">     
+                  		<label>Date</label>
+                  		<div class="input-group">
+                    		<div class="input-group-prepend">
+                      			<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                    		</div>
+                    		<input type="date" class="form-control" id="date1" required>
+                  		</div>
                   <!-- /.input group -->
+                	</div>
                 </div>
-                </div>
-             
                 <div class="form-group">
                   <label>Select course</label>
-                  <select class="form-control" id="course" required>
-                    
-                  </select>
+                  <select class="form-control" id="course" required></select>
                 </div>
                 <!--type-->
-                  <div class="form-group">
-                    <div class="form-check">
+                <div class="form-group">
+                  	<div class="form-check">
                       <div class="col-sm-12">
-              
-                     <input type="radio" id="radio1" name="subject_type" value="Theory"><span style="margin-right:10px;">Theory</span></input>
-                 
-                    <input type="radio" id="radio2" name="subject_type" value="Practical" >Practical</input>
-                  
-                  </div>
-                    </div>
-                    </div>
-
+                     		<input type="radio" id="radio1" name="subject_type" value="Theory"><span style="margin-right:10px;">Theory</span></input>
+                    		<input type="radio" id="radio2" name="subject_type" value="Practical" >Practical</input>
+                  	  </div>
+                   </div>
+              	</div>
                 <!-- /.form-group -->
-              </div>
+           	</div>
               <!-- /.col -->
-            </div>
+         </div>
             <!-- /.row -->
-        </div>
+     </div>
             <!-- /.card-body -->
             <!--card footer-->
-            <div class="card-footer">
-          
+            <div class="card-footer">     
                 <button type="submit" class="btn btn-primary" onclick="markAttendance()">Submit</button>
-		<button type="submit" class="btn btn-default float-right">Cancel</button>
-            </div>   
-                 
-            </div>
+				<button type="submit" class="btn btn-default float-right">Cancel</button>
+            </div>    
+   </div>
             <!-- /.card -->
-
-                     
-
           </div>
-        </div>
+     </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-        </div>
- 
+ </div>
     <!-- ./wrapper -->
-
     <!-- jQuery -->
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <script src="../../dist/js/adminlte.min.js"></script>
-
     <script src="../../dist/js/demo.js"></script>
     	<script>
     	document.getElementById("radio1").checked=false;
     	document.getElementById("radio2").checked=false;
-    	$(document).ready(function(){
-    			$.post("http://localhost:9090/BCPMS/pages/forms/mark.jsp",{run:"load"},function(data,status){
+    	$(document).ready(function()
+    	{
+    			$.post("http://localhost:9090/BCPMS/pages/forms/mark.jsp",{run:"load"},function(data,status)
+    			{
     				if(data!=="invalid")
-    				{
-    					
+    				{		
     					 let data1=JSON.parse(data);
-    		          // console.log(data1);
-    		            if(data1.length>0)
-    		       		{
+    		             if(data1.length>0)
+    		       		 {
     		    			 let sel = $('#course')[0];
-    		            	   let selectHtml=`<option selected="selected" required>Select*</option>`
-  		            	       $(selectHtml).appendTo(sel);
-    		       			   data1.forEach(function(object){
-    		   				   let course_list=`<option>${object.course_name}</option>`
-                                $(course_list).appendTo(sel);  
-    		        			   })  
+    		            	 let selectHtml=`<option selected="selected" required>Select*</option>`;
+  		            	     					$(selectHtml).appendTo(sel);
+    		       			 data1.forEach(function(object)
+    		       			 {
+    		   				   let course_list=`<option>${object.course_name}</option>`;
+                                				$(course_list).appendTo(sel);  
+    		        		  })  
     		        	} 
        				}
 					else
 					{
 						alert("Something went wrong");
 					}    			
-    			})
-    	
+    			})	
     	})
     	function markAttendance()
     	{
-    		$.post("http://localhost:9090/BCPMS/pages/forms/mark.jsp",{run:"btn_clicked",course_name:$('#course').children("option:selected").val(),date:$('#date1').val(),radio_btn:$('input[type=radio][name=subject_type]:checked').val()},
-    		function(data,status){
+    		$.post("http://localhost:9090/BCPMS/pages/forms/mark.jsp",{run:"btn_clicked",course_name:$('#course').children("option:selected").val(),
+    			date:$('#date1').val(),radio_btn:$('input[type=radio][name=subject_type]:checked').val()},
+    		function(data,status)
+    		{
     			if(data!=="invalid")
     			{
     				window.location.href=data;

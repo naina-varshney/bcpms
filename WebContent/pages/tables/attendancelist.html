@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>BCPMS | .NetAttendance</title>
-<!-- Tell the browser to be responsive to screen width -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	href="../../plugins/fontawesome-free/css/all.min.css">
-
-<!-- DataTables -->
-<link rel="stylesheet" href="../../dist/css/dataTables.bootstrap4.css">
-<!-- Theme style -->
-<link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-
-<style>
-.dataTables_filter {
-	text-align: right;
-}
-</style>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>BCPMS | .NetAttendance</title>
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+	<!-- DataTables -->
+	<link rel="stylesheet" href="../../dist/css/dataTables.bootstrap4.css">
+	<!-- Theme style -->
+	<link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+	<style>
+		.dataTables_filter {
+			text-align: right;
+		}
+	</style>
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -49,24 +45,18 @@
 							<div class="table-responsive">
 								<div class="row">
 									<div class="col-md-3">
-
 										<div class="form-group">
-
 											<label>From</label>
-
 											<div class="input-group">
 												<div class="input-group-prepend">
 													<span class="input-group-text"> <i
 														class="far fa-calendar-alt"></i>
 													</span>
 												</div>
-												<input type="text" placeholder="month" class="form-control"
-													id="date1">
+												<input type="text" placeholder="month" class="form-control" id="date1">
 											</div>
 											<!-- /.input group -->
 										</div>
-
-
 									</div>
 								</div>
 								<table id="example1" class="table table-bordered table-striped"></table>
@@ -83,8 +73,6 @@
 		<!-- /.content -->
 	</div>
 	<!-- /.content-wrapper -->
-
-
 	<!-- jQuery -->
 	<script src="../../plugins/jquery/jquery.min.js"></script>
 	<!-- Bootstrap 4 -->
@@ -99,45 +87,50 @@
 	<script src="../../dist/js/demo.js"></script>
 	<!-- page script -->
 	<script>
-var date=null;
-var month=null;
-var year=null;
-$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=attendance_course",function(data,status){
-	if(data!=="invalid session key"){
-	//console.log(data);
-		$('#subject_heading').text(data);
-		
-		$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=radio_selected",function(data,status){
-			if(data==="Date")
+	var date=null;
+	var month=null;
+	var year=null;
+	$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=attendance_course",function(data,status)
+	{
+		if(data!=="invalid session key")
+		{
+			$('#subject_heading').text(data);
+			$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=radio_selected",function(data,status)
+			{
+				if(data==="Date")
 				{
-					$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=selected_date",function(data,status){
+					$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=selected_date",function(data,status)
+					{
 						if(data!=="invalid session key")
+						{
+							$.post("http://localhost:9090/BCPMS/pages/tables/attendancelist.jsp",{radio:"Date",date:data},function(data,status)
 							{
-								$.post("http://localhost:9090/BCPMS/pages/tables/attendancelist.jsp",{radio:"Date",date:data},function(data,status){
-									if(data!=="invalid")
-										{
+								if(data!=="invalid")
+								{
 										
-										}
-								})	
-							}
+								}
+							})	
+						}
 					})
 				}
-			else if(data==="Month")
-			{
-				
-				$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=selected_month",function(data,status){
-					if(data!=="invalid session key")
+				else if(data==="Month")
+				{
+					$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=selected_month",function(data,status)
+					{
+						if(data!=="invalid session key")
 						{
-							$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=selected_year",function(data1,status){
-								if(data1!=="invalid session key"){
-									$.post("http://localhost:9090/BCPMS/pages/tables/attendancelist.jsp",{radio:"Month",month:data,year:data1},function(data2,status){
-										if(data2!=="invalid")
-											{
-											 	console.log(JSON.parse(data2));
-											 	
-											 	var lo = require('lodash');
-											 	
-											 	var table= $('#example1').DataTable({
+							$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=selected_year",function(data1,status)
+							{
+								if(data1!=="invalid session key")
+								{
+									$.post("http://localhost:9090/BCPMS/pages/tables/attendancelist.jsp",{radio:"Month",month:data,year:data1},
+										function(data2,status)
+										{
+											if(data2!=="invalid")
+											{	
+											 	var lo = require('lodash');	
+											 	var table= $('#example1').DataTable(
+											 	{
 													  "select": true,
 													  "data": finallist,
 													  "columns":[
@@ -186,21 +179,15 @@ $.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=
 												      "autoWidth": true,
 												    });
 											}
-									})
-								}
-								
+										})
+									}	
 							})
 						}
-				})
-				
-			}
-		})
-	}	
-})
-
-
-
-
+					})	
+				}
+			})
+		}	
+	})
   $(function () {
     $("#example1").DataTable();
     $('#example2').DataTable({

@@ -13,15 +13,22 @@
 	String conf_pass = request.getParameter("confirm_pass");
 	String security_ques = request.getParameter("security_ques");
 	String security_ans = request.getParameter("security_ans");
-	String[] arr = user_name.split("\\s");
+	String[] arr = user_name.split(" ");
 	session.setAttribute("registration_form_session_key", user_id);
 	if (pass.equals(conf_pass))
 	{
 		if ((user_id.charAt(0) == 'A')&& (user_id.charAt(1) == 'B')) 
 		{
+			try{
 			PreparedStatement ps = new Conn().con.prepareStatement("insert into student(first_name,last_name,student_identity_card,contact_number,adhaar_number,email_id,password,security_question,security_answer)values (?,?,?,?,?,?,?,?,?)");
 			ps.setString(1, arr[0]);
-			ps.setString(2, arr[1]);
+			if(arr.length==1){
+				ps.setString(2, "");
+			}
+			else
+			{
+				ps.setString(2, arr[1]);
+			}
 			ps.setString(3, user_id);
 			ps.setString(4, user_phone_no);
 			ps.setString(5, user_aadhar_no);
@@ -31,20 +38,31 @@
 			ps.setString(9, security_ans);
 			if (ps.executeUpdate() > 0)
 			{
+				System.out.println("lol inserted");
 				response.getWriter().write("../../pages/forms/login.html");
 			}
 			else 
 			{
+				System.out.println("lol not correct");
 				response.getWriter().write("incorrect");
 			}
 			response.getWriter().close();
 			ps.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 		else if (user_id.charAt(0) == 'T')
 		{
 			PreparedStatement ps = new Conn().con.prepareStatement("insert into teacher (first_name,last_name,teacher_identity_card,contact_number,adhaar_number,email_id,password,security_question,security_answer)values (?,?,?,?,?,?,?,?,?)");
 			ps.setString(1, arr[0]);
-			ps.setString(2, arr[1]);
+			if(arr.length==1){
+				ps.setString(2, "");
+			}
+			else
+			{
+				ps.setString(2, arr[1]);
+			}
 			ps.setString(3, user_id);
 			ps.setString(4, user_phone_no);
 			ps.setString(5, user_aadhar_no);

@@ -52,7 +52,7 @@
               <div class="col-md-12">
                   <div class="form-group">
                         <label>Course Type</label>
-                        <input type="text" class="form-control" id="coursetype" name="course_type" readonly>
+                        <input type="text" class="form-control" id="coursetype" name="course_type" disabled>
                     </div>
                     <div class="form-group">
                         <label>Course Id</label>
@@ -68,7 +68,7 @@
                     </div>
                    <div class="form-group">
                         <label>Course Duration</label>
-                        <input type="number" class="form-control" id="duration" name="course_duration" placeholder="Enter course duration*" required>
+                        <input type="text" class="form-control" id="duration" name="course_duration" placeholder="Enter course duration*" required>
                     </div>
                 <!-- /.form-group -->
               </div>
@@ -117,6 +117,10 @@
     			if(data==="inserted")
     				{
     					alert("Course added successfully");
+    					$('#course_name').val("");
+    					$('#course_id').val("");
+    					$('#course_duration').val("");
+    					$("input[type=number][name=course_fees]").val("");
     				}
     			else
     				{

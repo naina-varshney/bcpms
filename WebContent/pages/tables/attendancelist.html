@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BCPMS | .NetAttendance</title>
+	<title>BCPMS | Attendance_List</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Font Awesome -->
@@ -43,22 +43,6 @@
 						<!-- /.card-header -->
 						<div class="card-body">
 							<div class="table-responsive">
-								<div class="row">
-									<div class="col-md-3">
-										<div class="form-group">
-											<label>From</label>
-											<div class="input-group">
-												<div class="input-group-prepend">
-													<span class="input-group-text"> <i
-														class="far fa-calendar-alt"></i>
-													</span>
-												</div>
-												<input type="text" placeholder="month" class="form-control" id="date1">
-											</div>
-											<!-- /.input group -->
-										</div>
-									</div>
-								</div>
 								<table id="example1" class="table table-bordered table-striped"></table>
 							</div>
 						</div>
@@ -87,118 +71,75 @@
 	<script src="../../dist/js/demo.js"></script>
 	<!-- page script -->
 	<script>
-	var date=null;
-	var month=null;
-	var year=null;
+	globalobj={};
 	$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=attendance_course",function(data,status)
 	{
 		if(data!=="invalid session key")
 		{
 			$('#subject_heading').text(data);
-			$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=radio_selected",function(data,status)
-			{
-				if(data==="Date")
+				$.post("http://localhost:9090/BCPMS/pages/tables/attendancelist.jsp",{},function(data,status)
 				{
-					$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=selected_date",function(data,status)
-					{
-						if(data!=="invalid session key")
+					let attendance_list=JSON.parse(data);
+					let finallist=[];
+					if(attendance_list.length>0)
 						{
-							$.post("http://localhost:9090/BCPMS/pages/tables/attendancelist.jsp",{radio:"Date",date:data},function(data,status)
+							attendance_list.forEach((val,index)=>
 							{
-								if(data!=="invalid")
-								{
-										
-								}
-							})	
-						}
-					})
-				}
-				else if(data==="Month")
-				{
-					$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=selected_month",function(data,status)
-					{
-						if(data!=="invalid session key")
-						{
-							$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=selected_year",function(data1,status)
-							{
-								if(data1!=="invalid session key")
-								{
-									$.post("http://localhost:9090/BCPMS/pages/tables/attendancelist.jsp",{radio:"Month",month:data,year:data1},
-										function(data2,status)
-										{
-											if(data2!=="invalid")
-											{	
-											 	var lo = require('lodash');	
-											 	var table= $('#example1').DataTable(
-											 	{
-													  "select": true,
-													  "data": finallist,
-													  "columns":[
-													             {title : "Sno"},
-													             {title : "Smart Card Id"},
-													             {title : "Roll No"},
-													             {title : "Student Name"},
-													             {title : "1" },
-													             {title : "2" },
-													             {title : "3" },
-													             {title : "4" },
-													             {title : "5" },
-													             {title : "6" },
-													             {title : "7" },
-													             {title : "8" },
-													             {title : "9" },
-													             {title : "10" },
-													             {title : "11" },
-													             {title : "12" },
-													             {title : "13" },
-													             {title : "14" },
-													             {title : "15" },
-													             {title : "16" },
-													             {title : "17" },
-													             {title : "18" },
-													             {title : "19" },
-													             {title : "20" },
-													             {title : "21" },
-													             {title : "22" },
-													             {title : "23" },
-													             {title : "24" },
-													             {title : "25" },
-													             {title : "26" },
-													             {title : "27" },
-													             {title : "28" },
-													             {title : "29" },
-													             {title : "30" },
-													             {title : "31" }
-													             ],
-													  
-												      "paging": true,
-												      "lengthChange": false,
-												      "searching": true,
-												      "ordering": true,
-												      "info": true,
-												      "autoWidth": true,
-												    });
-											}
-										})
-									}	
+								let temparr=[];
+								temparr.push(index+1);
+								temparr.push(val.Student_id);
+								temparr.push(val.Student_roll);
+								temparr.push(val.Student_name);
+								temparr.push(JSON.parse(val.attendance_status));
+								finallist.push(temparr);
 							})
 						}
-					})	
-				}
-			})
+					
+					aoColumnsArray = [
+										{"title":"SNo"},
+										{"title":"Student_Identity_No"},
+										{"title":"Roll No"},
+										{"title":"Student Name"}
+					                  ]
+					a = [...Array(31).keys()];
+					a.forEach((val)=>{
+						aoColumnsArray.push({"title":`${val+1}`,"mRender":function(data,type,row)
+						  	{
+								if(val<=9){
+									if(row[4]["0"+(val+1)]){
+										return row[4]["0"+(val+1)]==="P"?`<span style="color:green;font-weight:bold;">${row[4]["0"+(val+1)]}</span>`:
+											`<span style="color:red;font-weight:bold;">${row[4]["0"+(val+1)]}</span>`
+										} else{
+											return "-"
+											}
+								}else{
+									if(row[4][val+1]){
+										return row[4][val+1]==="P"?`<span style="color:green;font-weight:bold;">${row[4][(val+1)]}</span>`:
+											`<span style="color:red;font-weight:bold;">${row[4][(val+1)]}</span>`
+										}else{
+											return "-"
+											}
+								}								
+						  	}
+						})
+					})
+						
+					var table=$('#example1').DataTable(
+						{
+							"select": true,
+							"data": finallist,
+							"aoColumns":aoColumnsArray,
+							"paging": true,
+							"lengthChange": false,
+							"searching": true,
+							"ordering": true,
+							"info": true,
+							"autoWidth": true,
+							"responsive" : true
+						})
+				})	
 		}	
 	})
-  $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-    });
-  });
 </script>
 </body>
 </html>

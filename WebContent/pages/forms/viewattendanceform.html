@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>BCPMS| viewattendance</title>
+  <title>BCPMS| ViewAttendance</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -18,6 +18,9 @@
 .element_inline{
 		width:40%;
 		display:inline;
+	}
+	.card-footer{
+		background-color:white;
 	}
   </style>
 </head>
@@ -60,23 +63,26 @@
                   					<label>Select course</label>
                   					<select class="form-control" id="course" required></select>
                 				</div>
-                <!-- Date range -->
-               					 <div>
-                 					<label>Choose an option</label>
-                 				</div>
-                 				<div style="padding:10px;">
-                 					<input type="radio" id="select1" name="attendance" value="Date">
-                 						<span style="margin-right:10px;"  >Date</span>
-                 					</input>   
-                 					<input type="radio" id="select2" name="attendance" value="Month" >Month</input>
-                 				</div>
-                				<div class="col-md-12"  >
-                    				<div class="form-group" id="date_month">
-                  <!-- /.input group -->
+                				<div style="margin-bottom:10px;">
+                					<label>Select course nature</label>
+                					<div class="col-mod-12" style="margin-left:20px;">
+                						<input type="radio" id="radio1" name="subject_type" value="Theory"><span style="margin-right:10px;">Theory</span></input>
+                    					<input type="radio" id="radio2" name="subject_type" value="Practical" >Practical</input>
                 					</div>
                 				</div>
-                <!-- /.form-group -->
-              				</div>
+                <!-- Date range -->
+               					 <div>
+               					 	<label>Select month and year</label> 
+               					 	<div class="row">
+               					 		<div class="col-sm"> 
+               					 				<select class="form-control" id="month" required></select>
+               					 		</div>
+               					 		<div class="col-sm">		
+               					 				<select class="form-control" id="year" required></select>
+                 						</div>
+               					 	</div>
+              					</div>
+       		<!-- /.form-group -->
               <!-- /.col -->
             			</div>
             <!-- /.row -->
@@ -106,8 +112,6 @@
    import months from '../../js/pages/month.js';
    $(document).ready(function()
 	{
-		document.getElementById("select1").checked=false;
-        document.getElementById("select2").checked=false;
 		$.post("http://localhost:9090/BCPMS/pages/common/ListPopulate.jsp",{tableName:"course_details"},function(data,status)
 		{
 			if(data==="Not Authorized")
@@ -131,58 +135,41 @@
     		 }
     		              		
     	})
-	})
-
-	$('input[type=radio][name=attendance]').change(function() {
-	var html=``;
-    if (this.value == 'Date') 
-	{    
-		$(date_month).html('');
-		 html=`<label>Select Date</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="far fa-calendar-alt"></i>
-                      </span>
-                    </div>
-                    <input type="date" class="form-control" id="date1" required>
-                  </div>`
-		$(html).appendTo(date_month);
-    }
-    else if (this.value == 'Month') 
-	{
-		$(date_month).html('');
-			html=`<label>Select Month</label><br>
-				 <select class="form-control element_inline" id="month"></select>	
-				 <select class="form-control element_inline" id="year"></select>`
-		$(html).appendTo(date_month);
-	  	let sel = $('#month')[0];
-    	let selectHtml=`<option selected="selected" required>Select Month</option>`
-    			       $(selectHtml).appendTo(sel);
-    	let month_array = Object.values(months);
+		let sel1 = $('#month')[0];
+		let month_Html=`<option selected="selected" required>Select Month*</option>`
+						$(month_Html).appendTo(sel1);
+		let month_array = Object.values(months);
 		month_array.forEach(val=>
 		{
 			let month_list=`<option>${val}</option>`
-            $(month_list).appendTo(sel);
+            $(month_list).appendTo(sel1);
 		})
-		let sel1 = $('#year')[0];
-    	let selectHtml1=`<option selected="selected" required>Select Year</option>`
-    			       $(selectHtml1).appendTo(sel1);
+
+		let sel2 = $('#year')[0];
+    	let selectHtml1=`<option selected="selected" required>Select Year*</option>`
+    			       $(selectHtml1).appendTo(sel2);
 		var current_year=(new Date()).getFullYear();
     	for(var i=1990;i<=current_year;i++)
 		{
             let year_list=`<option>${i}</option>`
-            $(year_list).appendTo(sel1);
+            $(year_list).appendTo(sel2);
 		}
-    }
-});
+	
+		
+			
+	})
+
+
 	</script>
 <script>
+document.getElementById("radio1").checked=false;
+document.getElementById("radio2").checked=false;
 function viewAttendance()
 {
-	$.post("http://localhost:9090/BCPMS/pages/forms/viewattendanceform.jsp",{selected_radio:$('input[type=radio][name=attendance]:checked').val(),
-		course_name:$('#course').children("option:selected").val(),date:$('#date1').val(),month:$('#month').children("option:selected").index(),
-		year:$('#year').children("option:selected").val()},function(data,status)
+	$.post("http://localhost:9090/BCPMS/pages/forms/viewattendanceform.jsp",{course_name:$('#course').children("option:selected").val(),
+		month:$('#month').children("option:selected").index(),year:$('#year').children("option:selected").val(),
+		course_nature:$('input[type=radio][name=subject_type]:checked').val()},
+		function(data,status)
 		{
 			if(data==="invalid")
 			{

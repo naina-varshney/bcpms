@@ -49,7 +49,7 @@
           <div class="card">
             <div class="card-header">
               <div class="card-title" style="min-width: 100px;" id="attendance_heading"></div>
-              <button type="submit" id="absent_btn" class="btn btn-primary" style="float:right" onclick="absent_btnClicked()">Absent All</button>
+              <button type="submit" id="absent_btn" class="btn btn-primary" style="float:right" onclick="absent_btnClicked()">Absent All Students</button>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -87,72 +87,79 @@ var att_date=null;
 var c_type=null;
 $(document).ready(function(){
 	globalobj = {};
-	$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=teacher_course",function(data,status){
+	$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=teacher_course",function(data,status)
+	{
 		if(data!=="invalid session key")
 			{
 				$('#attendance_heading').text(data);
 				teacher_course=data;
-				$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=radio",function(radio_btn,status){
-					
+				$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=radio",function(radio_btn,status)
+				{	
 					if(radio_btn!=="invalid")
-						{
+					{
 						c_type=radio_btn;
-							$("<span style='color:red;'> ("+radio_btn+")</span>").appendTo('#attendance_heading');
-							$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=attendance_date",function(date,status){
-								//console.log(date);
-								att_date=date;
-								$.post("http://localhost:9090/BCPMS/pages/tables/markattendance.jsp",{run:"load",course:data,radio_type:radio_btn,attendance_date:date},
-												function(data,status){
-												let list=JSON.parse(data);
-
-												let finallist = [];
-												if(list.length>0){
-													list.forEach((val,index)=>{
-														let temparr = [];
-														temparr.push(index+1);
-														temparr.push(val.Roll_no);
-														temparr.push(val.Student_name);
-														finallist.push(temparr);
-													})
-												}
-												console.log("finallist",finallist);
-												
-												var table= $('#example1').DataTable({
-													  "select": true,
-													  "data": finallist,
-													  "aoColumns":[
-													            {"title":"SNo"},
-													            {"title":"Roll No"},
-													            {"title":"Student Name"},
-														            { "title":"Attendance","mRender":function(data,type,row){
-														            	globalobj[row[0]] = {name : row[2], rollno : row[1], absent: 1}
-														            	return "<input id='"+row[0]+"' type='button' value='Present' name='status_btn' onclick=\"change('"+row+"')\"></input>"
-														            }
-													            }
-													             ],
-												      "paging": true,
-												      "lengthChange": false,
-												      "searching": true,
-												      "ordering": true,
-												      "info": true,
-												      "autoWidth": true,
-												      "responsive" : true
-												    });
-												  
-												$('#example1 tbody').on( 'click', 'tr', function () {
-											        if ( $(this).hasClass('selected') ) {
-											            $(this).removeClass('selected').removeClass('bg-info');
-											        }
-											        else {
-											            table.$('tr.selected').removeClass('selected').removeClass('bg-info');
-											            $(this).addClass('selected bg-info');
-											        }
-											    } );
+						$("<span style='color:red;'> ("+radio_btn+")</span>").appendTo('#attendance_heading');
+						$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=attendance_date",function(date,status)
+						{
+							att_date=date;
+							$.post("http://localhost:9090/BCPMS/pages/tables/markattendance.jsp",{run:"load",course:data,radio_type:radio_btn,
+								attendance_date:date},
+								function(data,status)
+								{
+									let list=JSON.parse(data);
+									let finallist = [];
+									if(list.length>0)
+									{
+										list.forEach((val,index)=>
+										{
+											let temparr = [];
+											temparr.push(index+1);
+											temparr.push(val.Roll_no);
+											temparr.push(val.Student_name);
+											temparr.push(val.Attendance);
+											finallist.push(temparr);
+										
 										})
-									
+										console.log(finallist);
+									}			
+									var table= $('#example1').DataTable(
+									{
+										"select": true,
+										"data": finallist,
+										"aoColumns":[
+												      {"title":"SNo"},
+												      {"title":"Roll No"},
+												      {"title":"Student Name"},
+													  { "title":"Attendance","mRender":function(data,type,row)
+													  	{
+															globalobj[row[0]] = {name : row[2], rollno : row[1], attendance:row[3]?row[3]:"P"}
+														    return `<input id='${row[0]}' type='button' value='${row[3]?row[3]==="P"?"Mark Absent":"Mark Present":"Mark Absent"}' name='status_btn' onclick="change(${row[0]})"></input>`
+														}
+													  }
+													],
+										"paging": true,
+										"lengthChange": false,
+										"searching": true,
+										"ordering": true,
+										"info": true,
+										"autoWidth": true,
+										"responsive" : true
+									});			  
+									$('#example1 tbody').on( 'click', 'tr', function () 
+										{
+											if ( $(this).hasClass('selected') ) 
+											{
+												$(this).removeClass('selected').removeClass('bg-info');
+											}
+											else
+											{
+											   table.$('tr.selected').removeClass('selected').removeClass('bg-info');
+											   $(this).addClass('selected bg-info');
+											}
+										});
+								})		
 							})
 						}
-					
 				})
 			}
 	})
@@ -160,23 +167,23 @@ $(document).ready(function(){
 
 function absent_btnClicked()
 {
-	$('input[name=status_btn]').val("Absent");
+	$('input[name=status_btn]').val("Mark Present");
 }
 
 function change(object)
 {
-	object = object.split(',');
-	if($('#'+object[0]).val()==="Present"){
-		globalobj[object[0]] = {name : object[2], rollno : object[1], absent: 0}
-		$('#'+object[0]).val("Absent");
+	console.log(globalobj);
+	if($('#'+object).val()==="Mark Present"){
+		globalobj[object]['attendance']="P"
+		$('#'+object).val("Mark Absent");
 	}else{
-		globalobj[object[0]] = {name : object[2], rollno : object[1], absent: 1}
-		$('#'+object[0]).val("Present");
+		globalobj[object]['attendance']="A"
+		$('#'+object).val("Mark Present");
 	}
 }
+
 function submit_attendance()
 {  
-	console.log(globalobj);
 	let finaldata = Object.values(globalobj);
 	$.post("http://localhost:9090/BCPMS/pages/tables/markattendance.jsp",{run:"btn_clicked",data_object:JSON.stringify(finaldata),attendance_date:att_date,course_type:c_type[0],c_name:teacher_course},
 		function(data,status){

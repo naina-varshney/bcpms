@@ -5,45 +5,61 @@
   <title>BCPMS| TeacherRegistration</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
      <style>
-	      body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
-		    transition: margin-left .3s ease-in-out;
-		    margin-left: 0px;
-	    }	
-		.content-wrapper
-		{
-			background-image: url("../../dist/img/123.jpg");
-			background-repeat: no-repeat;
-			background-size: cover;
-		}
-		img
-		{	
-			border-style: none;
-			width: 100px;	
-		}
-		.card
-		{
+      body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+    transition: margin-left .3s ease-in-out;
+    margin-left: 0px;
+}
+
+	
+	.content-wrapper
+	{
+	
+		background-image: url("../../dist/img/123.jpg");
+		
+		background-repeat: no-repeat;
+		background-size: cover;
+		
+	}
+	img{
+			
+		border-style: none;
+		width: 100px;
+		
+			
+	}
+	.card
+	{
 			box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 20px 20px rgba(0,0,0,.2);
 			background-color: transparent;
-		}
+		
+	}
+        form .error 
+	{
+		color: #ff0000;
+	}
+	
   </style>
 </head>
 <body class="hold-transition sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Content Wrapper. Contains page content -->
-  		<div class="content-wrapper" style="min-height: 1246.8px;">
+  <div class="content-wrapper" style="min-height: 1246.8px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Registration Form</h1>
-          </div>  
+          </div>
+          
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -53,173 +69,312 @@
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
-    	<div class="col-md-3"></div>
+    <div class="col-md-3">
+    </div>
           <div class="col-md-6">
             <!-- general form elements -->
             <div class="card card-primary">
+            
               <!-- /.card-header -->
               <!-- form start -->
-              <!--card header-->
-                <div class="card-header">
-                  	<h3 class="card-title"><b>Teacher Registration</b></h3>
-          		</div>
+                        <form id="teacherReg">
+                        <!--card header-->
+                            <div class="card-header">
+                                <h3 class="card-title"><b>Teacher Registration</b></h3>
+
+            
+          </div>
           <!-- /.card-header -->
-        		<div class="card-body">
-            		<div class="row">
-              			<div class="col-md-6">
-			   				<div class="form-group">
-                        		<label>Name</label>
-                        		<input type="text" class="form-control" id="name"  disabled>
-               				</div>
-			   				<div class="form-group">
-                        		<label>Phone</label>
-                        		<input type="number" class="form-control" id="phone"  disabled>
+        <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+			   <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" id="name"  disabled>
+               </div>
+			   <div class="form-group">
+                        <label>Phone</label>
+                        <input type="number" class="form-control" id="phone"  disabled>
                            </div>
-               		 	   <div class="form-group">
-                  				<label>Gender</label>
-                  				<select class="form-control select2" id="gender" style="width: 100%;" required>
-                    				<option selected="selected">Select*</option>
-                    				<option>Male</option>
-                    				<option>Female</option>
-                  				</select>
-                		 </div>
-			    		 <div class="form-group">
-                        		<label>Aadhar Number</label>
-                        		<input type="number" class="form-control" id="aadhar"  disabled>
-               			</div>
-            			<div class="form-group">
-                  			<label>Designation</label>	  
-			                  <select class="form-control select2" id="designation" style="width: 100%;" required>
-			                    <option selected="selected">Select*</option>
-			                    <option>Professor</option>
-			                    <option>Assistant Professor</option>
-			                    <option>Associate Professor</option>
-			                  </select>
-                		</div>	
-						<div class="form-group">
-                        	<label>Joining Date</label>
-                        	<input type="date" class="form-control" id="joining_date" placeholder="Enter your joining date*" required>
-               			</div>
+               		 <div class="form-group">
+                  <label>Gender</label>
+                  <select class="form-control select2" name="gender"id="gender" style="width: 100%;" required>
+                    <option selected="selected">Select*</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Transgender</option>
+                  </select>
+                  
+                </div>
+                  <div id="genderError"></div>
+			    <div class="form-group">
+                        <label>Aadhar Number</label>
+                        <input type="number" class="form-control" id="aadhar"  disabled>
+               </div>
+			   
+                <!-- <div class="form-group">
+                  <label>Department</label>
+                  <select class="form-control select2" id="department" style="width: 100%;" required>
+                    <option selected="selected">Select*</option>
+                    <option>Computer Science</option>
+                    <option>California</option>
+                    <option>Delaware</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Washington</option>
+                  </select>
+                </div> -->
+            	<div class="form-group">
+                  <label>Designation</label>
+				  
+                  <select class="form-control select2" id="designation" name="designation" style="width: 100%;" required>
+                    <option selected="selected">Select*</option>
+                    <option>Professor</option>
+                    <option>Assistant Professor</option>
+                    <option>Associate Professor</option>
+                  </select>
+                  <div id="designationError">
+                </div>
+				
+				<div class="form-group">
+                        <label>Joining Date</label>
+						
+                        <input type="date" class="form-control" name="date"id="joining_date" placeholder="Enter your joining date*" required>
+                        <div id="dateError">
+                                </div>
+				
                 <!-- /.form-group -->
               </div>
               <!-- /.col -->
               <div class="col-md-6">
-			   	<div class="form-group">
+			   <div class="form-group">
                         <label>ID</label>
                         <input type="text" class="form-control" id="id1" disabled>
                </div>
-               <div class="form-group">
-                	<label>DOB</label>
-                    <input type="date" id="dob" class="form-control" placeholder="Enter your date of birth*" required>
-               </div>  
+                   <div class="form-group">
+                        <label>DOB</label>
+                        <input type="date" id="dob" name="bdate"class="form-control" placeholder="Enter your date of birth*" required>
+                        <div id="bdateError">
+                   </div>
+                 
                 <!-- /.form-group -->
-               <div class="form-group">
+                 <div class="form-group">
                     <label for="Email1">Email address</label>
                     <input type="email" class="form-control" id="Email1" disabled>
-               </div>
-			<div class="form-group">
-               <label>Select your security question</label>
-               <select class="form-control select2bs4" id="security" style="width: 100%;" disabled>
+                  </div>
+                
+                  <!-- <div class="form-group">
+                    <label for="Password1">Password</label>
+                    <input type="password" class="form-control" id="Password1"  disabled>
+                  </div>
+				  <div class="form-group">
+                    <label for="Password2">Confirm Password</label>
+                    <input type="password" class="form-control" id="Password2" disabled>
+                  </div>
+				   -->
+				   
+				   <div class="form-group">
+                  <label>Select your security question</label>
+                  <select class="form-control select2bs4" name="security_ques"id="security" style="width: 100%;" disabled>
                     <option selected="selected">Selected*</option>
                     <option>what is your pet name?</option>
                     <option>your hobby?</option>
-                    <option>your grandfather's occupation?</option>     
-               </select>
-            </div>
-			<div class="form-group">
-               <label>Security Answer</label>
-               <input type="text" class="form-control" id="answer" placeholder="Enter your answer*" disabled>
-            </div>
-            <div class="form-group">
-                <label>Subject</label>
-                <select class="form-control select2bs4" id="subject" style="width: 100%;" required>
+                    <option>your grandfather's occupation?</option>
+                    
+                  </select>
+                  <div id="security_quesError">
+                </div>
+				 <div class="form-group">
+                        <label>Security Answer</label>
+                        <input type="text" class="form-control" name="security_ans"id="answer" placeholder="Enter your answer*" disabled>
+                        <div id="security_ansError"
+                                 </div>
+                <div class="form-group">
+                        <label>Subject</label>
+                        <select class="form-control select2bs4" name="subject"id="subject" style="width: 100%;" required>
                     <option selected="selected">Selected*</option>
-                    <option>Diploma in acurial science</option>
-                    <option>Certification in Web Developmnet</option>    
-                </select>        
-            </div>
+                    <option>Diploma in actuarial science</option>
+                    <option>Certification in Web Development</option>
+                   
+                    
+                  </select>
+                  <div id="subjectError">      
+               </div>
+                       
                 <!-- /.form-group -->
-         </div>
+              </div>
               <!-- /.col -->
-       </div>
+            </div>
             <!-- /.row -->
-     </div>
+        </div>
             <!-- /.card-body -->
             <!--card footer-->
-            <div class="card-footer">     
+            <div class="card-footer">
+          
                 <button type="submit" class="btn btn-primary" onclick="OnTeacherRegisterBtnClicked()">Submit</button>
-				<button type="submit" class="btn btn-default float-right">Cancel</button>
-            </div>        
-         </div>
+		<button type="submit" class="btn btn-default float-right">Cancel</button>
+            </div>   
+                    
+            </form>
+    </div>
             <!-- /.card -->
+
+                     
+
           </div>
+     
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-   </div>
+       </div>
         <!-- /.content-wrapper -->
- </div>
+        </div>
+   
     <!-- ./wrapper -->
+
     <!-- jQuery -->
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
     <script src="../../dist/js/adminlte.min.js"></script>
     <script src="../../dist/js/demo.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function () {
+	$.validator.addMethod("smartIdValiator", function(value, element) {
+	           return /^(tabcs)[A-Z]{4}[0-9]{5}$/i.test(value);
+            }, 'Please enter a valid teacher id.');
+        
+	  // Initialize form validation on the registration form.
+	  
+	  $('#teacherReg').validate({
+		// Specify validation rules
+		rules: {
+		  // The key name on the left side is the name attribute
+		  // of an input field. Validation rules are defined
+		  // on the right side
+		  
+                  subject:{
+                      required:true
+                  },
+                  security_ques:{
+                      required:true
+                  },
+                   security_ans:{
+                      required:true
+                  },
+                   date:{
+                      required:true
+                  },
+                  bdate:{
+                      required:true
+                  },
+                  designation:{
+                      required:true
+                  },
+                  gender:{
+                      required:true
+                  }
+                          
+		  
+		  
+		},
+		// Specify validation error messages
+		messages: {
+                      subject:{
+                      required:"Please Enter Subject."
+                  },
+                  security_ques:{
+                      required:" Please Select One Question."
+                  },
+                   security_ans:{
+                      required:"Enter Security Answer."
+                  },
+                   date:{
+                      required:"Enter Joining Date."
+                  },
+                  bdate:{
+                      required:"Enter Your Date Of Birth."
+                  },
+                  designation:{
+                      required:"Enter Your Designation."
+                  },
+                  gender:{
+                      required:"Choose Your Gender."
+                  }
+		},
+                    errorPlacement: function(error, element) {
+			if (element.attr("name") == "subject" ) //Name of input field
+				error.appendTo('#subjectError');
+                        if (element.attr("name") == "designation" )
+				error.appendTo('#designationError');
+                        if (element.attr("name") == "date" ) 
+				error.appendTo('#dateError');
+                        if (element.attr("name") == "gender" )  
+				error.appendTo('#genderError');
+			if (element.attr("name") == "bdate" )
+				error.appendTo('#bdateError');
+                       if (element.attr("name") == "security_ques" )
+                                error.appendTo('#security_quesError');
+                       if (element.attr("name") == "security_ans" )
+                                error.appendTo('#security_ansError');
+          },
+		// Make sure the form is submitted to the destination defined
+		// in the "action" attribute of the form when valid
+		submitHandler: function(form) {
+		  form.submit();
+		}
+	  });
+	});
+</script>
+
     <script>
     var RegistrationFormSessionKey = null;
-    $(document).ready(function()
-    {
-    	$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=registration_form_session_key",function(data,status)
-    	{
-    		if(data!="invalid session key")
-    		{
+    $(document).ready(function(){
+    	$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=registration_form_session_key",function(data,status){
+    		if(data!="invalid session key"){
     			RegistrationFormSessionKey  = data;
-    			 $.post("http://localhost:9090/BCPMS/pages/forms/teacherreg.jsp?getValues=true",{session_link:RegistrationFormSessionKey},
-    				function(data,status)
-    				{
-        				if(data==="invalid user")
-        				{
-        					alert("Wrong ID!Please try again");
-        				}
-        				else
-        				{
-        					$('#id1').val(data.user_id);
-        					$('#name').val(data.user_name);
-        					$('#phone').val(data.user_phone);
-        					$('#aadhar').val(data.user_aadhar);
-        					$('#Email1').val(data.user_email);
-        					$('#security').val(data.user_ques);
-        					$('#answer').val(data.user_ans);		
-        				}
-        			})
-    		}
-    		else
-    		{
-    			
-    		}
+    			 $.post("http://localhost:9090/BCPMS/pages/forms/teacherreg.jsp?getValues=true",{session_link:RegistrationFormSessionKey},function(data,status){
+        		if(data==="invalid user"){
+        			alert("Wrong ID!Please try again");
+        		}
+        		else
+        			{
+        				$('#id1').val(data.user_id);
+        				$('#name').val(data.user_name);
+        				$('#phone').val(data.user_phone);
+        				$('#aadhar').val(data.user_aadhar);
+        				$('#Email1').val(data.user_email);
+        				$('#security').val(data.user_ques);
+        				$('#answer').val(data.user_ans);
+        				
+        			}
+        	})
+    			console.log('register session key',RegistrationFormSessionKey);
+    		}else{}
     	})
-    })
-    function OnTeacherRegisterBtnClicked()
-    {
     	
-    	 $.post("http://localhost:9090/BCPMS/pages/forms/teacherreg.jsp?getValues=false",{session_link:RegistrationFormSessionKey,designation:$('#designation').val(),
-    		 joining_date:$('#joining_date').val(),DOB:$('#dob').val(),gender:$('#gender').val(),subject:$('#subject').val()},
-     			function(data,status)
-     			{
-     				 if(data==="invalid user")
-     				 {
+    })
+    function OnTeacherRegisterBtnClicked(){
+    	
+    	 $.post("http://localhost:9090/BCPMS/pages/forms/teacherreg.jsp?getValues=false",
+     			{session_link:RegistrationFormSessionKey,designation:$('#designation').val(),joining_date:$('#joining_date').val(),DOB:$('#dob').val(),gender:$('#gender').val(),
+     					subject:$('#subject').val()},
+     			function(data,status){
+     				//console.log(status);
+     				 if(data==="invalid user"){
      					 alert("You are not allowed to enter in this category!!");	
-      				 }	
+      				}	
      				 else
-     				{
-     					alert("Registered successfully");
-     					window.location.href=data;
-     		  	  	}
-     			})
+     					 {
+     					    alert("Registered successfully");
+     					    window.location.href=data;
+     					 }
+     	})
      }
     
     </script>
 </body>
+
 </html>

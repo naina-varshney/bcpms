@@ -108,47 +108,10 @@ img {
                             <!--Carousel Wrapper-->
 								<div id="carousel-example-2" class="carousel slide carousel-fade z-depth-1-half" data-ride="carousel">
 								<!--Indicators-->
-									<ol class="carousel-indicators">
-										<li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
-										<li data-target="#carousel-example-2" data-slide-to="1"></li>
-										<li data-target="#carousel-example-2" data-slide-to="2"></li>
-									</ol>
+									<ol class="carousel-indicators" id="img_carousel_indicators"></ol>
 									<!--/.Indicators-->
 									<!--Slides-->
-									<div class="carousel-inner" role="listbox">
-										<div class="carousel-item active">
-											<div class="view">
-												<img class="d-block w-100" src="../../dist/img/14.jfif" alt="First slide">
-												<div class="mask rgba-black-light"></div>
-											</div>
-											<div class="carousel-caption">
-												<h3 class="h3-responsive">House riding</h3>
-												<p>Empower women</p>
-											</div>
-										</div>
-										<div class="carousel-item">
-										  <!--Mask color-->
-										  <div class="view">
-											<img class="d-block w-100" src="../../dist/img/15.jfif" alt="Second slide">
-											<div class="mask rgba-black-strong"></div>
-										  </div>
-										  <div class="carousel-caption">
-											<h3 class="h3-responsive">Strong mask</h3>
-											<p>Secondary text</p>
-										  </div>
-										</div>
-										<div class="carousel-item">
-										  <!--Mask color-->
-										  <div class="view">
-											<img class="d-block w-100" src="../../dist/img/16.jfif" alt="Third slide">
-											<div class="mask rgba-black-slight"></div>
-										  </div>
-										  <div class="carousel-caption">
-											<h3 class="h3-responsive">Slight mask</h3>
-											<p>Third text</p>
-										  </div>
-										</div>
-									</div>
+									<div class="carousel-inner" role="listbox" id="img_carousel"></div>
 									<!--/.Slides-->
 									<!--Controls-->
 									<a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
@@ -174,18 +137,12 @@ img {
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
   <!-- Control Sidebar -->
- 
     <!-- Control sidebar content goes here -->
-      
-  
    <!-- /.control-sidebar -->
-
   <!-- Main Footer -->
     <footer class="main-footer">
         <center><span class="blinking"> <p><strong>Developed by Khushboo Singi,Naina Varshney,Garima Upreti,Megha Kumari(MCA 2018-2021).</p></strong></span></center>
-     
         </footer>
 </div>
 <!-- ./wrapper -->
@@ -197,5 +154,59 @@ img {
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="../../dist/js/adminlte.min.js"></script>
+<script>
+	$(document).ready(function(){
+		
+		$.get("http://localhost:9090/BCPMS/pages/layout/homepage.jsp",function(data,status){
+			
+			if(data!=="unauthorized")
+			{ 
+				let data1=JSON.parse(data); 
+				if(data1.length>0)
+				{ 	
+					let i=1; 
+					data1.forEach(function(object,index)
+						{
+							let full_path="../../"+object.path+"/"+object.img_name; 
+							let indicator ="";
+							let html="";
+							if(index===0)
+								{ 
+									indicator = `<li data-target="#carousel-example-2" data-slide-to=${index} class="active"></li>`
+									html=`
+											<div class="carousel-item active">
+												<div class="view">
+												<img class="d-block w-100" src=${full_path} alt="${index} slide">
+												<div class="mask rgba-black-light"></div>
+												</div>
+												<div class="carousel-caption">
+												<h3 class="h3-responsive">${object.heading}</h3>
+												</div>
+											</div> ` 
+								}
+							 else	
+							 { 
+								indicator = `
+												<li data-target="#carousel-example-2" data-slide-to=${index}></li>`
+									html=`
+										<div class="carousel-item">
+											<div class="view">
+											<img class="d-block w-100" src=${full_path} alt="${index}slide">
+											<div class="mask rgba-black-light"></div>
+											</div>
+											<div class="carousel-caption">
+											<h3 class="h3-responsive">${object.heading}</h3>
+											</div>
+										</div>` 	
+							} 
+						$(indicator).appendTo("#img_carousel_indicators"); 
+						$(html).appendTo("#img_carousel");
+					 }) 
+				} 
+			}
+		})
+	})
+	
+</script>
 </body>
 </html>

@@ -145,11 +145,13 @@
     <script>
      function OnRegisterBtnClicked()
      {
+    	 console.log($('#id1').val());
     	 $.post("http://localhost:9090/BCPMS/pages/forms/registration_form.jsp",{user_name:$('#name1').val(),user_id:$('#id1').val(),
     		 phone_no:$('#phonenumber').val(),aadhar_no:$('#aadhar').val(),email_id:$('#email1').val(),password:$('#password1').val(),
     		 confirm_pass:$('#password2').val(),security_ques:$('#security').val(),security_ans:$('#answer').val()},
      			function(data,status)
      			{
+    			 console.log(data)
      				 if(data==="incorrect")
      				 {
      					 alert("Something Went Wrong!!");

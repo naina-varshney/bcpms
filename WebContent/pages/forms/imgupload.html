@@ -3,13 +3,13 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>BCPMS| ImageUpload</title>
-  <!-- Tell the browser to be responsive to screen width -->
+  <!--Tell the browser to be responsive to screen width  -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Font Awesome -->
+  <!--Font Awesome  -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   
-  <!-- Theme style -->
+  <!--Theme style  -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
    <style>
       body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
@@ -19,11 +19,11 @@
   </style>
 </head>
 <body class="hold-transition sidebar-mini">
-    <!-- Site wrapper -->
+   <!-- Site wrapper --> 
     <div class="wrapper">
-        <!-- Content Wrapper. Contains page content -->
+        <!--Content Wrapper. Contains page content  -->
   <div class="content-wrapper" style="min-height: 1246.8px;">
-    <!-- Content Header (Page header) -->
+   <!-- Content Header (Page header)  -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -32,35 +32,33 @@
           </div>
           
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.container-fluid -->
     </section>
 
-    <!-- Main content -->
+   <!--Main content  --> 
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <!-- left column -->
+         <!--  left column -->
     <div class="col-md-3">
     </div>
           <div class="col-md-6">
-            <!-- general form elements -->
+           <!-- general form elements  -->
             <div class="card card-primary">
             
-              <!-- /.card-header -->
-              <!-- form start -->
-                     <form method="post" action="http://localhost:9090/BCPMS/pages/forms/imgupload.jsp" enctype="multipart/form-data">
-                        <!--card header-->
+             <!-- /.card-header
+              form start --> 
+                     <form id="fileUploadForm">
+                      <!--card header  -->  
                             <div class="card-header">
                                 <h3 class="card-title"><b>Upload New Image</b></h3>
-
-            
           </div>
-          <!-- /.card-header -->
+         <!-- /.card-header --> 
         <div class="card-body">
             <div class="row">
               <div class="col-md-12">
-		
-                        <div class="form-group">
+				   <div class="form-group">
                     <label>Purpose</label>
                   <select class="form-control select2bs4" id="imgpurpose" style="width: 100%;" required>
                     <option selected="selected" required>Select*</option>
@@ -78,78 +76,98 @@
                         <input type="file" name="image" accept="image/jpeg" class="custom-file-input" id="file_name">
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                       </div>
-                     <!--  <div class="input-group-append">
+                      <div class="input-group-append">
                         <span class="input-group-text" id="">Upload</span>
-                      </div> -->
+                      </div>
                     </div>
                   </div>
-                <!-- /.form-group -->
+               <!--/.form-group  --> 
               </div>
-              <!-- /.col -->
+              <!--/.col  -->
             </div>
-            <!-- /.row -->
+           <!-- /.row --> 
         </div>
-            <!-- /.card-body -->
-            <!--card footer-->
-            <div class="card-footer">
-          
-                <button type="submit" class="btn btn-primary" >Submit</button>
+           <!-- footer --> 
+            <div class="card-footer">   
+        <button type="submit" class="btn btn-primary" id="uploadFileBtn" >Submit</button>
 		<button class="btn btn-default float-right">Cancel</button>
             </div>   
                  </form>   
             </div>
-            <!-- /.card -->
-
-                     
-
           </div>
-     
+          <!-- /.card  --> 
+          </div>
         </div>
         <!-- /.row -->
-      </div><!-- /.container-fluid -->
+      </div>
+      <!--/.container-fluid  -->
     </section>
         </div>
    
-    <!-- ./wrapper -->
+   <!--./wrapper  --> 
 
-    <!-- jQuery -->
+    <!--jQuery  -->
     <script src="../../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
+   <!-- Bootstrap 4  -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script src="../../dist/js/adminlte.min.js"></script>
 
     <script src="../../dist/js/demo.js"></script>
-        <!-- bs-custom-file-input -->
+      <!-- bs-custom-file-input  --> 
     <script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 
 <script>
 $(document).ready(function () {
 	  bsCustomFileInput.init();
 	});
-
-// function upload_btn(){
-// 	let formdata = new FormData();
-// 	formdata.append("image",$('#file_name')[0].files);
-// 	formdata.append("name","lovely naina");
-// 	$.ajax({
-// 	    url: "http://localhost:9090/BCPMS/pages/forms/imgupload.jsp",
-// 	    type: "post",
-// 	    data: formdata,
-// 	    processData: false,
-// 	    contentType: false,
-// 	    success: function (result) {
-// 	    	console.log(result);
-// 	         // if all is well
-// 	         // play the audio file
-// 	    }
-// 	});
+</script>
+<script>
+$(document).ready(function(){
+	$('#uploadFileBtn').click(function(event){
+		
+		event.preventDefault();
+		var form=$('#fileUploadForm')[0];
+		var data=new FormData(form);
+		var data = new FormData();
+		data.append("purpose_field",$('#imgpurpose').children("option:selected").val());
+		data.append("hello","hi");
+		 for(var value of data.values()){
+			console.log(value);
+		}
+		 
+		/* $('#uploadFileBtn').prop("disabled",true); */
+		$.ajax({
+				type:"POST",
+				/* enctype:'multipart/formdata', */
+				url: "http://localhost:9090/BCPMS/pages/forms/imgupload.jsp",
+				data:data,
+				processData: false,
+				contentType: 'multipart/form-data',
+				cache: false,
+				mimeType: 'multipart/form-data'
+				/* success: function(data){
+				
+				} */
+		})
+		
+	})
 	
-// 	$.post("http://localhost:9090/BCPMS/pages/forms/imgupload.jsp",{name:"udit",image:$('#file_name')[0].files}).then(response=>{
-// 		console.log(response);
-// 	})
-//}
-
+	
+	
+	
+	
+	
+	
+})
+	
 </script>
 </body>
 </html>
+
+ 
+ 
+<!-- <form action="http://localhost:9090/BCPMS/pages/forms/imgupload.jsp" method="post" enctype="multipart/form-data">
+<input type="file" name="fname"/><br/>
+<input type="submit">
+</form> -->

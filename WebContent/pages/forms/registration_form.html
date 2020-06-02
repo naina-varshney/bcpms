@@ -1,169 +1,323 @@
 <!DOCTYPE html>
-<html style="height: auto;"><head>
+<html style="height: auto;">
+
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>BCPMS| StudentRegistration</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">  
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-   <style>
-      body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
-    	transition: margin-left .3s ease-in-out;
-    	margin-left: 0px;
-		}
-		.content-wrapper
-		{
-			background-image: url("../../dist/img/123.jpg");	
-			background-repeat: no-repeat;
-			background-size: cover;
-		}
-		img
-		{		
-			border-style: none;
-			width: 100px;		
-		}
-		.card
-		{
-			box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 20px 20px rgba(0,0,0,.2);
-			background-color: transparent;
-		}
+  <style>
+    body:not(.sidebar-mini-md) .content-wrapper,
+    body:not(.sidebar-mini-md) .main-footer,
+    body:not(.sidebar-mini-md) .main-header {
+      transition: margin-left .3s ease-in-out;
+      margin-left: 0px;
+    }
+
+    .content-wrapper {
+      background-image: url("../../dist/img/123.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    img {
+      border-style: none;
+      width: 100px;
+    }
+
+    .card {
+      box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 20px 20px rgba(0, 0, 0, .2);
+      background-color: transparent;
+    }
+
+    form .error {
+      color: #ff0000;
+    }
   </style>
 </head>
+
 <body class="hold-transition sidebar-mini">
-    <!-- Site wrapper -->
-    <div class="wrapper">
-        <!-- Content Wrapper. Contains page content -->
-  		<div class="content-wrapper" style="min-height: 1246.8px;">
-   			 <!-- Content Header (Page header) -->
-   			 <section class="content-header">
-	      		<div class="container-fluid">
-	        		<div class="row mb-2">
-	         			 <div class="col-sm-6">
-	           				 <h1>Registration Form</h1>
-	          			</div>  
-	        		</div>
-	      		</div>
-      <!-- /.container-fluid -->
-   		 	</section>
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <!-- left column -->
-    		<div class="col-md-3">  </div>
-          	<div class="col-md-6">
-            <!-- general form elements -->
-            	<div class="card card-primary">
-              <!-- /.card-header -->
-              <!-- form start --> 
-              <!--card header-->
-                   <div class="card-header">
-                   		<h3 class="card-title"><b>Register Yourself</b></h3> 
-          		   </div>
-          <!-- /.card-header -->
-        <div class="card-body">
-          <div class="row">
-              <div class="col-md-6">
-			   	<div class="form-group">
-                   <label>Name</label>
-                   <input type="text"  class="form-control" id="name1" name="user_name" placeholder="Enter your name*" required>
-               </div>
-               <div class="form-group">
-                   <label>ID</label>
-                   <input type="text"  class="form-control" id="id1" name="user_id" placeholder="Enter your smart card ID*"required>
-               </div>
-			   <div class="form-group">
-                   <label>Phone</label>
-                   <input type="number" name="phone_no" class="form-control" id="phonenumber"  placeholder="Enter contact number*" required>
-               </div>
-				<div class="form-group">
-                   <label>Aadhar Number</label>
-                   <input type="number" name="aadhar_no" class="form-control" id="aadhar" placeholder="Enter aadhar card number*" required>
-                </div>
-                <div class="form-group">
-                    <label for="Email1">Email address</label>
-                    <input type="email" name="email_id" class="form-control" id="email1"  placeholder="Enter email*" required>
-               </div>
-                <!-- /.form-group -->
+  <!-- Site wrapper -->
+  <div class="wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="min-height: 1246.8px;">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Registration Form</h1>
             </div>
-              <!-- /.col -->
-           <div class="col-md-6">
-                <!-- /.form-group --> 
-                  <div class="form-group">
-                    <label for="Password1">Password</label>
-                    <input type="password" name="password" class="form-control" id="password1" placeholder="Password*" required>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-3"> </div>
+            <div class="col-md-6">
+              <!-- general form elements -->
+              <div class="card card-primary">
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form id="register">
+                  <!--card header-->
+                  <div class="card-header">
+                    <h3 class="card-title"><b>Register Yourself</b></h3>
                   </div>
-				  <div class="form-group">
-                    <label for="Password2">Confirm Password</label>
-                    <input type="password" name="confirm_pass" class="form-control" id="password2" placeholder="Confirm Password*" required>
-                  </div>
-                  <div class="form-group">
-                  	<label>Select your security question</label>
-                  	<select class="form-control select2bs4" name="security_ques" id="security" style="width: 100%;" required>
-                    	<option selected="selected">Selected*</option>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Name</label>
+                          <input type="text" class="form-control" id="name1" name="name" placeholder="Enter your name*" required>
+                          <div id="nameError"></div>
+                        </div>
+                        <div class="form-group">
+                          <label>ID</label>
+                          <input type="text" class="form-control" id="id1" name="id" placeholder="Enter your smart card ID*" required>
+                          <span id="idError"></span>
+                        </div>
+                        <div class="form-group">
+                          <label>Phone</label>
+                          <input type="number" name="phoneNo" class="form-control" id="phonenumber" placeholder="Enter contact number*" required>
+                          <span id="phoneNoError"></span>
+                        </div>
+                        <div class="form-group">
+                          <label>Aadhar Number</label>
+                          <input type="number" name="aadharNo" class="form-control" id="aadhar" placeholder="Enter aadhar card number*" required>
+                          <span id="aadharNoError"></span>
+                        </div>
+                        <div class="form-group">
+                          <label for="Email1">Email address</label>
+                          <input type="email" name="emailId" class="form-control" id="email1" placeholder="Enter email*" required>
+                          <span id="emailIdError"></span>
+                        </div>
+                        <!-- /.form-group -->
+                      </div>
+                      <!-- /.col -->
+                      <div class="col-md-6">
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                          <label for="Password1">Password</label>
+                          <input type="password" name="password" class="form-control" id="password" placeholder="Password*" required>
+                          <span id="passwordError"></span>
+                        </div>
+                        <div class="form-group">
+                          <label for="Password2">Confirm Password</label>
+                          <input type="password" name="confirmPassword" class="form-control" id="password2" placeholder="Confirm Password*" required>
+                          <span id="confirmPasswordError"></span>
+                        </div>
+                        <div class="form-group">
+                          <label>Select your security question</label>
+                          <select class="form-control select2bs4" name="security_ques" id="security" style="width: 100%;" required>
                     	<option>What is your favourite pet?</option>
                     	<option>What is your hobby?</option>
                     	<option>What is your grandfather's occupation?</option>
                     </select>
-                </div>
-                <div class="form-group">
-                	<label>Security Answer</label>
-                    <input type="text" name="security_ans" class="form-control" id="answer" placeholder="Enter your answer*" required>
-               </div>
-                <!-- /.form-group -->
+                          <span id="security_quesError"></span>
+                        </div>
+                        <div class="form-group">
+                          <label>Security Answer</label>
+                          <input type="text" name="security_ans" class="form-control" id="answer" placeholder="Enter your answer*" required>
+                          <span id="security_ansError"></span>
+                        </div>
+                        <!-- /.form-group -->
+                      </div>
+                      <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                  </div>
+                  <!-- /.card-body -->
+                  <!--card footer-->
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-default float-right">Cancel</button>
+                  </div>
+                </form>
+              </div>
+              <!-- /.card -->
+            </div>
           </div>
-              <!-- /.col -->
-      </div>
-            <!-- /.row -->
-   </div>
-            <!-- /.card-body -->
-            <!--card footer-->
-   <div class="card-footer">
-      <button type="submit" class="btn btn-primary" onclick="OnRegisterBtnClicked()">Submit</button>
-	  <button type="submit" class="btn btn-default float-right">Cancel</button>
-   </div>            
-</div>
-            <!-- /.card -->
-</div>     
-</div>
-        <!-- /.row -->
-</div><!-- /.container-fluid -->
-</section>
-</div>
-        <!-- /.content-wrapper -->
-</div>
-    <!-- ./wrapper -->
-    <!-- jQuery -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../dist/js/adminlte.min.js"></script>
-    <script src="../../dist/js/demo.js"></script>
-    <script>
-     function OnRegisterBtnClicked()
-     {
-    	 console.log($('#id1').val());
-    	 $.post("http://localhost:9090/BCPMS/pages/forms/registration_form.jsp",{user_name:$('#name1').val(),user_id:$('#id1').val(),
-    		 phone_no:$('#phonenumber').val(),aadhar_no:$('#aadhar').val(),email_id:$('#email1').val(),password:$('#password1').val(),
-    		 confirm_pass:$('#password2').val(),security_ques:$('#security').val(),security_ans:$('#answer').val()},
-     			function(data,status)
-     			{
-    			 console.log(data)
-     				 if(data==="incorrect")
-     				 {
-     					 alert("Something Went Wrong!!");
-     					 $(':password').val("");	
-      				 }	
-     				 else
-     			     {
-     					    alert("Registered successfully");
-     					    window.location.href=data;
-     				 }
-     			})
-     }
-    </script>
+          <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+      </section>
+    </div>
+    <!-- /.content-wrapper -->
+  </div>
+  <!-- ./wrapper -->
+  <!-- jQuery -->
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+  <script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+  <script src="../../dist/js/adminlte.min.js"></script>
+  <script src="../../dist/js/demo.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $.validator.addMethod("nameValidator", function (value, element) {
+        return /^[A-Z][a-z]{1,}\s[A-Z][a-z]{1,}$/.test(value);
+      }, 'Please enter a valid name. Name should be full name with first alphabet of each word capitalized.');
+      $.validator.addMethod("smartIdValidator", function (value, element) {
+        return /^(A|T)[A-Z]{4}[0-9]{5}$/.test(value);
+      }, 'Please enter a valid id.');
+      $.validator.addMethod("aadharNoValidator", function (value, element) {
+        return /^[0-9]{12}$/i.test(value);
+      }, 'Please enter a valid aadhar number.');
+      $.validator.addMethod("mobileValidator", function (value, element) {
+        return /^[0-9]{10}$/i.test(value);
+      }, 'Please enter a valid mobile number.');
+
+      $.validator.addMethod("emailIdValidator", function (value, element) {
+        return /^[A-Za-z0-9]{3,}@[A-Za-z]{3,}[.]{1}[a-z.]{2,6}$/.test(value);
+      }, 'Please enter a valid email id.');
+
+      $.validator.addMethod("enrollmentNoValidator", function (value, element) {
+        return /^(19|20)[0-9]{2}\\[0-9]{4,}$/i.test(value);
+      }, 'Please enter a valid enrollment number.');
+      $.validator.addMethod("passwordValidator", function (value, element)
+      { return /^[A-Za-z]{1,}[.,:;#@!$%^&*]{1,}[0-9]{1,}$/.test(value); }, 'Password must be combination of alphabets,digits,special characters.');
+
+      // Initialize form validation on the registration form.
+      // It has the name attribute "registration"
+      $('#register').validate({
+        // Specify validation rules
+        rules: {
+          // The key name on the left side is the name attribute
+          // of an input field. Validation rules are defined
+          // on the right side
+          id: {
+            required: true,
+            smartIdValidator: true
+          },
+          name: {
+            required: true,
+            nameValidator: true
+          },
+          emailId: {
+            required: true,
+            emailIdValidator: true,
+            //email: true
+          },
+          aadharNo: {
+            required: true,
+            aadharNoValidator: true
+          },
+          password: {
+            required: true,
+            minlength: 8,
+            passwordValidator: true
+          },
+          confirmPassword: {
+            equalTo: "#password",
+            required: true,
+          },
+          phoneNo: {
+            required: true,
+            mobileValidator: true
+          },
+          security_ques: {
+            required: true
+          },
+          security_ans: {
+            required: true
+          }
+        },
+        // Specify validation error messages
+        messages: {
+          name: {
+            required: "Please enter your full name.",
+
+          },
+          id: {
+            required: "Please enter student id."
+          },
+          emailId: {
+            required: "Please enter email id."
+          },
+          aadharNo: {
+            required: "Please enter aadhar number."
+          },
+          phoneNo: {
+            required: "Please enter mobile number."
+          },
+          password: {
+            required: "Please provide a password",
+            minlength: "Your password must be at least 8 characters long"
+          },
+          enrollmentNo: {
+            required: "Please enter enrollment number."
+          },
+          security_ques: {
+            required: "please select one security question"
+          },
+          security_ans: {
+            required: "please enter security answer"
+          },
+          confirmPassword: {
+            required: "please provide confirm password",
+            equalTo: "Confirm password should be same as password."
+          }
+        },
+        errorPlacement: function (error, element) {
+          if (element.attr("name") == "name")
+            error.appendTo('#nameError');
+          if (element.attr("name") == "id")  //Name of input field
+            error.appendTo('#idError');
+          if (element.attr("name") == "emailId")
+            error.appendTo('#emailIdError');
+          if (element.attr("name") == "aadharNo")
+            error.appendTo('#aadharNoError');
+          if (element.attr("name") == "phoneNo")
+            error.appendTo('#phoneNoError');
+          if (element.attr("name") == "confirmPassword")  //Name of input field
+            error.appendTo('#confirmPasswordError');
+          if (element.attr("name") == "password")
+            error.appendTo('#passwordError');
+          if (element.attr("name") == "security_ques")
+            error.appendTo('#security_quesError');
+          if (element.attr("name") == "security_ans")
+            error.appendTo('#security_ansError');
+        },
+
+        // Make sure the form is submitted to the destination defined
+        // in the "action" attribute of the form when valid
+        submitHandler: function (form) {
+          OnRegisterBtnClicked()
+        }
+      });
+    });
+
+  </script>
+  <script>
+    function OnRegisterBtnClicked() {
+      $.post("http://localhost:9090/BCPMS/pages/forms/registration_form.jsp", {        
+user_name: $('#name1').val(), user_id: $('#id1').val(),
+        phone_no: $('#phonenumber').val(), aadhar_no: $('#aadhar').val(), email_id: $('#email1').val(), password: $('#password').val(),
+        confirm_pass: $('#password2').val(), security_ques: $('#security').val(), security_ans: $('#answer').val()
+      },
+        function (data, status) {
+          if (data === "incorrect") {
+            alert("Something Went Wrong!!");
+            $(':password').val("");
+          }
+          else {
+            window.location.href = data;
+          }
+        })
+    }
+  </script>
 </body>
+
 </html>

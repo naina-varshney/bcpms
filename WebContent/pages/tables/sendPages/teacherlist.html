@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>BCPMS | EnrolledStudents</title>
+  <title>BCPMS | TeacherList</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="../../dist/css/dataTables.bootstrap4.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-  <style>
+    <style>
 		.dataTables_filter {
 	    text-align: right;
 		}
@@ -21,49 +21,45 @@
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
   <!-- Navbar -->
-  <!-- /.navbar -->
-  <!-- Main Sidebar Container -->
+  <!-- Content Wrapper. Contains page content -->
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Enrolled Students</h1>
-          </div>
-        </div>
-      </div>
-      <!-- /.container-fluid -->
-    </section>
+    	<section class="content-header">
+      		<div class="container-fluid">
+        		<div class="row mb-2">
+          			<div class="col-sm-6">
+            			<h1>Teacher's List</h1>
+          			</div>  
+        		</div>
+      		</div>
+      		<!-- /.container-fluid -->
+    	</section>
     <!-- Main content -->
     <section class="content">
-      <div class="row">
-        <div class="col-12">
+      	<div class="row">
+        	<div class="col-12">
           <!-- /.card -->
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Enrolled Student List</h3>
-            </div>
+          		<div class="card">
+            		<div class="card-header">
+              			<h3 class="card-title">List of available Teachers</h3>
+            		</div>
             <!-- /.card-header -->
-            <div class="card-body">
-            	<div class="table-responsive">
-              		<table id="example1" class="table table-bordered table-striped"> </table>
-            	</div>
-            </div>
+            		<div class="card-body">
+						<div class="table-responsive">
+              				<table id="example1" class="table table-bordered table-striped"></table>
+			 			</div>
+            		</div>
             <!-- /.card-body -->
-         </div>
+          		</div>
           <!-- /.card -->
-      </div>
+        	</div>
         <!-- /.col -->
-    </div>
+      </div>
       <!-- /.row -->
-  </section>
+    </section>
     <!-- /.content -->
-  <!-- /.content-wrapper -->
-  <!-- Control Sidebar -->
-  <!-- /.control-sidebar -->
-</div>
+  </div>
+  <!-- /.wrapper -->
 <!-- ./wrapper -->
-
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -83,46 +79,41 @@
 		 {
 		 	if(data!=="invalid session key")
 		 	{
-			 	 $.get("http://localhost:9090/BCPMS/pages/tables/EnrolledStudents.jsp",(data,status)=>
-			 	 {
-				  	if(data!=="null")
-				  	{
-					  	let list=JSON.parse(data);
-						let finallist = [];
-						if(list.length>0)
-						{
+			  	$.post("http://localhost:9090/BCPMS/pages/tables/teacherlist.jsp",{user_type:"teacher"},(data,status)=>
+			  	{
+				  if(data!=="null")
+				  {
+					  let list=JSON.parse(data);
+					  let finallist = [];
+					  if(list.length>0)
+					  {
 							list.forEach((val,index)=>
 							{
 								let temparr = [];
 								temparr.push(index+1);
-								temparr.push(val.student_id);
-								temparr.push(val.student_roll);
-								temparr.push(val.student_name);
-								temparr.push(val.course_name);
-								temparr.push(val.date);
+								temparr.push(val.teacher_id);
+								temparr.push(val.teacher_name);
+								temparr.push(val.subject);
 								finallist.push(temparr);
 							})
-						}
+					  }
 						var table= $('#example1').DataTable(
 						{
 							  "select": true,
 							  "data": finallist,
 							  "columns":[
 							             {title : "Sno"},
-							             {title : "Student Id"},
-							             {title : "Student Roll No"},
-							             {title : "Student Name"},
+							             {title : "Teacher Id"},
+							             {title : "Teacher Name"},
 							             {title : "Course Name"},
-							             {title : "Registration Date"}
 							           ],
-							  
 						      "paging": true,
 						      "lengthChange": false,
 						      "searching": true,
 						      "ordering": true,
 						      "info": true,
 						      "autoWidth": true,
-						});  
+						 }); 
 						$('#example1 tbody').on( 'click', 'tr', function () 
 						{
 					        if ( $(this).hasClass('selected') ) 
@@ -143,7 +134,3 @@
 </script>
 </body>
 </html>
-
-
-
-

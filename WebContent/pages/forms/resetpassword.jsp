@@ -6,7 +6,6 @@
 <%
 try{
 	String key=request.getParameter("reset_session_key");
-	System.out.println("Reset session="+key);
 	if(key!=null)
 	{
 		String oldPassword=request.getParameter("old_password");
@@ -28,7 +27,7 @@ try{
 						ps2.setString(2,key);
 						if(ps2.executeUpdate()>0)
 						{
-							response.getWriter().write("authorized");
+							response.getWriter().write("../../pages/layout/homepage.html");
 							response.getWriter().close();
 						}
 						ps2.close();
@@ -51,7 +50,7 @@ try{
 						ps2.setString(2,key);
 						if(ps2.executeUpdate()>0)
 						{
-							response.getWriter().write("authorized");
+							response.getWriter().write("../../pages/layout/homepage.html");
 							response.getWriter().close();
 						}
 						ps2.close();
@@ -74,7 +73,7 @@ try{
 						ps2.setString(2,key);
 						if(ps2.executeUpdate()>0)
 						{
-							response.getWriter().write("authorized");
+							response.getWriter().write("../../pages/layout/homepage.html");
 							response.getWriter().close();
 						}
 						ps2.close();

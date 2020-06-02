@@ -46,31 +46,36 @@
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg"><b>Security Question</b></p>
+                <form id="security">
                      <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="id1" name="reset_id" placeholder="Enter ID*" required>
+                        <input type="text" class="form-control" id="id1" name="id" name="reset_id" placeholder="Enter ID*" required>
+                         <div id="idError"></div>
                      </div>
                      <div class="input-group mb-3">
                   		<label>Select your security question</label>
-                  		<select class="form-control select2bs4" name="securityques" id="security" style="width: 100%;" required>
+                  		<select class="form-control select2bs4" name="security_ques" id="security" style="width: 100%;" required>
                     		<option selected="selected">Selected*</option>
                     		<option>What is your favourite pet?</option>
                     		<option>What is your hobby?</option>
                     		<option>What is your grandfather's occupation?</option>
                     		<option>What is your favourite food?</option>                    
                   		</select>
+                  		<div id="security_quesError"></div>
                		</div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="securityanswer" name="security_ans" placeholder="Your security answer*" required>           
+                        <input type="text" class="form-control" id="securityanswer" name="security_ans" placeholder="Your security answer*" required>
+                        <div id="security_ansError"></div>           
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button type="submit" id="btn1" class="btn btn-primary btn-block" onclick="OnChangePasswordBtnClicked()">Change password</button>
+                            <button type="submit" id="btn1" class="btn btn-primary btn-block">Change password</button>
                         </div>
                         <!-- /.col -->
                     </div>
                 	<p class="mt-3 mb-1">
                     	<a href="login.html">Login</a>
                 	</p>
+               </form>
             </div>
             <!-- /.login-card-body -->
         </div>
@@ -82,6 +87,66 @@
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../../dist/js/adminlte.min.js"></script>
+    <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+	<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+    <script type="text/javascript">
+	$(document).ready(function () {
+	$.validator.addMethod("smartIdValiator", function(value, element) {
+	           return /^(a|t)[A-Z]{4}[0-9]{5}$/i.test(value);
+            }, 'Please enter a valid  id.');
+             // Initialize form validation on the  form.
+        $('#security').validate({
+    // Specify validation rules
+    rules: {
+      // The key name on the left side is the name attribute
+      // of an input field. Validation rules are defined
+      // on the right side
+      Id: {
+        required: true,
+        // Specify that email should be validated
+        // by the built-in "email" rule
+       // email: true
+        smartIdValiator: true
+      },
+      security_ques: {
+          required:true
+      },
+      security_ans: {
+          required:true
+      } 
+         
+        },
+        // Specify validation error messages
+     messages: {
+        Id: {
+          required: "Please enter a valid Admin id"
+          },         
+      security_ques:{
+          required: "please select one security question"
+          },
+      security_ans: {
+          required: "please enter security answer"
+        }
+    },
+    errorPlacement: function(error, element) {
+        if (element.attr("name") == "Id" )  //Name of input field
+            error.appendTo('#idError');
+        if (element.attr("name") == "security_ques" )
+            error.appendTo('#security_quesError');
+        if (element.attr("name") == "security_ans" )
+            error.appendTo('#security_ansError');
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+    	OnChangePasswordBtnClicked()
+    }
+  });
+});
+
+
+        </script>
+    
     <script>
     function OnChangePasswordBtnClicked()
     {	

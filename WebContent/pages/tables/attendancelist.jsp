@@ -26,7 +26,6 @@
 			responseObject.put("Student_id",rs.getString(2));
 			responseObject.put("Student_name",rs.getString(3)+" "+rs.getString(4));
 			responseObject.put("attendance_status",rs.getString(5));
-			System.out.println(responseObject);
 			responseArray.put(responseObject);
 		}
 		response.getWriter().write(responseArray.toString());

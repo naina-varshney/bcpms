@@ -13,6 +13,10 @@
       body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {		
 	    transition: margin-left .3s ease-in-out;
 	    margin-left: 0px;}
+	form .error 
+	{
+		color: #ff0000;
+	}
   </style>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -42,6 +46,7 @@
             <div class="card card-primary">
               <!-- /.card-header -->
               <!-- form start -->
+               <form id="addCourse">
                         <!--card header-->
                             <div class="card-header">
                                 <h3 class="card-title"><b>Add New Course</b></h3>
@@ -52,23 +57,27 @@
               <div class="col-md-12">
                   <div class="form-group">
                         <label>Course Type</label>
-                        <input type="text" class="form-control" id="coursetype" name="course_type" disabled>
+                        <input type="text" class="form-control" id="coursetype" name="cType"  disabled>
                     </div>
                     <div class="form-group">
                         <label>Course Id</label>
-                        <input type="text" class="form-control" id="courseid" name="course_id" placeholder="Enter course id*" required>
+                        <input type="text" class="form-control" id="courseid" placeholder="Enter course id*" name="cId" required>
+                        <div id="cIdError"></div>
                     </div>
                     <div class="form-group">
                         <label>Course Name</label>
-                        <input type="text" class="form-control" id="coursename" name="course_name" placeholder="Enter course name*" required>
+                        <input type="text" class="form-control" id="coursename" name="cName" placeholder="Enter course name*" required>
+                         <div id="cNameError"></div>
                     </div>
                     <div class="form-group">
                         <label>Course Fees</label>
-                        <input type="number" class="form-control" id="fees" name="course_fees" placeholder="Enter course fees*" required>
+                        <input type="number" class="form-control" id="fees" name="cFees" placeholder="Enter course fees*" required>
+                          <div id="cFeesError"></div>
                     </div>
                    <div class="form-group">
                         <label>Course Duration</label>
-                        <input type="text" class="form-control" id="duration" name="course_duration" placeholder="Enter course duration*" required>
+                        <input type="text" class="form-control" id="duration" name="cDuration" placeholder="Enter course duration*" required>
+                        <div id="cDurationError"></div>
                     </div>
                 <!-- /.form-group -->
               </div>
@@ -79,9 +88,10 @@
             <!-- /.card-body -->
             <!--card footer-->
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary" onclick="courseAdd()">Submit</button>
-				<button type="submit" class="btn btn-default float-right">Cancel</button>
-            </div>      
+                <button type="submit" class="btn btn-primary">Submit</button>
+				<button type="reset" class="btn btn-default float-right">Cancel</button>
+            </div> 
+         </form>     
             </div>
             <!-- /.card -->
           </div>
@@ -97,8 +107,84 @@
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+	<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
     <script src="../../dist/js/adminlte.min.js"></script>
     <script src="../../dist/js/demo.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () 
+       {
+         $.validator.addMethod("courseIdValidator", function(value, element)
+         {		return /^(CS)\s[0-9]{3}L{0,1}$/i.test(value);}, 'Please enter a valid course id.');
+         $.validator.addMethod("courseNameValidator", function(value, element)
+         {		return /^([A-Z]{1}[a-z]{1,}\s)+$/.test(value);}, 'Please enter a valid course name.First character of each word must be capitalized.');
+         $.validator.addMethod("courseFeesValidator", function(value, element)
+         {		return /^$[0-9]{1,}.0{2}$/.test(value);}, 'Please enter a fees.Fees must be as 123.00');
+         $.validator.addMethod("courseYearValidator", function(value, element)
+         {		return /^[0-9]{1}\sYear$/i.test(value);}, 'Please enter a valid course year.Eg.2000 Year');
+                    // Initialize form validation on the  form.
+        $('#addCourse').validate(
+        {
+                        // Specify validation rules 
+                        // The key name on the left side is the name attribute
+						// of an input field. Validation rules are defined
+						// on the right side
+			rules: {							  
+		  				cId: {
+								required: true,
+								courseIdValidator: true
+							},
+					  cName:{
+					            required:true,
+					            courseNameValidator:true
+					        },
+				      cFees:{
+				                required:true,
+				               	courseFeesValidator:true
+				            },
+				     cDuration:
+				     		{
+				                required:true,
+				                courseYearValidator:true
+				          	}
+                 },
+                 // Specify validation error messages
+        messages: {
+                      cId: {
+                            	required: "Please enter course id."
+                           },
+                     cName:{
+                                required: "Please enter course name."
+                           },
+                    cFees:{
+                                required: "Please enter course fees."
+                           },
+                    cDuration:
+                           {
+                                required: "Please enter duration of course."
+                           } 
+                  },
+       errorPlacement: function(error, element) 
+                 {
+					if (element.attr("name") == "cId" )  //Name of input field
+						error.appendTo('#cIdError');
+                    if (element.attr("name") == "cName" )  
+						error.appendTo('#cNameError');
+                    if (element.attr("name") == "cFees" )  
+						error.appendTo('#cFeesError');
+                    if (element.attr("name") == "cDuration" )  
+						error.appendTo('#cDurationError');
+                  },
+		// Make sure the form is submitted to the destination defined
+		// in the "action" attribute of the form when valid
+       submitHandler: function(form)
+       {
+		  	courseAdd();
+	   }
+	});
+});
+    </script>
+    
     <script>
     var courseType=null;
     $(document).ready(()=>{
@@ -124,7 +210,7 @@
     				}
     			else
     				{
-    					alert("There is some error");
+    					alert("Something went wrong.Try again to add the course.");
     				}
     		})
     }

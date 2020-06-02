@@ -8,6 +8,11 @@
 <% 
 	try{
 		    String session_id = (String)session.getAttribute("user_session_key");
+		    
+		    if(session_id == null){
+		    	session_id = request.getParameter("user_session_key");
+		    }
+		    
     		if(session_id!=null)
     		{
 	    		Statement stmt=new Conn().con.createStatement();

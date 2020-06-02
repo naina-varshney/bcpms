@@ -1,9 +1,9 @@
 <%@page import="java.sql.ResultSet"%>
-<%@page import="bcpms.Conn"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page errorPage="../../pages/commom/ErrorHandler.jsp" %>
-<%
+	<%@page import="bcpms.Conn"%>
+		<%@page import="java.sql.PreparedStatement"%>
+			<%@page contentType="text/html" pageEncoding="UTF-8"%>
+				<%@page errorPage="../../pages/commom/ErrorHandler.jsp" %>
+					<%
 	String user_name = request.getParameter("user_name");
 	String user_id = request.getParameter("user_id");
 	String user_phone_no = request.getParameter("phone_no");
@@ -38,12 +38,10 @@
 			ps.setString(9, security_ans);
 			if (ps.executeUpdate() > 0)
 			{
-				System.out.println("lol inserted");
 				response.getWriter().write("../../pages/forms/login.html");
 			}
 			else 
 			{
-				System.out.println("lol not correct");
 				response.getWriter().write("incorrect");
 			}
 			response.getWriter().close();
@@ -86,6 +84,3 @@
 	}
 	
 %>
-
-
-

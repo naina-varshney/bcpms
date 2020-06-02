@@ -16,14 +16,18 @@ body:not (.sidebar-mini-md ) .content-wrapper,body:not (.sidebar-mini-md
 	 ) .main-footer,body:not (.sidebar-mini-md ) .main-header {
 	transition: margin-left .3s ease-in-out;
 	margin-left: 0px;
-}
+	}
+	form .error 
+		{
+			color: #ff0000;
+		}
 </style>
 </head>
 <body class="hold-transition sidebar-mini">
 	<!-- Site wrapper -->
 	<div class="wrapper">
 		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper" style="min-height: 1246.8px;">
+		<div class="content-wrapper" style="min-height: 1246.8px;margin-left:0px;">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<div class="container-fluid">
@@ -43,10 +47,12 @@ body:not (.sidebar-mini-md ) .content-wrapper,body:not (.sidebar-mini-md
 						<div class="col-md-3"></div>
 						<div class="col-md-6">
 							<!-- general form elements -->
+							<form id="addAdmin">
 							<div class="card card-primary">
 								<!-- /.card-header -->
 								<!-- form start -->
 								<!--card header-->
+							
 								<div class="card-header">
 									<h3 class="card-title"><b>Add New Admin</b></h3>
 								</div>
@@ -56,28 +62,33 @@ body:not (.sidebar-mini-md ) .content-wrapper,body:not (.sidebar-mini-md
 										<div class="col-md-12">
 											<div class="form-group">
 												<label>Admin ID</label> 
-												<input type="text" class="form-control" id="adminid" placeholder="Enter Admin SmartCard ID*" required>
+												<input type="text" class="form-control" name="adminid" id="adminid" placeholder="Enter Admin SmartCard ID*" required>
+												<div id="adminIdError"></div>
 											</div>
 											<div class="form-group">
 												<label>Username</label> 
-												<input type="text" class="form-control" id="username" placeholder="Enter Admin Name*" required>
+												<input type="text" class="form-control" name="username" id="username" placeholder="Enter Admin Name*" required>
+												  <div id="userNameError"></div>
 											</div>
 											<div class="form-group">
 												<label>Password</label>
-												<input type="password" class="form-control" id="password" placeholder="Enter password*" required>
+												<input type="password" class="form-control" name="password" id="password" placeholder="Enter password*" required>
+												<div id="passwordError"></div>
 											</div>
 											<div class="form-group">
 												<label>Select your security question</label> 
 												<select class="form-control select2bs4" name="security_ques" id="security" style="width: 100%;" required>
-													<option selected="selected">Selected*</option>
+													<option value="Select">Selected*</option>
 													<option>What is your favourite pet?</option>
 													<option>What is your hobby?</option>
 													<option>What is your grandfather's occupation?</option>
 												</select>
+												<div id="security_quesError"></div>
 											</div>
 											<div class="form-group">
 												<label>Security Answer</label> 
 												<input type="text" name="security_ans" class="form-control" id="answer" placeholder="Enter your answer*" required>
+												<div id="security_ansError"></div>
 											</div>
 											<!-- /.form-group -->
 										</div>
@@ -86,15 +97,18 @@ body:not (.sidebar-mini-md ) .content-wrapper,body:not (.sidebar-mini-md
 									<!-- /.col -->
 								</div>
 								<!-- /.row -->
+								
 							</div>
 							<!-- /.card-body -->
 							<!--card footer-->
 							<div class="card-footer">
-								<button type="submit" class="btn btn-primary" onclick="addAdmin()">Submit</button>
-								<button type="submit" class="btn btn-default float-right">Cancel</button>
+								<button type="submit" class="btn btn-primary">Submit</button>
+								<button type="reset" class="btn btn-default float-right">Cancel</button>
 							</div>
+							 </form>
 						</div>
 						<!-- /.card -->
+						 
 					</div>
 				</div>
 				<!-- /.row -->
@@ -110,8 +124,99 @@ body:not (.sidebar-mini-md ) .content-wrapper,body:not (.sidebar-mini-md
 	<script src="../../plugins/jquery/jquery.min.js"></script>
 	<!-- Bootstrap 4 -->
 	<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+	<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
 	<script src="../../dist/js/adminlte.min.js"></script>
 	<script src="../../dist/js/demo.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function () 
+	{
+		$.validator.addMethod("smartIdValiator", function(value, element) 
+		{ return /^ADMIN[0-9]{5}$/.test(value);}, 'Please enter a valid Admin id.');
+		$.validator.addMethod("nameValiator", function(value, element) 
+		{ return /^([A-Z]{1}[a-z]{1,}\s)+$/.test(value);}, 'Please enter a valid Admin id.');
+         $.validator.addMethod("passwordValiator", function(value, element)
+        {   return /^[A-Za-z]{1,}[0-9]{1,}[.,:;#@!$%^&*]{1,}$/i.test(value);}, 'Password must be combination of alphabets,digits,special characters.');
+         $.validator.addMethod("valueNotEqualValidator", function(value, element,arg)
+     	{		return arg!== value}, 'Please select the option.');   
+              // Initialize form validation on the form.
+        
+        $('#addAdmin').validate({
+   							 // Specify validation rules
+   							 // The key name on the left side is the name attribute
+      						// of an input field. Validation rules are defined
+      						// on the right side	
+    			rules: {
+      					adminid: {
+        							required: true,
+        							smartIdValiator: true
+      							},
+      					password: 
+      							{
+        							required: true,
+        							minlength: 8,
+        							passwordValiator:true
+      							},
+      					username: 
+      							{
+          							required:true,
+          							nameValidator:true
+      							},
+      					security_ques: 
+      							{
+          							required:true,
+          							valueNotEqualValidator:"Select"
+      							},
+      					security_ans:{	
+          								required:true
+      								} 
+        			},
+     		messages:
+     				{
+      					password:
+      							{
+        							required: "Please provide a password",
+        							minlength: "Your password must be at least 8 characters long"
+      							},
+      					adminid:{
+          							required: "Please enter a valid Admin id. Admin id must start with 'ADMIN' followed by 5 numeric characters."
+          						},
+      					username: 
+      							{
+              						required: "Please enter your username"
+               					},          
+      					security_ques:
+      							{
+          							required: "Please select one security question",
+          							valueNotEqualValidator:"Please select the security question"
+          						},
+      					security_ans: 
+      							{
+          							required: "Please enter security answer"
+        						}
+    				},
+    	errorPlacement: function(error, element) 
+    	{
+        		if (element.attr("name") == "adminid" )  //Name of input field
+            		error.appendTo('#adminIdError');
+        		if (element.attr("name") == "password" )
+            		error.appendTo('#passwordError');
+        		if (element.attr("name") == "username" ) 
+            		error.appendTo('#userNameError');
+        		if (element.attr("name") == "security_ques" )
+            		error.appendTo('#security_quesError');
+        		if (element.attr("name") == "security_ans" )
+            		error.appendTo('#security_ansError');
+    	},
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    	submitHandler: function(form) 
+    	{
+      		addAdmin();
+    	}
+  }); 
+  }); 
+  </script>
 	<script>
 		var adminKey = null;
 		$(document).ready(function()
@@ -124,7 +229,7 @@ body:not (.sidebar-mini-md ) .content-wrapper,body:not (.sidebar-mini-md
 				}
 				else 
 				{
-					alert("You are not authorized!!");
+					alert("You are not authorized!!Try again");
 				}
 			})
 		})

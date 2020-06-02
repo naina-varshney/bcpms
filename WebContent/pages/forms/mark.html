@@ -43,7 +43,8 @@
             <!-- general form elements -->
             <div class="card card-primary">
               	<!-- /.card-header -->
-              	<!-- form start -->        
+              	<!-- form start --> 
+             <form id="mark">       
                 <!--card header-->
                 <div class="card-header">
                     <h3 class="card-title"><b>Attendance</b></h3>
@@ -60,14 +61,16 @@
                     		<div class="input-group-prepend">
                       			<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                     		</div>
-                    		<input type="date" class="form-control" id="date1" required>
+                    		<input type="date" class="form-control" id="date1" name="date" required>
                   		</div>
+                  		<div id="dateError"></div>
                   <!-- /.input group -->
                 	</div>
                 </div>
                 <div class="form-group">
                   <label>Select course</label>
-                  <select class="form-control" id="course" required></select>
+                  <select class="form-control" name="course" id="course" required></select>
+                  <div id="courseError"></div>
                 </div>
                 <!--type-->
                 <div class="form-group">
@@ -77,6 +80,7 @@
                     		<input type="radio" id="radio2" name="subject_type" value="Practical" >Practical</input>
                   	  </div>
                    </div>
+                   <div id="subject_typeError"></div>
               	</div>
                 <!-- /.form-group -->
            	</div>
@@ -87,9 +91,10 @@
             <!-- /.card-body -->
             <!--card footer-->
             <div class="card-footer">     
-                <button type="submit" class="btn btn-primary" onclick="markAttendance()">Submit</button>
-				<button type="submit" class="btn btn-default float-right">Cancel</button>
-            </div>    
+                <button type="submit" class="btn btn-primary">Submit</button>
+				<button type="reset" class="btn btn-default float-right">Cancel</button>
+            </div>  
+       </form>  
    </div>
             <!-- /.card -->
           </div>
@@ -103,22 +108,92 @@
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+	<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
     <script src="../../dist/js/adminlte.min.js"></script>
     <script src="../../dist/js/demo.js"></script>
-    	<script>
+    <script type="text/javascript">
+		$(document).ready(function () {
+     		$.validator.addMethod("passwordValiator", function(value, element) {
+                return /^$/i.test(value);
+             },'.');
+     		$.validator.addMethod("valueNotEqualValidator", function(value, element,arg)
+     				{		return arg!== value}, 'Please select the option.');
+            
+  // Initialize form validation.
+  
+ 		 $('#mark').validate({
+      
+    // Specify validation rules
+    rules: {
+      // The key name on the left side is the name attribute
+      // of an input field. Validation rules are defined
+      // on the right side
+      			date:
+      				{
+      					required:true	
+      				},
+ 		 		course:
+ 		 			{
+ 		 				required:true,
+ 		 				valueNotEqualValidator:"Select"
+ 		 			},
+ 		 		subject_type:
+ 		 			{
+ 		 				required:true
+ 		 			}
+     	
+    },
+    // Specify validation error messages
+    messages: {
+    		date:
+			{
+				required:"Please choose the date."	
+			},
+		course:
+			{
+				required:"Please fill the required field.",
+				valueNotEqualValidator:"Please select the course."
+			},
+		subject_type:
+			{
+				required:"Please choose anyone course type"
+			}
+
+      
+    },
+	errorPlacement: function(error, element) {
+        if (element.attr("name") == "dateError" )  //Name of input field
+            error.appendTo('#dateError');
+        if (element.attr("name") == "courseError" )
+            error.appendTo('#courseError');
+        if (element.attr("name") == "subject_typeError" )
+            error.appendTo('#subject_typeError');
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+    	markAttendance()
+    }
+  });
+});
+</script>
+    
+<script>
     	document.getElementById("radio1").checked=false;
     	document.getElementById("radio2").checked=false;
     	$(document).ready(function()
     	{
     			$.post("http://localhost:9090/BCPMS/pages/forms/mark.jsp",{run:"load"},function(data,status)
     			{
+    				
     				if(data!=="invalid")
     				{		
     					 let data1=JSON.parse(data);
     		             if(data1.length>0)
     		       		 {
     		    			 let sel = $('#course')[0];
-    		            	 let selectHtml=`<option selected="selected" required>Select*</option>`;
+    		            	 let selectHtml=`<option value="Select">Select*</option>`;
   		            	     					$(selectHtml).appendTo(sel);
     		       			 data1.forEach(function(object)
     		       			 {
@@ -126,10 +201,14 @@
                                 				$(course_list).appendTo(sel);  
     		        		  })  
     		        	} 
+    		             else{
+    		            	 alert("No course is assigned to you.");
+    		            	 window.parent.location="../../pages/dashboard/teacherdashboard.html"
+    		             }
        				}
 					else
 					{
-						alert("Something went wrong");
+						alert("You aren't allowed to mark the attendance of this subject.");
 					}    			
     			})	
     	})
@@ -145,7 +224,7 @@
     			}
     			else
     			{
-    				alert("something went wrong");
+    				alert("Something went wrong.Please try again.");
     			}
     		
     		})

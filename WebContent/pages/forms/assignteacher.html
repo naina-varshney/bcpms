@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!--  style -->
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+	<style type="text/css">
+		form .error 
+	{
+		color: #ff0000;
+	}
+	</style>
 </head>
 <body class="hold-transition register-page">
     <div class="register-box">
@@ -21,20 +27,23 @@
                 <h3 class="card-title"><b>Assign New Teacher</b></h3>
           </div>
           <!-- /.card-header -->
+        <form id="assignTeacher">
         <div class="card-body">
             <div class="row">
               <div class="col-md-12">
                     <div class="form-group">
                         <label>Teacher ID</label>
-                        <input type="text" class="form-control" id="teacher_id" placeholder="Enter teacher id*" required>
+                        <input type="text" class="form-control" id="teacher_id" name="teacher_id" placeholder="Enter teacher id*" required>
+                         <div id="tIdError"></div>
                     </div>
                     <div class="form-group">
                         <label>Teacher Name</label>
-                        <input type="text" class="form-control" id="teacher_name" disabled>
+                        <input type="text" class="form-control" id="teacher_name" name="teacher_name" disabled>
                     </div>
                     <div class="form-group">
                     	<label>Select course in which you want to enroll</label>
-                  		<select class="form-control select2bs4" id="course" style="width: 100%;" required></select>
+                  		<select class="form-control select2bs4" id="course" name="course" style="width: 100%;" required></select>
+                  		<div id="courseError"></div>
                 	</div>  
                 <!-- /.form-group -->
               </div>
@@ -42,12 +51,14 @@
             </div>
             <!-- /.row -->
         </div>
-            <!-- /.card-body -->
-            <!--card footer-->
-            <div class="card-footer">
+        <div class="card-footer">
                 <button type="submit" class="btn btn-primary" onclick="assignTeacher()">Submit</button>
 				<button type="submit" class="btn btn-default float-right">Cancel</button>
-            </div>      
+            </div> 
+        </form>
+            <!-- /.card-body -->
+            <!--card footer-->
+                 
             <!-- /.form-box -->
         </div>
         <!-- /.card -->
@@ -58,7 +69,62 @@
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+	<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
     <script src="../../dist/js/adminlte.min.js"></script>
+    <script type="text/javascript">
+	$(document).ready(function () 
+	{
+		$.validator.addMethod("smartIdValiator", function(value, element) 
+		{		return /^(TABCS)[0-9]{5}$/.test(value); }, 'Please enter a valid teacher id.');
+		$.validator.addMethod("valueNotEqualValidator", function(value, element,arg)
+		{		return arg!== value}, 'Please select the option.');
+		// Initialize form validation on the  form.
+           $('#assignTeacher').validate(
+        	{
+					// Specify validation rules
+				rules: 
+				{
+		  			// The key name on the left side is the name attribute
+		 		   // of an input field. Validation rules are defined
+		  		// on the right side
+		  			teacher_id:{
+							required: true,
+							smartIdValiator: true
+		 				},	
+               		course:{
+                        	required:true,
+                        	valueNotEqualValidator:"Select"
+                  	  	   }
+              },
+              // Specify validation error messages
+             messages:
+             {
+                  teacher_id: {
+		  					required: "Please enter teacher id."
+		  				},
+                 course:{
+                           required:"Please enter teacher's name.",
+                           valueNotEqualValidator:"Please select the course."
+                  		}
+             },
+             errorPlacement: function(error, element)
+             {
+				if (element.attr("name") == "teacher_id" )  //Name of input field
+				error.appendTo('#tIdError');
+                if (element.attr("name") == "course" )  
+				error.appendTo('#courseError');
+             },
+		// Make sure the form is submitted to the destination defined
+		// in the "action" attribute of the form when valid
+            submitHandler: function(form)
+            {
+		  		assignTeacher();
+			}
+	  });
+	
+ });
+ </script>
     <script>
     $(document).ready(function()
     {
@@ -70,7 +136,7 @@
       		   	if(data1.length>0)
       			{
       			   let sel = $('#course')[0];
-      			   let selectHtml=`<option selected="selected" required>Select*</option>`
+      			   let selectHtml=`<option value="Select">Select*</option>`
     			       				$(selectHtml).appendTo(sel);
       			   data1.forEach(function(object)
       				{
@@ -92,7 +158,7 @@
     				}
     				else
     				{
-    					alert("Invalid Teacher_Id");
+    					alert("Invalid Teacher_Id.Try with the valid teacher id.");
     				}
     			})
     		}
@@ -105,8 +171,8 @@
     		{
     			if(data!=="invalid")
     			{
-    				alert("Teacher is assiged to the course successfully");
-    				$(':text').val("");
+    				//alert("Teacher is assiged to the course successfully");
+    				//$(':text').val("");
     			}
     			else
     			{

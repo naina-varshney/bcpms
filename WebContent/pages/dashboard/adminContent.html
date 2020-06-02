@@ -140,10 +140,9 @@
 		import {a} from '../../js/pages/url_string.js'; 
 		$(document).ready(function()
 			{ 
-				console.log(a); 
 				$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=user_session_key",function(data,status)
 					{
-						if(data!="invalid session key")
+						if(data!=="invalid session key")
 						{ 
 							$.post("http://localhost:9090/BCPMS/pages/dashboard/adminContent.jsp",{session_name:data,execute:"header"},function(data,status)
 								{
@@ -181,8 +180,7 @@
 																							<div class="mask rgba-black-light"></div>
 																							</div>
 																							<div class="carousel-caption">
-																							<h3 class="h3-responsive">Horse riding</h3>
-																							<p>Empower women</p>
+																							<h3 class="h3-responsive">${object.heading}</h3>
 																							</div>
 																						</div> ` 
 																			}
@@ -197,8 +195,7 @@
 																						<div class="mask rgba-black-light"></div>
 																						</div>
 																						<div class="carousel-caption">
-																						<h3 class="h3-responsive">Horse riding</h3>
-																						<p>Empower women</p>
+																						<h3 class="h3-responsive">${object.heading}</h3>
 																						</div>
 																					</div>` 	
 																		} 
@@ -213,6 +210,7 @@
 									}
 									else
 									{
+										alert("Timeout.Please login again");
 									}
 							 })
  		})	

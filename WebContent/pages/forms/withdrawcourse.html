@@ -15,6 +15,10 @@
     transition: margin-left .3s ease-in-out;
     margin-left: 0px;
 	}
+	 form .error 
+	{
+		color: #ff0000;
+	}
   </style>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -44,6 +48,7 @@
             	<div class="card card-primary">
               <!-- /.card-header -->
               <!-- form start -->
+               <form id="withdraw">
                         <!--card header-->
                 	<div class="card-header">
                        <h3 class="card-title"><b>Withdraw from Course</b></h3>
@@ -54,11 +59,12 @@
               				<div class="col-md-12">
                     			<div class="form-group">
                         			<label> ID</label>
-                        			<input type="text" class="form-control" id="student_id" placeholder="Enter student id*" required>
+                        			<input type="text" class="form-control" id="student_id" name="sId" placeholder="Enter student id*" required>
+                        			 <div id="sIdError"></div>
                     			</div>
                     			<div class="form-group">
                         			<label>Current Course</label>
-                        			<input type="text" class="form-control" id="course" placeholder="Enter course*" disabled required>
+                        			<input type="text" class="form-control" id="course" placeholder="Enter course*" disabled>
                     			</div>
                 <!-- /.form-group -->
               				</div>
@@ -69,9 +75,10 @@
             <!-- /.card-body -->
             <!--card footer-->
             	<div class="card-footer">
-                	<button type="submit" class="btn btn-primary" onclick="withdrawButton()">Submit</button>
-					<button type="submit" class="btn btn-default float-right">Cancel</button>
-            	</div>       
+                	<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="reset" class="btn btn-default float-right">Cancel</button>
+            	</div>  
+            	</form>     
             </div>
             <!-- /.card -->
           </div>
@@ -88,8 +95,53 @@
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+	<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
     <script src="../../dist/js/adminlte.min.js"></script>
     <script src="../../dist/js/demo.js"></script>
+    <script type="text/javascript">
+	$(document).ready(function () 
+	{
+		$.validator.addMethod("smartIdValiator", function(value, element) 
+		{	return /^(AB)[A-Z]{3}[0-9]{5}$/.test(value);}, 'Please enter a valid student id.');
+                 // Initialize form validation on the  form.
+       $('#withdraw').validate(
+    	{
+			// Specify validation rules
+			// The key name on the left side is the name attribute
+		  	// of an input field. Validation rules are defined
+		  	// on the right side
+			rules:
+			{	
+		  		sId:
+		  			{
+						required: true,
+						smartIdValiator: true
+		  			}
+            },
+              // Specify validation error messages
+            messages: 
+           {
+                sId: 
+                	{
+		  				required: "Please enter student id."
+		  			}
+            },
+           errorPlacement: function(error, element) 
+           {
+				if (element.attr("name") == "sId" )  //Name of input field
+					error.appendTo('#sIdError');
+           },
+		// Make sure the form is submitted to the destination defined
+		// in the "action" attribute of the form when valid
+           submitHandler: function(form) 
+           {
+               withdrawButton();
+			}
+	  });
+	});
+</script>
+    
     <script>
      $(document).ready(function()
     {

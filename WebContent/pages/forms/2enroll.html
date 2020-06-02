@@ -1,173 +1,472 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>BCPMS | Enrollment Form</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>BCPMS | Enrollment Form</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-    
-    <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-     <style>
-      body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
-   	  transition: margin-left .3s ease-in-out;
-      margin-left: 0px;
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="../../plugins/fontawesome-free/css/all.min.css">
+
+<!-- overlayScrollbars -->
+<link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+<style>
+body:not (.sidebar-mini-md ) .content-wrapper,body:not (.sidebar-mini-md
+	) .main-footer,body:not (.sidebar-mini-md ) .main-header {
+	transition: margin-left .3s ease-in-out;
+	margin-left: 0px;
 }
-  </style>
+form .error 
+		{
+			color: #ff0000;
+		}
+</style>
 </head>
 
 <body class="hold-transition sidebar-mini">
-    <!-- Site wrapper -->
-    <div class="wrapper">
-        <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" style="min-height: 1246.8px;">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1><b>Qualification Details</b></h1>
-                        </div>            
-                    </div>
-                </div>
-                <!-- /.container-fluid -->
-            </section>
+	<!-- Site wrapper -->
+	<div class="wrapper" style="margin-left:0px;"> 
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper" style="min-height: 1246.8px;margin-left:0;">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1>
+								<b>Qualification Details</b>
+							</h1>
+						</div>
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+			</section>
 
-            <!-- Main content -->
-            <section class="content">
-                <!-- Default box -->
-                <div class="card">               
-          <!-- /.card-header -->
-		  <div class="card-body">        
-          <!-- /.card-header -->
-		  <div class="card-body">                     
-            <div class="row">
-			   <div class="col-md-3">
-                <div class="form-group"> 
-                       <b>10th</b> <input type="text" class="form-control" id="10board" placeholder="Enter your Board*" required>
-               </div>   
-			   <div class="form-group">              
-                        <b>12th</b><input type="text" class="form-control" id="12board" placeholder="Enter Board*" required>
-               </div>
-			   <div class="form-group">        
-                        <b>Under Graduate</b><input type="text" class="form-control" id="UGuniversity"  placeholder="Enter University*" required>
-               </div>
-			   <div class="form-group">       
-                        <b>Post Graduate</b><input type="text" class="form-control" id="PGuniversity" placeholder="Enter University*" required>
-               </div>
-			    <div class="form-group">
-                        <b>Diploma Course</b><input type="text" class="form-control" id="diploma" placeholder="Enter Board/University*" required>
-               </div>
-                <!-- /.form-group -->
-              </div>
-			   <div class="col-md-3">
-                <div class="form-group">
-                        <label></label>
-                        <input type="text" class="form-control" id="10year" placeholder="Enter year of passing*" required>
-               </div>
-			   <div class="form-group">
-                        <label></label>
-                        <input type="text" class="form-control" id="12year" placeholder="Enter year of passing*" required>
-               </div>
-			     <div class="form-group">
-                        <label></label>
-                        <input type="text" class="form-control" id="UGyear"  placeholder="Enter year of passing*" required>
-               </div>
-			     <div class="form-group">
-                        <label></label>
-                        <input type="text" class="form-control" id="PGyear" placeholder="Enter year of passing*" required>
-               </div>
-			<div class="form-group">
-                        <label></label>
-                        <input type="text" class="form-control" id="Diplomayear" placeholder="Enter year of passing*" required>
-               </div> 
-                <!-- /.form-group -->
-              </div>
-                <div class="col-md-3">
-                <div class="form-group">
-                        <label></label>
-                        <input type="text" class="form-control" id="10_obtained" placeholder="Enter obtained marks*" required>
-               </div>
-			   <div class="form-group">
-                        <label></label>
-                        <input type="text" class="form-control" id="12_obtained" placeholder="Enter obtained marks*" required>
-               </div>
-			     <div class="form-group">
-                        <label></label>
-                        <input type="text" class="form-control" id="UG_obtained"  placeholder="Enter obtained marks*" required>
-               </div>
-			     <div class="form-group">
-                        <label></label>
-                        <input type="text" class="form-control" id="PG_obtained" placeholder="Enter obtained marks*" required>
-               </div>
-			   <div class="form-group">
-                        <label></label>
-                        <input type="text" class="form-control" id="Diploma_obtained" placeholder="Enter obtained marks*" required>
-               </div>
+			<!-- Main content -->
+			<section class="content">
 			
-                <!-- /.form-group -->
-              </div>
-              <!-- /.col -->
-              <div class="col-md-2">
-                <!-- /.form-group -->
-                <div class="form-group">
-                        <label></label>
-                        <input type="text" class="form-control" id="10_total" placeholder="Enter total marks*" required>
-               </div>
-			   <div class="form-group">
-                        <label></label>
-                        <input type="text" class="form-control" id="12_total" placeholder="Enter total marks*" required>
-               </div>
-			     <div class="form-group">
-                        <label></label>
-                        <input type="text" class="form-control" id="UG_total"  placeholder="Enter total marks*" required>
-               </div>
-			     <div class="form-group">
-                        <label></label>
-                        <input type="text" class="form-control" id="PG_total" placeholder="Enter total marks*" required>
-               </div>
-			      <div class="form-group">
-                        <label></label>
-                        <input type="text" class="form-control" id="Diploma_total" placeholder="Enter total marks*" required>
-               </div>
-                <!-- /.form-group -->
-              </div>
-              <!-- /.col -->
-            </div>
-            <!-- /.row -->
-          </div>
-          <!-- /.card-body -->
-          </div>
-          <!-- /.card-body -->
-			<!--card footer-->
-            <div class="card-footer">
-                <button type="submit" class="btn btn-primary" onclick="qualificationBtn()">Submit</button>
-				<button type="submit" class="btn btn-default float-right">Cancel</button>
-             </div>                        
-                </div>
-                <!-- /.card -->
-             </section>
-            <!-- /.content -->
-               </div>
-        <!-- /.content-wrapper -->
-        </div>      
-    <!-- ./wrapper -->
+				<!-- Default box -->
+				<div class="card">
+				<form id="enroll2">
+					<!-- /.card-header -->
+					<div class="card-body">
+						<!-- /.card-header -->
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<b>10th</b> <input type="text" class="form-control" name="board10"
+											id="10board" placeholder="Enter your Board*" required>
+										<div id="error1"></div>
+										
+									</div>
+									<div class="form-group">
+										<b>12th</b><input type="text" class="form-control" name="board12"
+											id="12board" placeholder="Enter Board*" required>
+										<div id="error2"></div>
+									</div>
+									<div class="form-group">
+										<b>Under Graduate</b><input type="text" class="form-control" name="universityUG"
+											id="UGuniversity" placeholder="Enter University*" required>
+										<div id="error3"></div>
+									</div>
+									<div class="form-group">
+										<b>Post Graduate</b><input type="text" class="form-control" name="universityPG"
+											id="PGuniversity" placeholder="Enter University*" required>
+											<div id="error21"></div>
+									</div>
+									<div class="form-group">
+										<b>Diploma Course</b><input type="text" class="form-control" name="diploma"
+											id="diploma" placeholder="Enter Board/University*" required>
+											<div id="error21"></div>
+									</div>
+									<!-- /.form-group -->
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label></label> <input type="text" class="form-control" name="year10"
+											id="10year" placeholder="Enter year of passing*" required>
+											<div id="error4"></div>
+									</div>
+									<div class="form-group">
+										<label></label> <input type="text" class="form-control" name="year12"
+											id="12year" placeholder="Enter year of passing*" required>
+											<div id="error5"></div>
+									</div>
+									<div class="form-group">
+										<label></label> <input type="text" class="form-control" name="yearUG"
+											id="UGyear" placeholder="Enter year of passing*" required>
+											<div id="error6"></div>
+									</div>
+									<div class="form-group">
+										<label></label> <input type="text" class="form-control" name="yearPG"
+											id="PGyear" placeholder="Enter year of passing*" required>
+											<div id="error7"></div>
+									</div>
+									<div class="form-group">
+										<label></label> <input type="text" class="form-control" name="yearDiploma"
+											id="Diplomayear" placeholder="Enter year of passing*"
+											required>
+											<div id="error8"></div>
+									</div>
+									<!-- /.form-group -->
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label></label> <input type="text" class="form-control" name="obtained10"
+											id="10_obtained" placeholder="Enter obtained marks*" required>
+											<div id="error9"></div>
+									</div>
+									<div class="form-group">
+										<label></label> <input type="text" class="form-control" name="obtained12"
+											id="12_obtained" placeholder="Enter obtained marks*" required>
+											<div id="error10"></div>
+									</div>
+									<div class="form-group">
+										<label></label> <input type="text" class="form-control" name="obtainedUG"
+											id="UG_obtained" placeholder="Enter obtained marks*" required>
+											<div id="error11"></div>
+									</div>
+									<div class="form-group">
+										<label></label> <input type="text" class="form-control" name="obtainedPG"
+											id="PG_obtained" placeholder="Enter obtained marks*" required>
+											<div id="error12"></div>
+									</div>
+									<div class="form-group">
+										<label></label> <input type="text" class="form-control" name="obtainedDiploma"
+											id="Diploma_obtained" placeholder="Enter obtained marks*"
+											required>
+											<div id="error13"></div>
+									</div>
 
-    <!-- jQuery -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../dist/js/adminlte.min.js"></script>
-   <script src="../../dist/js/demo.js"></script>
-   <script>
-   
+									<!-- /.form-group -->
+								</div>
+								<!-- /.col -->
+								<div class="col-md-2">
+									<!-- /.form-group -->
+									<div class="form-group">
+										<label></label> <input type="text" class="form-control" name="total10"
+											id="10_total" placeholder="Enter total marks*" required>
+											<div id="error14"></div>
+									</div>
+									<div class="form-group">
+										<label></label> <input type="text" class="form-control" name="total12"
+											id="12_total" placeholder="Enter total marks*" required>
+											<div id="error15"></div>
+									</div>
+									<div class="form-group">
+										<label></label> <input type="text" class="form-control" name="totalUG"
+											id="UG_total" placeholder="Enter total marks*" required>
+											<div id="error16"></div>
+									</div>
+									<div class="form-group">
+										<label></label> <input type="text" class="form-control" name="totalPG"
+											id="PG_total" placeholder="Enter total marks*" required>
+											<div id="error17"></div>
+									</div>
+									<div class="form-group">
+										<label></label> <input type="text" class="form-control" name="totalDiploma"
+											id="Diploma_total" placeholder="Enter total marks*" required>
+											<div id="error18"></div>
+									</div>
+									<!-- /.form-group -->
+								</div>
+								<!-- /.col -->
+							</div>
+							<!-- /.row -->
+						</div>
+						<!-- /.card-body -->
+					</div>
+					<!-- /.card-body -->
+					<!--card footer-->
+					<div class="card-footer">
+						<button type="submit" class="btn btn-primary" onclick="qualificationBtn()">Submit</button>
+						<button type="reset" class="btn btn-default float-right">Cancel</button>
+					</div>
+					</form>
+				</div>
+				<!-- /.card -->
+				
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+ 	</div> 
+	<!-- ./wrapper -->
+
+	<!-- jQuery -->
+	<script src="../../plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 4 -->
+	<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+	<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+	<script src="../../dist/js/adminlte.min.js"></script>
+	<script src="../../dist/js/demo.js"></script>
+	<script>
+   $(document).ready(function () {
+	   $.validator.addMethod("boardValidator", function(value, element) 
+		{		return /^[A-Z]{1}[A-Za-z\s]{1,}$/.test(value);}, 'Please enter a valid board or university name.');
+	   $.validator.addMethod("yearValidator", function(value, element) 
+				{		return /^(19|20)[0-9]{2}$/.test(value);}, 'Please enter a valid year.');
+	   $.validator.addMethod("obtainedMarksValidator", function(value, element) 
+				{		return /^[0-9]{1,4}.{1}[0-9]{2}$/.test(value);}, 'Marks must be in the form as 0.00');
+	   $.validator.addMethod("totalMarksValidator", function(value, element) 
+				{		return /^[0-9]{3,4}$/.test(value);}, 'Please enter valid marks without decimal');
+	    
+		  // Initialize form validation on the form.  
+		  $('#enroll2').validate({
+			// Specify validation rules
+			rules: {
+			  // The key name on the left side is the name attribute
+			  // of an input field. Validation rules are defined
+			  // on the right side
+			 /*  board10: {
+				required: true,
+				boardValidator:true
+			  },
+			  year10: {
+				required: true,
+				yearValidator:true
+	                        
+			  },
+			  obtained10: {
+				required: true,
+				obtainedMarksValidator:true
+			  },
+			  total10: {
+				required: true,
+				totalMarksValidator:true
+			  },
+			  board12: {
+				required: true,  
+			  	boardValidator:true
+			  },
+			  year12: {
+				required:true,
+				yearValidator:true
+	                        
+			  },
+			  obtained12: {
+				required: true,
+				obtainedMarksValidator:true
+			  }, */
+			  total12: {
+				required: true,
+				totalMarksValidator:true
+			  },
+			 /*  universityUG: {
+				required: {
+					depends: function(element) {
+					  if ($('#universityPG').val() != '' && ( $('#UGyear').val()==="" || $('#UG_obtained').val()==="" || $('#UG_total').val()==="" ))
+					  {
+							return true;
+					  }
+					}
+				},
+				boardValidator:true
+			  },
+			  yearUG: {
+				required: {
+					depends: function(element) {
+					  if ($('#universityPG').val() != '')
+					  {
+							return true;
+					  }
+					}
+				},
+	            yearValidator:true            
+			  },
+			  obtainedUG: {
+				required: {
+					depends: function(element) {
+					  if ($('#universityPG').val() != '')
+					  {
+							return true;
+					  }
+					}
+				},
+				obtainedMarksValidator:true
+			  },
+	                  
+			  totalUG: {
+				required: {
+					depends: function(element) {
+					  if ($('#universityPG').val() != '')
+					  {
+							return true;
+					  }
+					}
+				},
+				totalMarksValidator:true
+			  },
+			  universityPG: {
+					required: {
+						depends: function(element) {
+						  if ($('#diploma').val() != '')
+						  {
+								return true;
+						  }
+						}
+					},
+		            yearValidator:true
+				  },
+			  yearPG: { 
+				required: {
+					depends: function(element) {
+					  if ($('#Diplomayear').val() != '')
+					  {
+							return true;
+					  }
+					}
+				},
+	            yearValidator:true
+			  },
+			  obtainedPG: {
+				required: {
+					depends: function(element) {
+					  if ($('#Diploma_obtained').val() != '')
+					  {
+							return true;
+					  }
+					}
+				},
+				obtainedMarksValidator:true
+			  },
+			  totalPG: {
+				required: {
+					depends: function(element) {
+					  if ($('#Diploma_total').val() != '')
+					  {
+							return true;
+					  }
+					}
+				},
+				totalMarksValidator:true
+			  },
+			  diploma:{
+				  boardValidator:true
+			  },
+			  yearDiploma: {
+				yearValidator:true           
+			  },
+			  obtainedDiploma: {
+				obtainedMarksValidator:true
+			  },
+			  totalDiploma: {
+				totalMarksValidator:true
+			  }*/
+			}, 
+			
+			// Specify validation error messages
+			messages: {
+			  /* board10: {
+				required: "This field is required"
+			  },
+			  year10: {
+			  required: "This field is required"
+			  },
+			  obtained10: {
+			  required: "This field is required"
+			  },
+			  total10: {
+			  required: "This field is required"
+			  },
+			  board12: {
+				required: "This field is required"
+			  },
+			  year12: {
+			  required: "This field is required"
+			  },
+			  obtained12: {
+			  required: "This field is required"
+			  },
+			  total12: {
+			  required: "This field is required"
+			  }, */
+			  /* boardUG: {
+				required: "This field is required"
+			  },
+			  yearUG: {
+			  required: "This field is required"
+			  },
+			  obtainedUG: {
+			  required: "This field is required"
+			  },
+			  totalUG: {
+			  required: "This field is required"
+			  },
+			  yearPG: {
+			  required: "This field is required"
+			  },
+			  obtainedPG: {
+			  required: "This field is required"
+			  },
+			  totalPG: {
+			  required: "This field is required"
+			  },
+			  yearDiploma: {
+			  required: "This field is required"
+			  },
+			  obtainedDiploma: {
+			  required: "This field is required"
+			  },
+			  totalDiploma: {
+			  required: "This field is required"
+			  }, */
+			  
+			},
+			errorPlacement: function(error, element) {
+				/* if (element.attr("name") == "board10")
+					error.appendTo('#error1');
+				if (element.attr("name") == "board12")
+					error.appendTo('#error2');
+				/* if (element.attr("name") == "universityUG")
+					error.appendTo('#error3'); */
+				/* if (element.attr("name") == "year10")
+					error.appendTo('#error4');
+				if (element.attr("name") == "year12")
+					error.appendTo('#error5'); */
+				/* if (element.attr("name") == "yearUG")
+					error.appendTo('#error6');
+				if (element.attr("name") == "yearPG")
+					error.appendTo('#error7');
+				if (element.attr("name") == "yearDiploma")
+					error.appendTo('#error8'); */
+				/* if (element.attr("name") == "obtained10")
+					error.appendTo('#error9');
+				if (element.attr("name") == "obtained12")
+					error.appendTo('#error10'); */
+				/* if (element.attr("name") == "obtainedUG")
+					error.appendTo('#error11');
+				if (element.attr("name") == "obtainedPG")
+					error.appendTo('#error12');
+				if (element.attr("name") == "obtainedDiploma")
+					error.appendTo('#error13');
+ */				/* if (element.attr("name") == "total10")
+					error.appendTo('#error14');
+				if (element.attr("name") == "total12")
+					error.appendTo('#error15'); */
+				/* if (element.attr("name") == "totalUG")
+					error.appendTo('#error16');
+				if (element.attr("name") == "totalPG")
+					error.appendTo('#error17');
+				if (element.attr("name") == "totalDiploma")
+					error.appendTo('#error18');		 */	 	
+			},
+			// Make sure the form is submitted to the destination defined
+			// in the "action" attribute of the form when valid
+			/* submitHandler: function(form) {
+			 	qualificatiobBtn();
+			} */
+		  });
+		});
+
 	function qualificationBtn()
 	{
-		
+		console.log("running");
 		var text={};
 				 text.tenth={course: "10", board: $('#10board').val(), year: $('#10year').val(), obtained : $('#10_obtained').val(), total: $('#10_total').val()}
 				 text.twelve={course: "12", board: $('#12board').val(), year: $('#12year').val(), obtained : $('#12_obtained').val(), total: $('#12_total').val()};
@@ -179,12 +478,12 @@
 		 	{		
 				if(data!=="invalid")
 				{
-					alert("Registration process completed");
-					window.location.href=data;
+					alert("Registration process completed.Thanku for the registration.Best of luck!!");
+					window.parent.location=data;
 				}
 				else
 					{
-						alert("Unauthorized user");
+						alert("Unauthorized user.Please try again");
 					}	
 		}) 
 	}

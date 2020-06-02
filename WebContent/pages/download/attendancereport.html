@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>BCPMS| AttendanceReport</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <style>
+      body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+    transition: margin-left .3s ease-in-out;
+    margin-left: 0px;
+	}
+.element_inline{
+		width:40%;
+		display:inline;
+	}
+	.card-footer{
+		background-color:white;
+	}
+	form .error 
+	{
+		color: #ff0000;
+	}
+  </style>
+</head>
+<body class="hold-transition sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="min-height: 1246.8px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Attendance Report</h1>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+    		<div class="col-md-3"></div>
+            <div class="col-md-6">
+            <!-- general form elements -->
+            	<div class="card card-primary">
+              		<!-- /.card-header -->
+              		<!-- form start -->
+              		 <form id="attendanceReport">
+                    <!--card header-->
+                    <div class="card-header">
+                      <h3 class="card-title"><b>Attendance Report</b></h3> 
+          			</div>
+          <!-- /.card-header -->
+        			<div class="card-body">
+            			<div class="row">
+              				<div class="col-md-12">
+                     			<div class="form-group">
+                  					<label>Select course</label>
+                  					<select class="form-control" id="course" name="course" required></select>
+                  					<div id="courseError"></div>
+                				</div>
+                				<div style="margin-bottom:10px;">
+                					<label>Select course nature</label>
+                					<div class="col-mod-12" style="margin-left:20px;">
+                						<input type="radio" id="radio1" name="subject_type" value="Theory"><span style="margin-right:10px;">Theory</span></input>
+                    					<input type="radio" id="radio2" name="subject_type" value="Practical" >Practical</input>
+                    					<div id="subject_typeError"></div>
+                					</div>
+                				</div>
+                <!-- Date range -->
+               					 <div>
+               					 	<label>Select month and year</label> 
+               					 	<div class="row">
+               					 		<div class="col-sm"> 
+               					 				<select class="form-control" id="month" name="month" required></select>
+               					 				<div id="monthError"></div>
+               					 		</div>
+               					 		<div class="col-sm">		
+               					 				<select class="form-control" id="year" name ="year" required></select>
+               					 				<div id="yearError"></div>
+                 						</div>
+               					 	</div>
+              					</div>
+       		<!-- /.form-group -->
+              <!-- /.col -->
+            			</div>
+            <!-- /.row -->
+        			</div>
+            <!-- /.card-body -->
+            <!--card footer-->
+            		<div class="card-footer">
+                		<button type="submit" class="btn btn-primary">Download Report</button>
+						<button type="reset" class="btn btn-default float-right">Cancel</button>
+            		</div>   
+            	</div>
+            <!-- /.card -->
+            </form>
+          	</div>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+   </div>
+   <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+	<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
+    <script src="../../dist/js/adminlte.min.js"></script>
+    <script src="../../dist/js/demo.js"></script>
+    <script type="text/javascript">
+     	
+    $(document).ready(function () 
+    {
+    	$('#attendanceReport').validate(
+    	{
+    		$.validator.addMethod("valueNotEqualValidator", function(value, element,arg)
+        	{		return arg!== value}, 'Please select the option.');
+    		 // Specify validation rules
+    		 // The key name on the left side is the name attribute
+      		// of an input field. Validation rules are defined
+      		// on the right side
+    		rules: {
+      					subject_type: 
+      								{
+        								required: true
+      								},
+      					month: 
+      								{
+        								required: true,
+        								valueNotEqualValidator:"Select"
+      								},
+      					year:
+      								{
+          								required:true,
+          								valueNotEqualValidator:"Select"
+      								},
+     					course: 
+     								{
+          								required:true,
+          								valueNotEqualValidator:"Select"
+      								}	
+        		},
+     		messages:
+     			{
+      				subject_type: 
+      								{
+        								required: "Please choose the type of course."
+      								},
+      				month: 
+      								{
+          								required: "Please select month.",
+          								valueNotEqualValidator:"Please choose the month."
+          							},
+      				year:
+      								{
+              							required: "Please select year.",
+              							valueNotEqualValidator:"Please choose the year."
+               						},          
+      				course:
+      								{
+          								required: "Please select one course."
+          								valueNotEqualValidator:"Please choose the subject."
+          							}
+    			},
+    		errorPlacement: function(error, element) 
+    		{
+        		if (element.attr("name") == "subject_type")  //Name of input field
+            		error.appendTo('#subject_typeError');
+        		if (element.attr("name") == "month")
+            		error.appendTo('#monthError');
+        		if (element.attr("name") == "year") 
+            		error.appendTo('#yearError');
+        		if (element.attr("name") == "course")
+            		error.appendTo('#courseError');
+    		},
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    		submitHandler: function(form) 
+    		{
+    			Download_Report();
+    		}
+  	}); 
+ }); 
+  </script>
+    <script type="module">
+    import months from '../../js/pages/month.js';
+    	$(document).ready(function(){
+    		$.post("http://localhost:9090/BCPMS/pages/download/attendancereport.jsp",{run_type:"load"},
+    			function(data,status)
+    			{
+    				if(data==="invalid")
+    				{
+        		   		alert("Invalid user!!");
+        			}
+        	   		else
+    				{
+						
+    	        		let data1=JSON.parse(data);
+        		    	if(data1.length>0)
+        		    	{
+        		    		let sel = $('#course')[0];
+        		        	let selectHtml=`<option value="Select">Select*</option>`
+      		            	       		$(selectHtml).appendTo(sel);
+        		       		data1.forEach(function(object)
+    						{
+        		   				let course_list=`<option>${object.course_list}</option>`
+                                    		$(course_list).appendTo(sel);  
+        		       		})  
+        		     	}
+						else
+						{
+							alert("No course is assigned to you");
+							window.parent.location="../../pages/dashboard/teacherdashboard.html";
+						}	 
+        		 	}
+    			})
+    			let sel1 = $('#month')[0];
+				let month_Html=`<option value="Select">Select Month*</option>`
+								$(month_Html).appendTo(sel1);
+				let month_array = Object.values(months);
+				month_array.forEach(val=>
+				{
+					let month_list=`<option>${val}</option>`
+            		$(month_list).appendTo(sel1);
+				})
+
+    			let sel2 = $('#year')[0];
+    			let selectHtml1=`<option value="Select">Select Year*</option>`
+    			       				$(selectHtml1).appendTo(sel2);
+				var current_year=(new Date()).getFullYear();
+    			for(var i=1990;i<=current_year;i++)
+				{
+            		let year_list=`<option>${i}</option>`
+            		$(year_list).appendTo(sel2);
+				}
+    	})
+    
+    
+    </script>
+    <script>
+    function Download_Report()
+	{
+    	alert("Downloading will take 5 seconds.Please wait...");
+		$.post("http://localhost:9090/BCPMS/pages/download/attendancereport.jsp",{run_type:"clicked",course_name:$('#course').children("option:selected").val(),
+					month:$('#month').children("option:selected").index(),year:$('#year').children("option:selected").val(),
+					course_nature:$('input[type=radio][name=subject_type]:checked').val()},
+					function(data,status)
+					{
+						
+						window.setTimeout(()=>{window.location=data},5000)
+					})
+	}
+    </script>
+
+</body>
+</html>

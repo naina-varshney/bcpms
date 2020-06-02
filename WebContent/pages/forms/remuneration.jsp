@@ -33,7 +33,7 @@
 			String toDate=request.getParameter("to_date");
 			String designation=request.getParameter("designation");	
 			int No_of_theoryClass=Integer.parseInt(request.getParameter("theory"));
-			int No_of_practicalClass=Integer.parseInt(request.getParameter("practical"));	
+			int No_of_practicalClass=Integer.parseInt(request.getParameter("practical"));
 			PreparedStatement ps=new Conn().con.prepareStatement("select amount from remuneration_calculation where course_nature='Theory' and designation_name=?");
 			ps.setString(1,designation);
 			ResultSet rs=ps.executeQuery();
@@ -49,6 +49,7 @@
 				practical_salary=rs1.getFloat(1);
 			}
 			float remuneration=(No_of_theoryClass*theory_salary)+(No_of_practicalClass*practical_salary);
+			System.out.println(remuneration);
 			response.getWriter().write(Float.toString(remuneration));
 			response.getWriter().close();
 			ps.close();
@@ -58,36 +59,45 @@
 		}
 		else if(execute.equals("store"))
 		{
-			String start_date=request.getParameter("start_date");
-			String end_date=request.getParameter("end_date");
-			String teacher_name=request.getParameter("teacher_name");
-			String[] name=teacher_name.split(" ");
-			String first_name=name[0];
-			String last_name=name[1];
-			float amount=Float.parseFloat(request.getParameter("amount"));
-			PreparedStatement ps1=new Conn().con.prepareStatement("select teacher_identity_card from teacher where first_name=? and last_name=?");
-			ps1.setString(1,first_name);
-			ps1.setString(2,last_name);
-			ResultSet rs=ps1.executeQuery();
-			String teacher_identity_card="";
-			if(rs.next())
-			{
-				teacher_identity_card=rs.getString(1);
+			try{
+				System.out.println("chling");
+				String start_date=request.getParameter("start_date");
+				String end_date=request.getParameter("end_date");
+				String teacher_name=request.getParameter("teacher_name");
+				String[] name=teacher_name.split(" ");
+				String first_name=name[0];
+				String last_name=name[1];
+				float amount=Float.parseFloat(request.getParameter("amount"));
+				PreparedStatement ps1=new Conn().con.prepareStatement("select teacher_identity_card from teacher where first_name=? and last_name=?");
+				ps1.setString(1,first_name);
+				ps1.setString(2,last_name);
+				ResultSet rs=ps1.executeQuery();
+				String teacher_identity_card="";
+				if(rs.next())
+				{
+					teacher_identity_card=rs.getString(1);
+				}
+				PreparedStatement ps=new Conn().con.prepareStatement("insert into remuneration (teacher_id,start_date,end_date,amount) values(?,?,?,?)");
+				ps.setString(1,teacher_identity_card);
+				ps.setString(2,start_date.toString());
+				ps.setString(3,end_date.toString());
+				ps.setFloat(4,amount);
+				if(ps.executeUpdate()>0)
+				{
+					System.out.println("updtaed");
+					response.getWriter().write("inserted");
+				}
+				response.getWriter().close();
+				ps.close();
+				ps1.close();
+				rs.close();
+
 			}
-			PreparedStatement ps=new Conn().con.prepareStatement("insert into remuneration (teacher_id,start_date,end_date,amount) values(?,?,?,?)");
-			ps.setString(1,teacher_identity_card);
-			ps.setString(2,start_date.toString());
-			ps.setString(3,end_date.toString());
-			ps.setFloat(4,amount);
-			if(ps.executeUpdate()>0)
+			catch(Exception e)
 			{
-				response.getWriter().write("inserted");
+				e.printStackTrace();
 			}
-			response.getWriter().close();
-			ps.close();
-			ps1.close();
-			rs.close();
-		}
+					}
 		else if(execute.equals("addDesignation"))
 		{
 			String teacher=request.getParameter("teacher_name");

@@ -70,7 +70,7 @@
                     <p class="login-box-msg"><b>Security Question</b></p>
                     <form  action="registration.jsp" method="post">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="id1" name="register_id" placeholder="Enter ID*" requires>
+                            <input type="text" class="form-control" id="id1" name="register_id" placeholder="Enter ID*" required>
 
                         </div>
 

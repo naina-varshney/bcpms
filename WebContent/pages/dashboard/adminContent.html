@@ -1,219 +1,204 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>BCPMS| AdminContent</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-	<!-- overlayScrollbars -->
-	<link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-	<!-- Theme style -->
-	<link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-	<style>
-		img {
-			width: 100%;
-			height: auto;
-		}
-
-		body:not (.sidebar-mini-md) .content-wrapper,
-		body:not (.sidebar-mini-md) .main-footer,
-		body:not (.sidebar-mini-md) .main-header {
-			margin-left: 0px;
-		}
-	</style>
+  <title>BCPMS| AdminContent</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"
+    href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet"
+    href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <style type="text/css">
+  	img {
+    width: 100%;
+    height: auto;
+    }
+    body .sidebar-mini-md .content-wrapper .main-footer .main-header {
+    margin-left: 0px;
+    }
+  </style>
 </head>
-
 <body>
-	<!--   Content Wrapper. Contains page content -->
-	<div class="content-wrapper" style="margin-left: 0">
-		<!--  Content Header (Page header) -->
-		<div class="content-header">
-			<!--  Content Header (Page header) -->
-			<!-- /.container-fluid -->
-		</div>
-		<!-- /.content-header -->
-		<!-- Main content -->
-		<section class="content">
-			<div class="container-fluid">
-				<!-- Info boxes -->
-				<div class="row">
-					<div class="col-12 col-sm-6 col-md-3">
-						<div class="info-box">
-							<span class="info-box-icon bg-info elevation-1"><i
-								class="fas fa-users"></i></span>
-
-							<div class="info-box-content">
-								<span class="info-box-text">Student Registered</span> <span class="info-box-number" id="student_count"> </span>
-							</div>
-							<!--  /.info-box-content -->
-						</div>
-						<!-- /.info-box -->
-					</div>
-					<!--/.col  -->
-					<div class="col-12 col-sm-6 col-md-3">
-						<div class="info-box mb-3">
-							<span class="info-box-icon bg-danger elevation-1">
-								<i class="fas fa-users"></i>
-							</span>
-							<div class="info-box-content">
-								<span class="info-box-text">Teachers Avaliable</span> 
-								<span class="info-box-number" id="teacher_count" ></span>
-							</div>
-							<!-- /.info-box-content -->
-						</div>
-						<!-- /.info-box -->
-					</div>
-					<!-- /.col -->
-					<!-- fix for small devices only -->
-					<div class="clearfix hidden-md-up"></div>
-					<div class="col-12 col-sm-6 col-md-3">
-						<div class="info-box mb-3">
-							<span class="info-box-icon bg-success elevation-1">
-							<i class="fa fa-graduation-cap"></i>
-							</span>
-							<div class="info-box-content">
-								<span class="info-box-text">Course Type</span> 
-								<span class="info-box-number" id="courseType_count"></span>
-							</div>
-							<!--   /.info-box-content -->
-						</div>
-						<!--  /.info-box -->
-					</div>
-					<!--/.col -->
-					<div class="col-12 col-sm-6 col-md-3">
-						<div class="info-box mb-3">
-							<span class="info-box-icon bg-warning elevation-1">
-							<i class="fas fa-user-graduate"></i>
-							</span>
-							<div class="info-box-content">
-								<span class="info-box-text">Courses</span> 
-								<span class="info-box-number" id="course_count"></span>
-							</div>
-							<!--   /.info-box-content  -->
-						</div>
-						<!-- /.info-box -->
-					</div>
-					<!-- /.col -->
-				</div>
-				<!-- /.row 
-                     Main row -->
-				<div class="row">
-					<!-- Left col -->
-					<div class="col-md-12">
-						<div class="card">
-							<!--  Carousel Wrapper-->
-							<div id="carousel-example-2" class="carousel slide carousel-fade z-depth-1-half" data-ride="carousel">
-								<!-- <!--Indicators-->
-								<ol class="carousel-indicators" id="img_carousel_indicators"></ol>
-								<div class="carousel-inner" role="listbox" id="img_carousel"></div>
-								<a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev"> 
-									<span class="carousel-control-prev-icon" aria-hidden="true"></span> 
-									<span class="sr-only">Previous</span>
-								</a> 
-								<a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next"> 
-									<span class="carousel-control-next-icon" aria-hidden="true"></span> 
-									<span class="sr-only">Next</span>
-								</a>
-							</div>
-							<!--/.Carousel Wrapper
-				 /.card-body -->
-						</div>
-						<!-- /.card -->
-					</div>
-				</div>
-			</div>
-			<!--  /. container-fluid -->
-		</section>
-		<!-- /.content -->
-	</div>
-	<!-- /.content-wrapper -->
-
-	<!-- REQUIRED SCRIPTS -->
+  <!--   Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="margin-left: 0">
+    <!--  Content Header (Page header) -->
+    <div class="content-header">
+      <!--  Content Header (Page header) -->
+      <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Info boxes -->
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-info elevation-1"><i
+                class="fas fa-users"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Student Registered</span> <span
+                  class="info-box-number" id="student_count"> </span>
+              </div>
+              <!--  /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!--/.col  -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-danger elevation-1"> <i
+                class="fas fa-users"></i>
+              </span>
+              <div class="info-box-content">
+                <span class="info-box-text">Teachers Avaliable</span> <span
+                  class="info-box-number" id="teacher_count"></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <!-- fix for small devices only -->
+          <div class="clearfix hidden-md-up"></div>
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-success elevation-1"> <i
+                class="fa fa-graduation-cap"></i>
+              </span>
+              <div class="info-box-content">
+                <span class="info-box-text">Course Type</span> <span
+                  class="info-box-number" id="courseType_count"></span>
+              </div>
+              <!--   /.info-box-content -->
+            </div>
+            <!--  /.info-box -->
+          </div>
+          <!--/.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-warning elevation-1"> <i
+                class="fas fa-user-graduate"></i>
+              </span>
+              <div class="info-box-content">
+                <span class="info-box-text">Courses</span> <span
+                  class="info-box-number" id="course_count"></span>
+              </div>
+              <!--   /.info-box-content  -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row 
+          Main row -->
+        <div class="row">
+          <!-- Left col -->
+          <div class="col-md-12">
+            <div class="card">
+              <!--  Carousel Wrapper-->
+              <div id="carousel-example-2"
+                class="carousel slide carousel-fade z-depth-1-half"
+                data-ride="carousel">
+                <!-- <!--Indicators-->
+                <ol class="carousel-indicators" id="img_carousel_indicators"></ol>
+                <div class="carousel-inner" role="listbox" id="img_carousel"></div>
+                <a class="carousel-control-prev" href="#carousel-example-2"
+                  role="button" data-slide="prev"> <span
+                  class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+                  class="sr-only">Previous</span>
+                </a> <a class="carousel-control-next" href="#carousel-example-2"
+                  role="button" data-slide="next"> <span
+                  class="carousel-control-next-icon" aria-hidden="true"></span> <span
+                  class="sr-only">Next</span>
+                </a>
+              </div>
+              <!--/.Carousel Wrapper
+                /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+      <!--  /. container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
 	<!-- jQuery -->
-	<script src="../../plugins/jquery/jquery.min.js"></script>
-	<!-- Bootstrap -->
-	<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<!-- overlayScrollbars -->
-	<script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-	<script src="../../dist/js/adminlte.js"></script>
-	<script type="module">
-		import {a} from '../../js/pages/url_string.js'; 
-		$(document).ready(function()
-			{ 
-				$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=user_session_key",function(data,status)
-					{
-						if(data!=="invalid session key")
-						{ 
-							$.post("http://localhost:9090/BCPMS/pages/dashboard/adminContent.jsp",{session_name:data,execute:"header"},function(data,status)
-								{
-									var object=JSON.parse(data); 
-									if(data==="unauthorized") 
-										{ 
-											alert("Unauthorized user!Please login with valid username and password.");
-										 } 
-									else 
-										{ 
-											$('#student_count').text(object.n_student+"+"); 
-											$('#teacher_count').text(object.n_teacher+"+");
-											$('#courseType_count').text(object.n_courseType+"+");
-											$('#course_count').text(object.n_course+"+"); 
-											$.post("http://localhost:9090/BCPMS/pages/dashboard/adminContent.jsp",{session_name:data,execute:"content"},function(data,status)
-												{
-													if(data!=="unauthorized")
-														{ 
-															let data1=JSON.parse(data); 
-															if(data1.length>0)
-															{ 	
-																let i=1; 
-																data1.forEach(function(object,index)
-																	{
-																		let full_path="../../"+object.path+"/"+object.img_name; 
-																		let indicator ="";
-																		let html="";
-																		if(index===0)
-																			{ 
-																				indicator = `<li data-target="#carousel-example-2" data-slide-to=${index} class="active"></li>`
-																				html=`
-																						<div class="carousel-item active">
-																							<div class="view">
-																							<img class="d-block w-100" src=${full_path} alt="${index} slide">
-																							<div class="mask rgba-black-light"></div>
-																							</div>
-																							<div class="carousel-caption">
-																							<h3 class="h3-responsive">${object.heading}</h3>
-																							</div>
-																						</div> ` 
-																			}
-																		 else	
-																		 { 
-																			indicator = `
-																							<li data-target="#carousel-example-2" data-slide-to=${index}></li>`
- 																			html=`
-																					<div class="carousel-item">
-																						<div class="view">
-																						<img class="d-block w-100" src=${full_path} alt="${index}slide">
-																						<div class="mask rgba-black-light"></div>
-																						</div>
-																						<div class="carousel-caption">
-																						<h3 class="h3-responsive">${object.heading}</h3>
-																						</div>
-																					</div>` 	
-																		} 
-																	$(indicator).appendTo("#img_carousel_indicators"); 
-																	$(html).appendTo("#img_carousel");
-																 }) 
-															} 
-														}
-												 }) 
-											} 
-										}) 
-									}
-									else
-									{
-										alert("Timeout.Please login again");
-									}
-							 })
- 		})	
+<script src="../../plugins/jquery/jquery.min.js" type="text/javascript"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+
+<script src="../../dist/js/adminlte.js" type="text/javascript"></script>
+<script src="../../globalConfig/globalConfig.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+	  $.get(url + "/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=user_session_key", function (data, status) {
+	    if (data !== "invalid session key") {
+	      $.post(url + "/BCPMS/pages/dashboard/adminContent.jsp", {
+	        session_name: data,
+	        execute: "header"
+	      }, function (data, status) {
+	        var object = JSON.parse(data);
+	        if (data === "unauthorized") {
+	          alert("Unauthorized user!Please login with valid username and password.");
+	        } else {
+	          $('#student_count').text(object.n_student + "+");
+	          $('#teacher_count').text(object.n_teacher + "+");
+	          $('#courseType_count').text(object.n_courseType + "+");
+	          $('#course_count').text(object.n_course + "+");
+	          $.post(url + "/BCPMS/pages/dashboard/adminContent.jsp", {
+	            session_name: data,
+	            execute: "content"
+	          }, function (data, status) {
+	            if (data !== "unauthorized") {
+	              let data1 = JSON.parse(data);
+	              if (data1.length > 0) {
+	                let i = 1;
+	                data1.forEach(function (object, index) {
+	                  let full_path = "../../" + object.path + "/" + object.img_name;
+	                  let indicator = "";
+	                  let html = "";
+	                  if (index === 0) {
+	                    indicator = `<li data-target="#carousel-example-2" data-slide-to=${index} class="active"></li>`
+	                    html = `
+	                    	<div class="carousel-item active">
+							<div class="view">
+							<img class="d-block w-100" src=${full_path} alt="${index} slide">
+							<div class="mask rgba-black-light"></div>
+							</div>
+							<div class="carousel-caption">
+							<h3 class="h3-responsive">${object.heading}</h3>
+							</div>
+						</div> `																	
+	                  } else {
+	                    indicator = `<li data-target="#carousel-example-2" data-slide-to=${index}></li>`
+	                    html = `
+	                    	<div class="carousel-item">
+							<div class="view">
+							<img class="d-block w-100" src=${full_path} alt="${index}slide">
+							<div class="mask rgba-black-light"></div>
+							</div>
+							<div class="carousel-caption">
+							<h3 class="h3-responsive">${object.heading}</h3>
+							</div>
+						</div>`															
+	                  }
+	                  $(indicator).appendTo("#img_carousel_indicators");
+	                  $(html).appendTo("#img_carousel");
+	                })
+	              }
+	            }
+	          })
+	        }
+	      })
+	    } else {
+	      alert("Timeout.Please login again");
+	    }
+	  })
+	})
 </script>
 </body>
 </html>

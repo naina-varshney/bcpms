@@ -99,6 +99,7 @@
 	<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
     <script src="../../dist/js/adminlte.min.js"></script>
     <script src="../../dist/js/demo.js"></script>
+    <script src="../../globalConfig/globalConfig.js" type="text/javascript"></script>
     <script type="text/javascript">
 	$(document).ready(function () 
 	{
@@ -149,7 +150,7 @@
     	{	
     		if(event.keyCode==13)
     		{
-    			$.post("http://localhost:9090/BCPMS/pages/forms/switchcourse.jsp",{run:"keypress",s_id:$("#student_id").val()},
+    			$.post(url + "/BCPMS/pages/forms/switchcourse.jsp",{run:"keypress",s_id:$("#student_id").val()},
     				function(data,status)
     				{
     					if(data!=="invalid")
@@ -166,7 +167,7 @@
      })
     function withdrawButton()
      {
-    	 $.post("http://localhost:9090/BCPMS/pages/forms/withdrawcourse.jsp",{run:"Button",s_id:$("#student_id").val()},
+    	 $.post(url + "/BCPMS/pages/forms/withdrawcourse.jsp",{run:"Button",s_id:$("#student_id").val()},
     		function(data,status)
     		{
     			 if(data==="done")

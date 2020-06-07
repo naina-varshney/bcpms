@@ -76,7 +76,7 @@
 				csvWriter.close();
 				ps.close();
 				rs.close();
-				response.getWriter().write("http://localhost:9090/BCPMS/pages/download/report.csv");
+				response.getWriter().write("/BCPMS/pages/download/report.csv");
 				response.getWriter().close();
 			}
 			catch(Exception e)

@@ -374,7 +374,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *
 	 * ```js
 	 * var result = merge({foo: 123}, {foo: 456});
-	 * console.log(result.foo); // outputs 456
+	 *  // outputs 456
 	 * ```
 	 *
 	 * @param {Object} obj1 Object to merge

@@ -82,6 +82,7 @@
 	<script src="../../plugins/jquery/jquery.dataTables.js"></script>
 	<script src="../../plugins/bootstrap/js/dataTables.bootstrap4.js"></script>
 	<script src="../../dist/js/adminlte.min.js"></script>
+	<script src="../../globalConfig/globalConfig.js" type="text/javascript"></script>
 	<!-- page script -->
 
 	<script>
@@ -90,17 +91,17 @@
 		var c_type = null;
 		$(document).ready(function () {
 			globalobj = {};
-			$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=teacher_course", function (data, status) {
+			$.get(url + "/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=teacher_course", function (data, status) {
 				if (data !== "invalid session key") {
 					$('#attendance_heading').text(data);
 					teacher_course = data;
-					$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=radio", function (radio_btn, status) {
+					$.get(url + "/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=radio", function (radio_btn, status) {
 						if (radio_btn !== "invalid") {
 							c_type = radio_btn;
 							$("<span style='color:red;'> (" + radio_btn + ")</span>").appendTo('#attendance_heading');
-							$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=attendance_date", function (date, status) {
+							$.get(url + "/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=attendance_date", function (date, status) {
 								att_date = date;
-								$.post("http://localhost:9090/BCPMS/pages/tables/markattendance.jsp", {									
+								$.post(url + "/BCPMS/pages/tables/markattendance.jsp", {									
 run: "load", course: data, radio_type: radio_btn,
 									attendance_date: date
 								},
@@ -164,7 +165,7 @@ run: "load", course: data, radio_type: radio_btn,
 		}
 
 		function change(object) {
-			console.log(globalobj);
+			
 			if ($('#' + object).val() === "Mark Present") {
 				globalobj[object]['attendance'] = "P"
 				$('#' + object).val("Mark Absent");
@@ -176,7 +177,7 @@ run: "load", course: data, radio_type: radio_btn,
 
 		function submit_attendance() {
 			let finaldata = Object.values(globalobj);
-			$.post("http://localhost:9090/BCPMS/pages/tables/markattendance.jsp", { run: "btn_clicked", data_object: JSON.stringify(finaldata), attendance_date: att_date, course_type: c_type[0], c_name: teacher_course },
+			$.post(url + "/BCPMS/pages/tables/markattendance.jsp", { run: "btn_clicked", data_object: JSON.stringify(finaldata), attendance_date: att_date, course_type: c_type[0], c_name: teacher_course },
 				function (data, status) {
 					if (data !== "invalid") {
 						alert("Today's attendance submitted successfully");

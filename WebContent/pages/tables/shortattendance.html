@@ -133,10 +133,11 @@
 	<script src="../../plugins/bootstrap/js/dataTables.bootstrap4.js"></script>
 	<script src="../../dist/js/adminlte.min.js"></script>
 	<script src="../../dist/js/demo.js"></script>
+	<script src="../../globalConfig/globalConfig.js" type="text/javascript"></script>
 	<!-- page script -->
 	<script>
 		$(document).ready(function () {
-			$.get("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=user_session_key", function (data, status) {
+			$.get(url + "/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=user_session_key", function (data, status) {
 				if (data.charAt(0) === 'T') {
 					let html = `<div class="col-md-12">
 			            	<div class="form-group">
@@ -159,7 +160,7 @@
 		            	</div>
 		            </div>`;
 					$(html).appendTo("#content");
-					$.post("http://localhost:9090/BCPMS/pages/common/ListPopulate.jsp", { tableName: "course_details" }, function (data, status) {
+					$.post(url + "/BCPMS/pages/common/ListPopulate.jsp", { tableName: "course_details" }, function (data, status) {
 						if (data === "Not Authorized") {
 							alert("Invalid user!!");
 						}
@@ -203,7 +204,7 @@
 
 		})
 		function show_table() {
-			$.post("http://localhost:9090/BCPMS/pages/tables/shortattendance.jsp", {
+			$.post(url + "/BCPMS/pages/tables/shortattendance.jsp", {
 				course_name: $('#course').children("option:selected").val(),
 				course_type: $('input[type=radio][name=subject_type]:checked').val(), year: $('#year').children("option:selected").val()
 			},
@@ -240,7 +241,7 @@
 
 		}
 		function show_attendance() {
-			$.post("http://localhost:9090/BCPMS/pages/tables/shortattendance.jsp", { course_nature: $('input[type=radio][name=subject_type]:checked').val() },
+			$.post(url + "/BCPMS/pages/tables/shortattendance.jsp", { course_nature: $('input[type=radio][name=subject_type]:checked').val() },
 				function (data, status) {
 					if (data !== "invalid user") {
 						let list = JSON.parse(data);

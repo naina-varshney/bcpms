@@ -124,6 +124,8 @@
 	<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
     <script src="../../dist/js/adminlte.min.js"></script>
     <script src="../../dist/js/demo.js"></script>
+    <script src="../../globalConfig/globalConfig.js" type="text/javascript"></script>
+    
     <script type="text/javascript">
         $(document).ready(function () {
         	$.validator.addMethod("valueNotEqualValidator", function(value, element,arg)
@@ -205,7 +207,7 @@
    import months from '../../js/pages/month.js';
    $(document).ready(function()
 	{
-		$.post("http://localhost:9090/BCPMS/pages/common/ListPopulate.jsp",{tableName:"course_details"},function(data,status)
+		$.post(url + "/BCPMS/pages/common/ListPopulate.jsp",{tableName:"course_details"},function(data,status)
 		{
 			if(data==="Not Authorized")
 			{
@@ -259,7 +261,7 @@ document.getElementById("radio1").checked=false;
 document.getElementById("radio2").checked=false;
 function viewAttendance()
 {
-	$.post("http://localhost:9090/BCPMS/pages/forms/viewattendanceform.jsp",{course_name:$('#course').children("option:selected").val(),
+	$.post(url + "/BCPMS/pages/forms/viewattendanceform.jsp",{course_name:$('#course').children("option:selected").val(),
 		month:$('#month').children("option:selected").index(),year:$('#year').children("option:selected").val(),
 		course_nature:$('input[type=radio][name=subject_type]:checked').val()},
 		function(data,status)

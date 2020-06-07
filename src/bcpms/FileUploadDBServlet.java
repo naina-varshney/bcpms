@@ -1,7 +1,7 @@
 package bcpms;
 
 import java.io.IOException;
-import java.io.InputStream;
+//import java.io.InputStream;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,34 +15,37 @@ import javax.servlet.annotation.MultipartConfig;
  */
 
 @WebServlet("/FileUploadDBServlet")
-@MultipartConfig(maxFileSize = 16177215)   
+@MultipartConfig(maxFileSize = 16177215)
 public class FileUploadDBServlet extends HttpServlet {
 //	private static final long serialVersionUID = 1L;
        
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * @see HttpServlet#HttpServlet()
      */
     public FileUploadDBServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
+		//String firstName = request.getParameter("firstName");
+        //String lastName = request.getParameter("lastName");
          
-        InputStream inputStream = null; // input stream of the upload file
+        //InputStream inputStream = null; // input stream of the upload file
          
         // obtains the upload file part in this multipart request
         Part filePart = request.getPart("photo");
@@ -53,7 +56,7 @@ public class FileUploadDBServlet extends HttpServlet {
             System.out.println(filePart.getContentType());
              
             // obtains input stream of the upload file
-            inputStream = filePart.getInputStream();
+            //inputStream = filePart.getInputStream();
         }
 	}
 

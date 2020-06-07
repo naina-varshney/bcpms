@@ -94,16 +94,17 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<script src="../../globalConfig/globalConfig.js" type="text/javascript"></script>
 <!-- page script -->
 <script>
  $(document).ready(()=>
  {
-	 $.post("http://localhost:9090/BCPMS/pages/forms/sessionStorage.jsp",{getSessionKey:"course_type_list"},(data,status)=>
+	 $.post(url + "/BCPMS/pages/forms/sessionStorage.jsp",{getSessionKey:"course_type_list"},(data,status)=>
 	 {
 		 if(data!=="invalid session key")
 		 {
 			  $("#heading").text(data);
-			  $.post("http://localhost:9090/BCPMS/pages/tables/courseList.jsp",{course_type:data,modify:false,payload:{}},(data,status)=>
+			  $.post(url + "/BCPMS/pages/tables/courseList.jsp",{course_type:data,modify:false,payload:{}},(data,status)=>
 			  {
 				  if(data!=="null")
 				  {

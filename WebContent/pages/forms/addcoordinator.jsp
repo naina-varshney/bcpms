@@ -20,9 +20,12 @@
 			{
 				responseObject.put("coordinator_name",rs.getString(1)+" "+rs.getString(2));
 				responseObject.put("subject",rs.getString(3));
+				response.getWriter().write(responseObject.toString());
+				response.getWriter().close();
+			}else{
+				response.getWriter().write("invalid");
+				response.getWriter().close();
 			}
-			response.getWriter().write(responseObject.toString());
-			response.getWriter().close();
 			ps.close();
 			rs.close();
 		}
@@ -33,6 +36,9 @@
 			if(ps.executeUpdate()>0)
 			{
 				response.getWriter().write("done");
+				response.getWriter().close();
+			}else{
+				response.getWriter().write("invalid");
 				response.getWriter().close();
 			}
 			ps.close();

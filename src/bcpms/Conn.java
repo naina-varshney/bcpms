@@ -15,9 +15,15 @@ public class Conn {
     public Connection con;
 
     public Conn() {
+    	//edit the database configuration variables in the production environment.
+    	String username = "root";
+    	String password = "Exhausted@101";
+    	String hostname = "localhost";
+    	String dbport = "3306";
+    	
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bcpms?characterEncoding=utf8&useConfigs=maxPerformance","root","root");
+            con = DriverManager.getConnection("jdbc:mysql://"+hostname+":"+dbport+"/bcpms?characterEncoding=utf8&useConfigs=maxPerformance",username,password);
             
         } catch (Exception ex) {
             ex.printStackTrace();

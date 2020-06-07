@@ -105,12 +105,13 @@
 	<!-- Bootstrap -->
 	<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- overlayScrollbars -->
-	<script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+	
 	<script src="../../dist/js/adminlte.js"></script>
+	<script src="../../globalConfig/globalConfig.js" type="text/javascript"></script>
 	<script>
     $(document).ready(function()
     	{
-    		$.post("http://localhost:9090/BCPMS/pages/common/MainContent.jsp",{user_type:"student"},function(data,status)
+    		$.post(url + "/BCPMS/pages/common/MainContent.jsp",{user_type:"student"},function(data,status)
     			{
     				if(data!=="invalid")
     				{

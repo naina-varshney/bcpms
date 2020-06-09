@@ -120,10 +120,11 @@
                         <div class="form-group">
                           <label>Select your security question</label>
                           <select class="form-control select2bs4" name="security_ques" id="security" style="width: 100%;" required>
-                    	<option>What is your favourite pet?</option>
-                    	<option>What is your hobby?</option>
-                    	<option>What is your grandfather's occupation?</option>
-                    </select>
+                          	<option value="Select">Select*</option>
+                    		<option>What is your favourite pet?</option>
+                    		<option>What is your hobby?</option>
+                    		<option>What is your grandfather's occupation?</option>
+                    	</select>
                           <span id="security_quesError"></span>
                         </div>
                         <div class="form-group">
@@ -189,6 +190,8 @@
       }, 'Please enter a valid enrollment number.');
       $.validator.addMethod("passwordValidator", function (value, element)
       { return /^[A-Za-z]{1,}[.,:;#@!$%^&*]{1,}[0-9]{1,}$/.test(value); }, 'Password must be combination of alphabets,digits,special characters.');
+      $.validator.addMethod("valueNotEqualValidator", function (value, element,arg)
+    	      { return arg!==value; }, 'Please select the security question.');
 
       // Initialize form validation on the registration form.
       // It has the name attribute "registration"
@@ -229,7 +232,8 @@
             mobileValidator: true
           },
           security_ques: {
-            required: true
+            required: true,
+            valueNotEqualValidator:"Select"
           },
           security_ans: {
             required: true
@@ -261,7 +265,8 @@
             required: "Please enter enrollment number."
           },
           security_ques: {
-            required: "please select one security question"
+            required: "please select one security question",
+            valueNotEqualValidator:"Please select the security question"
           },
           security_ans: {
             required: "please enter security answer"
@@ -303,15 +308,21 @@
   </script>
   <script>
     function OnRegisterBtnClicked() {
-      $.post(url + "/BCPMS/pages/forms/registration_form.jsp", {        
-user_name: $('#name1').val(), user_id: $('#id1').val(),
-        phone_no: $('#phonenumber').val(), aadhar_no: $('#aadhar').val(), email_id: $('#email1').val(), password: $('#password').val(),
-        confirm_pass: $('#password2').val(), security_ques: $('#security').val(), security_ans: $('#answer').val()
+      $.post(url + "/BCPMS/pages/forms/registration_form.jsp", 
+    	{user_name: $('#name1').val(), user_id: $('#id1').val(),phone_no: $('#phonenumber').val(), 
+    	 aadhar_no: $('#aadhar').val(), email_id: $('#email1').val(), password: $('#password').val(),
+    	 confirm_pass: $('#password2').val(), security_ques: $('#security').val(), security_ans: $('#answer').val()
       },
         function (data, status) {
           if (data === "incorrect") {
             alert("Something Went Wrong!!");
             $(':password').val("");
+            $('#phonenumber').val("");
+            $('#aadhar').val("");
+            $('#email1').val("");
+            $(':text').val("");
+            $('#security').val("Select");
+             
           }
           else {
             window.location.href = data;

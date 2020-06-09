@@ -1,8 +1,8 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="bcpms.Conn"%>
-<%@ page import="org.json.JSONObject" %>
-<%@ page import="org.json.JSONArray" %>
+<%@page import="org.json.JSONObject" %>
+<%@page import="org.json.JSONArray" %>
 <%@page errorPage="../../pages/commom/ErrorHandler.jsp" %>
 <%
     String id=(String)session.getAttribute("user_session_key");

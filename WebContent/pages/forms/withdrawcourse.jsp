@@ -17,7 +17,6 @@
 			if(rs1.next())
 			{
 				c_name=rs1.getString(1);
-				System.out.println("course_name:"+c_name);
 			}
 			response.getWriter().write(c_name);
 			response.getWriter().close();

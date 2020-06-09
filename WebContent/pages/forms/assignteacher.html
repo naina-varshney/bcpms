@@ -84,27 +84,31 @@
            $('#assignTeacher').validate(
         	{
 					// Specify validation rules
+					// The key name on the left side is the name attribute
+		 		   // of an input field. Validation rules are defined
+		  			// on the right side
 				rules: 
 				{
-		  			// The key name on the left side is the name attribute
-		 		   // of an input field. Validation rules are defined
-		  		// on the right side
-		  			teacher_id:{
+		  			teacher_id:
+		  				{
 							required: true,
 							smartIdValiator: true
 		 				},	
-               		course:{
+               		course:
+               			{
                         	required:true,
                         	valueNotEqualValidator:"Select"
-                  	  	   }
+                  	  	}
               },
               // Specify validation error messages
              messages:
              {
-                  teacher_id: {
+                  teacher_id: 
+                  		{
 		  					required: "Please enter teacher id."
 		  				},
-                 course:{
+                 course:
+                 		{
                            required:"Please enter teacher's name.",
                            valueNotEqualValidator:"Please select the course."
                   		}
@@ -162,8 +166,10 @@
     		{
     			if(data!=="invalid")
     			{
-    				//alert("Teacher is assiged to the course successfully");
-    				//$(':text').val("");
+    				alert("Teacher is assiged to the course successfully");
+    				$('#teacher_id').val("");
+    				$('#teacher_name').val("");
+    				$('#course').val("Select");
     			}
     			else
     			{

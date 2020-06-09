@@ -49,7 +49,6 @@
 				practical_salary=rs1.getFloat(1);
 			}
 			float remuneration=(No_of_theoryClass*theory_salary)+(No_of_practicalClass*practical_salary);
-			System.out.println(remuneration);
 			response.getWriter().write(Float.toString(remuneration));
 			response.getWriter().close();
 			ps.close();

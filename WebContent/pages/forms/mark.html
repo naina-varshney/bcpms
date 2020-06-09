@@ -15,6 +15,9 @@
     	transition: margin-left .3s ease-in-out;
     	margin-left: 0px;
 	}
+	  form .error {
+      color: #ff0000;
+    }
   </style>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -62,8 +65,9 @@
                       			<span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                     		</div>
                     		<input type="date" class="form-control" id="date1" name="date" required>
+                    		<div id="dateError"></div>
                   		</div>
-                  		<div id="dateError"></div>
+                  		
                   <!-- /.input group -->
                 	</div>
                 </div>
@@ -79,8 +83,9 @@
                      		<input type="radio" id="radio1" name="subject_type" value="Theory"><span style="margin-right:10px;">Theory</span></input>
                     		<input type="radio" id="radio2" name="subject_type" value="Practical" >Practical</input>
                   	  </div>
+                  	   <div id="subject_typeError"></div>
                    </div>
-                   <div id="subject_typeError"></div>
+                  
               	</div>
                 <!-- /.form-group -->
            	</div>
@@ -115,11 +120,8 @@
     <script src="../../globalConfig/globalConfig.js" type="text/javascript"></script>
     <script type="text/javascript">
 		$(document).ready(function () {
-     		$.validator.addMethod("passwordValiator", function(value, element) {
-                return /^$/i.test(value);
-             },'.');
      		$.validator.addMethod("valueNotEqualValidator", function(value, element,arg)
-     				{		return arg!== value}, 'Please select the option.');
+     		{		return arg!== value}, 'Please select the option.');
             
   // Initialize form validation.
   

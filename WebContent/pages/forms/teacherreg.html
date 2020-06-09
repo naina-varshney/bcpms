@@ -30,6 +30,9 @@
 			box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 20px 20px rgba(0,0,0,.2);
 			background-color: transparent;
 		}
+		form .error {
+      		color: #ff0000;
+    	}
   </style>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -79,7 +82,7 @@
                		 	   <div class="form-group">
                   				<label>Gender</label>
                   				<select class="form-control select2" id="gender" name="gender" style="width: 100%;" required>
-                    				<option selected="selected">Select*</option>
+                    				<option value="Select">Select*</option>
                     				<option>Male</option>
                     				<option>Female</option>
                   				</select>
@@ -92,7 +95,7 @@
             			<div class="form-group">
                   			<label>Designation</label>	  
 			                  <select class="form-control select2" id="designation" name="designation" style="width: 100%;" required>
-			                    <option selected="selected">Select*</option>
+			                    <option value="Select">Select*</option>
 			                    <option>Professor</option>
 			                    <option>Assistant Professor</option>
 			                    <option>Associate Professor</option>
@@ -216,11 +219,13 @@
                   			},
                   designation:
                   			{
-                      			required:true
+                      			required:true,
+                      			valueNotEqualValidator:"Select"
                   			},
                   gender:
                   			{
-                      			required:true
+                      			required:true,
+                      			valueNotEqualValidator:"Select"
                   			}
 			},
 		// Specify validation error messages
@@ -247,10 +252,12 @@
                   				},
                   		designation:
                   				{
-                      				required:"Enter Your Designation."
+                      				required:"Enter Your Designation.",
+                      				valueNotEqualValidator:"Please select the designation."
                   				},
                   		gender:{
-                      				required:"Choose Your Gender."
+                      				required:"Choose Your Gender.",
+                      				valueNotEqualValidator:"Please select the gender"
                   				}
 					},
                     errorPlacement: function(error, element) 
@@ -340,7 +347,7 @@
     {
     	
     	 $.post(url + "/BCPMS/pages/forms/teacherreg.jsp?getValues=false",{session_link:RegistrationFormSessionKey,designation:$('#designation').val(),
-    		 joining_date:$('#joining_date').val(),DOB:$('#dob').val(),gender:$('#gender').val(),subject:$('#subject').val()},
+    		 joining_date:$('#joining_date').val(),DOB:$('#dob').val(),gender:$('#gender').val(),subject:$('#course').val()},
      			function(data,status)
      			{
      				 if(data==="invalid user")

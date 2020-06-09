@@ -101,10 +101,9 @@
 							$("<span style='color:red;'> (" + radio_btn + ")</span>").appendTo('#attendance_heading');
 							$.get(url + "/BCPMS/pages/forms/sessionStorage.jsp?getSessionKey=attendance_date", function (date, status) {
 								att_date = date;
-								$.post(url + "/BCPMS/pages/tables/markattendance.jsp", {									
-run: "load", course: data, radio_type: radio_btn,
-									attendance_date: date
-								},
+								$("<br><span style='color:green;float:left;'>"+date+"</span>").appendTo('#attendance_heading');
+								$.post(url + "/BCPMS/pages/tables/markattendance.jsp", {run: "load", course: data, 
+									radio_type: radio_btn,attendance_date: date},
 									function (data, status) {
 										let list = JSON.parse(data);
 										let finallist = [];
@@ -181,6 +180,7 @@ run: "load", course: data, radio_type: radio_btn,
 				function (data, status) {
 					if (data !== "invalid") {
 						alert("Today's attendance submitted successfully");
+						window.parent.location="../../pages/dashboard/teacherdashboard.html";
 					}
 					else {
 						alert("Something went wrong");

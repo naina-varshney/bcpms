@@ -19,9 +19,7 @@
 			String course_name=request.getParameter("course");
 			String course_type=request.getParameter("radio_type");
 			String attendance_date=request.getParameter("attendance_date");
-			//System.out.println("select student_enrolment_details.Student_course_roll,course_details.Name,student.first_name,student.last_name,JSON_EXTRACT(attendance_details.attendance,'$.'"+month_year[2]+"') as attendance from student_enrolment_details inner join course_details on student_enrolment_details.course_id=course_details.course_id and course_details.Name="+course_name+" and student_enrolment_details.isEnabled=1 inner join student on student_enrolment_details.Student_identity_card=student.Student_Identity_card inner join attendance_details on student_enrolment_details.Student_Identity_card=attendance_details.Student_id and attendance_details.attendance_month="+month_year[1]+" and attendance_year="+month_year[0]+";");
 			PreparedStatement ps=new Conn().con.prepareStatement("select student_enrolment_details.Student_course_roll,course_details.Name,student.first_name,student.last_name, TRIM(BOTH '\"' FROM JSON_EXTRACT(attendance_details.attendance,'$.\""+month_year[2]+"\"')) as attendance from student_enrolment_details inner join course_details on student_enrolment_details.course_id=course_details.course_id and course_details.Name=? and student_enrolment_details.isEnabled=1 inner join student on student_enrolment_details.Student_identity_card=student.Student_Identity_card left join attendance_details on student_enrolment_details.Student_Identity_card=attendance_details.Student_id and attendance_details.attendance_month=? and attendance_details.attendance_year=? and attendance_details.course_nature=?;");
-			//ps.setString(1,month_year[2]);
 			ps.setString(1,course_name);
 			ps.setString(2,month_year[1]);
 			ps.setString(3,month_year[0]);

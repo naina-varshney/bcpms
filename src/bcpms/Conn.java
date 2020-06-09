@@ -9,7 +9,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 
-
 public class Conn {
 
     public Connection con;
@@ -17,7 +16,7 @@ public class Conn {
     public Conn() {
     	//edit the database configuration variables in the production environment.
     	String username = "root";
-    	String password = "Exhausted@101";
+    	String password = "root";
     	String hostname = "localhost";
     	String dbport = "3306";
     	

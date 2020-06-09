@@ -22,7 +22,9 @@
 				responseObject.put("subject",rs.getString(3));
 				response.getWriter().write(responseObject.toString());
 				response.getWriter().close();
-			}else{
+			}
+			else
+			{
 				response.getWriter().write("invalid");
 				response.getWriter().close();
 			}
@@ -37,7 +39,9 @@
 			{
 				response.getWriter().write("done");
 				response.getWriter().close();
-			}else{
+			}
+			else
+			{
 				response.getWriter().write("invalid");
 				response.getWriter().close();
 			}

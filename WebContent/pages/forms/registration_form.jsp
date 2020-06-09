@@ -1,9 +1,9 @@
 <%@page import="java.sql.ResultSet"%>
-	<%@page import="bcpms.Conn"%>
-		<%@page import="java.sql.PreparedStatement"%>
-			<%@page contentType="text/html" pageEncoding="UTF-8"%>
-				<%@page errorPage="../../pages/commom/ErrorHandler.jsp" %>
-					<%
+<%@page import="bcpms.Conn"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page errorPage="../../pages/commom/ErrorHandler.jsp" %>
+<%
 	String user_name = request.getParameter("user_name");
 	String user_id = request.getParameter("user_id");
 	String user_phone_no = request.getParameter("phone_no");

@@ -52,7 +52,7 @@
             <!-- /.row -->
         </div>
         <div class="card-footer">
-                <button type="submit" id="btn_check" class="btn btn-primary" onclick="assignTeacher()">Check</button>
+                <button type="submit" id="btn_check" onclick="assignTeacher()" class="btn btn-primary">Check</button>
 				<button type="reset" class="btn btn-default float-right">Cancel</button>
             </div> 
         </form>
@@ -124,7 +124,6 @@
 		// in the "action" attribute of the form when valid
             submitHandler: function(form)
             {
-		  		assignTeacher();
 			}
 	  });
 	
@@ -152,7 +151,9 @@
     		}
     	})
     })
+    
     $("#teacher_id").change(()=>{reset()});
+    
     function reset(){
     	$("#teacher_name").val("");
 		$("#btn_check").html("Check");

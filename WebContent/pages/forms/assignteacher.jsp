@@ -32,19 +32,20 @@
 			if(rs.next())
 			{
 				c_id=rs.getString(1);
+				PreparedStatement ps=new Conn().con.prepareStatement("insert into course_assigned_details(course_id,teacher_id,assigned_by_id) values(?,?,?)");
+				ps.setString(1,c_id);
+				ps.setString(2,teacher_id);
+				ps.setString(3,id);
+				if(ps.executeUpdate()>0)
+				{
+					response.getWriter().write("inserted");		
+				}
+				response.getWriter().close();
+				ps1.close();
+				ps.close();
+				rs.close();
 		    }
-			PreparedStatement ps=new Conn().con.prepareStatement("insert into course_assigned_details(course_id,teacher_id,assigned_by_id) values(?,?,?)");
-			ps.setString(1,c_id);
-			ps.setString(2,teacher_id);
-			ps.setString(3,id);
-			if(ps.executeUpdate()>0)
-			{
-				response.getWriter().write("inserted");		
-			}
-			response.getWriter().close();
-			ps1.close();
-			ps.close();
-			rs.close();
+			
 			
 		}
 		else
